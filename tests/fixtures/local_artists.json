@@ -1,0 +1,105 @@
+{
+  "artists_loop": [
+    {
+      "id": 12605,
+      "artist": "MILES DAVIS",
+      "favorites_url": "db:contributor.name=MILES%20DAVIS"
+    },
+    {
+      "id": 12628,
+      "artist": "miles davis",
+      "favorites_url": "db:contributor.name=miles%20davis"
+    },
+    {
+      "id": 20829,
+      "artist": "Miles davis",
+      "favorites_url": "db:contributor.name=Miles%20davis"
+    },
+    {
+      "id": 10029,
+      "artist": "Miles Davis",
+      "favorites_url": "db:contributor.name=Miles%20Davis"
+    },
+    {
+      "id": 12597,
+      "artist": "Davis, Miles",
+      "favorites_url": "db:contributor.name=Davis%2C%20Miles"
+    },
+    {
+      "id": 12600,
+      "artist": "Miles Davis +19",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20%2B19"
+    },
+    {
+      "id": 18376,
+      "artist": "Budo - Miles Davis",
+      "favorites_url": "db:contributor.name=Budo%20-%20Miles%20Davis"
+    },
+    {
+      "id": 12602,
+      "artist": "Miles Davis Sextet",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20Sextet"
+    },
+    {
+      "id": 21214,
+      "artist": "Miles Davis - Miles",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20-%20Miles"
+    },
+    {
+      "id": 28505,
+      "artist": "Miles Davis Quartet",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20Quartet"
+    },
+    {
+      "id": 12601,
+      "artist": "Miles Davis Quintet",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20Quintet"
+    },
+    {
+      "id": 24109,
+      "artist": "MILES DAVIS QUINTET",
+      "favorites_url": "db:contributor.name=MILES%20DAVIS%20QUINTET"
+    },
+    {
+      "id": 8838,
+      "artist": "Miles Davis All Stars",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20All%20Stars"
+    },
+    {
+      "id": 28504,
+      "artist": "Miles Davis All-Stars",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20All-Stars"
+    },
+    {
+      "id": 24110,
+      "artist": "MILES DAVIS In Concert",
+      "favorites_url": "db:contributor.name=MILES%20DAVIS%20In%20Concert"
+    },
+    {
+      "id": 12598,
+      "artist": "Miles Davis & Gil Evans",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20%26%20Gil%20Evans"
+    },
+    {
+      "id": 12589,
+      "artist": "The Miles Davis Quintet",
+      "favorites_url": "db:contributor.name=The%20Miles%20Davis%20Quintet"
+    },
+    {
+      "id": 17982,
+      "artist": "New Miles Davis Quintet",
+      "favorites_url": "db:contributor.name=New%20Miles%20Davis%20Quintet"
+    },
+    {
+      "id": 12606,
+      "artist": "Miles Davis Feat. Ledisi",
+      "favorites_url": "db:contributor.name=Miles%20Davis%20Feat.%20Ledisi"
+    },
+    {
+      "id": 12623,
+      "artist": "The Miles Davis Quintett",
+      "favorites_url": "db:contributor.name=The%20Miles%20Davis%20Quintett"
+    }
+  ],
+  "count": 54
+}

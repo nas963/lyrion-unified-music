@@ -1,0 +1,50 @@
+PLUGIN_UNIFIEDMUSIC
+	EN	Unified Music
+
+PLUGIN_UNIFIEDMUSIC_DESC
+	EN	Unified search and daily mixes across the local library, Qobuz and TIDAL.
+
+PLUGIN_UNIFIEDMUSIC_PRIMARY_SOURCE
+	EN	Primary source
+
+PLUGIN_UNIFIEDMUSIC_PRIMARY_SOURCE_DESC
+	EN	The most preferred source. The other sources keep the order local, Qobuz, TIDAL.
+
+PLUGIN_UNIFIEDMUSIC_CATEGORIES
+	EN	Daily mix categories
+
+PLUGIN_UNIFIEDMUSIC_CATEGORIES_DESC
+	EN	Only ticked categories are created. Enter a name and the genres: search your library genres and tick them, or press Enter to add another genre. Clear a name to delete a category.
+
+PLUGIN_UNIFIEDMUSIC_TRACK_COUNT
+	EN	Tracks per mix
+
+PLUGIN_UNIFIEDMUSIC_TRACK_COUNT_DESC
+	EN	From 5 to 100.
+
+PLUGIN_UNIFIEDMUSIC_MODEL
+	EN	AI model
+
+PLUGIN_UNIFIEDMUSIC_MODEL_DESC
+	EN	A model is available only when its API key is saved.
+
+PLUGIN_UNIFIEDMUSIC_ANTHROPIC_KEY
+	EN	Anthropic API key
+
+PLUGIN_UNIFIEDMUSIC_OPENAI_KEY
+	EN	OpenAI API key
+
+PLUGIN_UNIFIEDMUSIC_KEY_DESC
+	EN	Stored as plain text on the server. Leave empty to keep the saved key.
+
+PLUGIN_UNIFIEDMUSIC_RUN_TIME
+	EN	Nightly run time
+
+PLUGIN_UNIFIEDMUSIC_RUN_TIME_DESC
+	EN	The time and the time zone name.
+
+PLUGIN_UNIFIEDMUSIC_RUN_NOW
+	EN	Create mixes now
+
+PLUGIN_UNIFIEDMUSIC_RUN_NOW_DESC
+	EN	Creates today's mixes from the saved settings. Save your changes first.

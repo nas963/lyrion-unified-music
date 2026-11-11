@@ -1,0 +1,1622 @@
+{
+  "offset": 0,
+  "title": "Albums",
+  "base": {
+    "actions": {
+      "go": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "add": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "player": 0,
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "set-preset-3": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:3"
+        ],
+        "player": 0
+      },
+      "set-preset-5": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:5"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "set-preset-8": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:8"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "playControl": {
+        "itemsParams": "playControlParams",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0,
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.3.3"
+        },
+        "window": {
+          "isContextMenu": 1
+        }
+      },
+      "set-preset-0": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:0"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "set-preset-9": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:9"
+        ]
+      },
+      "play": {
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "set-preset-7": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:7"
+        ]
+      },
+      "set-preset-6": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:6"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "set-preset-4": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:4"
+        ]
+      },
+      "set-preset-1": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:1"
+        ]
+      },
+      "add-hold": {
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "more": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0,
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "set-preset-2": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:2"
+        ]
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "type": "playlist",
+      "actions": {
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "album",
+            "id": "2178485",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "id": "2178485",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ]
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "2178485",
+            "type": "album"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        },
+        "add": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "2178485"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        }
+      },
+      "text": "Kind Of Blue (Legacy Edition)\nMiles Davis",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F5b3b8e43%2F97ef%2F4eb3%2Fae88%2F54c80a995b9b%2F1280x1280.jpg/image.jpg",
+      "presetParams": {
+        "favorites_title": "Kind Of Blue (Legacy Edition) - Miles Davis",
+        "favorites_url": "tidal://album:2178485",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/5b3b8e43/97ef/4eb3/ae88/54c80a995b9b/1280x1280.jpg"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.0",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "type": "playlist",
+      "text": "Kind of Blue\nMiles Davis Sextet",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F739e6fd4%2Ff9d1%2F403d%2Fa7d0%2Fef9e450276a9%2F1280x1280.jpg/image.jpg",
+      "actions": {
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "type": "album",
+            "id": "356421417",
+            "menu": 1
+          }
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "356421417"
+          }
+        },
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "id": "356421417",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "play": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0,
+          "params": {
+            "type": "album",
+            "id": "356421417",
+            "menu": 1
+          },
+          "nextWindow": "nowPlaying"
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.1"
+      },
+      "presetParams": {
+        "favorites_url": "tidal://album:356421417",
+        "favorites_title": "Kind of Blue - Miles Davis Sextet",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/739e6fd4/f9d1/403d/a7d0/ef9e450276a9/1280x1280.jpg"
+      }
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F558790ef%2F6c6b%2F4e33%2Fb985%2F900c53c12758%2F1280x1280.jpg/image.jpg",
+      "text": "In Sight\nKind Of Blue",
+      "actions": {
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "album",
+            "id": "169024",
+            "menu": 1
+          }
+        },
+        "add-hold": {
+          "params": {
+            "menu": 1,
+            "id": "169024",
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ]
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "169024",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "type": "album",
+            "id": "169024",
+            "menu": 1
+          }
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.2",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/558790ef/6c6b/4e33/b985/900c53c12758/1280x1280.jpg",
+        "favorites_type": "playlist",
+        "favorites_title": "In Sight - Kind Of Blue",
+        "favorites_url": "tidal://album:169024"
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/d604273a/98b3/4901/b74b/5def200d0c16/1280x1280.jpg",
+        "favorites_type": "playlist",
+        "favorites_url": "tidal://album:274387295",
+        "favorites_title": "Instrumental Cafe - Kind Of Blue"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.3"
+      },
+      "actions": {
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "nextWindow": "nowPlaying",
+          "params": {
+            "id": "274387295",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "274387295",
+            "type": "album"
+          }
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "274387295",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "add": {
+          "params": {
+            "type": "album",
+            "id": "274387295",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        }
+      },
+      "text": "Instrumental Cafe\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fd604273a%2F98b3%2F4901%2Fb74b%2F5def200d0c16%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.4",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "favorites_url": "tidal://album:318603476",
+        "favorites_title": "A Shade Of Blue - Tsuyoshi Yamamoto",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/bc954cdc/645b/4fde/ba60/4ebc9c00a414/1280x1280.jpg"
+      },
+      "text": "A Shade Of Blue\nTsuyoshi Yamamoto",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fbc954cdc%2F645b%2F4fde%2Fba60%2F4ebc9c00a414%2F1280x1280.jpg/image.jpg",
+      "actions": {
+        "add": {
+          "params": {
+            "menu": 1,
+            "id": "318603476",
+            "type": "album"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "318603476",
+            "menu": 1,
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "id": "318603476",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "id": "318603476",
+            "menu": 1,
+            "type": "album"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        }
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "text": "Kind of Spain\nWolfgang Haffner",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fae63866e%2Fd5bf%2F4b39%2F839a%2Fad1689f56e5c%2F1280x1280.jpg/image.jpg",
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": "77267059",
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "id": "77267059",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "play": {
+          "params": {
+            "id": "77267059",
+            "menu": 1,
+            "type": "album"
+          },
+          "nextWindow": "nowPlaying",
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        },
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "77267059"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ]
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.5"
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/ae63866e/d5bf/4b39/839a/ad1689f56e5c/1280x1280.jpg",
+        "favorites_url": "tidal://album:77267059",
+        "favorites_title": "Kind of Spain - Wolfgang Haffner"
+      }
+    },
+    {
+      "presetParams": {
+        "favorites_url": "tidal://album:38960962",
+        "favorites_title": "Kind of Cool - Wolfgang Haffner",
+        "icon": "http://resources.tidal.com/images/1a7ee5bf/aeeb/497d/93c5/c97aec7a2965/1280x1280.jpg",
+        "favorites_type": "playlist"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.6"
+      },
+      "actions": {
+        "more": {
+          "params": {
+            "menu": 1,
+            "id": "38960962",
+            "type": "album"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "38960962",
+            "type": "album"
+          }
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "id": "38960962",
+            "menu": 1,
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "id": "38960962",
+            "menu": 1,
+            "type": "album"
+          }
+        }
+      },
+      "text": "Kind of Cool\nWolfgang Haffner",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F1a7ee5bf%2Faeeb%2F497d%2F93c5%2Fc97aec7a2965%2F1280x1280.jpg/image.jpg",
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": "29663746",
+            "type": "album"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "29663746"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        },
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "album",
+            "id": "29663746",
+            "menu": 1
+          }
+        },
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "id": "29663746",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ]
+        }
+      },
+      "text": "Miles Of Blue\nMichał Urbaniak",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F5443019b%2Fa80d%2F40c7%2Fbf99%2Fc7afc6ce446a%2F1280x1280.jpg/image.jpg",
+      "presetParams": {
+        "favorites_url": "tidal://album:29663746",
+        "favorites_title": "Miles Of Blue - Michał Urbaniak",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/5443019b/a80d/40c7/bf99/c7afc6ce446a/1280x1280.jpg"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.7"
+      }
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F7f116a91%2F7cb9%2F468d%2F9036%2Fd84bf4cb1b19%2F1280x1280.jpg/image.jpg",
+      "text": "Solo Wurlitzer Electric Piano: Miles Davis' Kind of Blue\nSolo Sounds",
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "id": "71276023",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "id": "71276023",
+            "menu": 1,
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "id": "71276023",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "71276023"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.8",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/7f116a91/7cb9/468d/9036/d84bf4cb1b19/1280x1280.jpg",
+        "favorites_type": "playlist",
+        "favorites_url": "tidal://album:71276023",
+        "favorites_title": "Solo Wurlitzer Electric Piano: Miles Davis' Kind of Blue - Solo Sounds"
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/11c2cee5/5a80/4486/9c71/e56e76d24075/1280x1280.jpg",
+        "favorites_title": "Shade of Blue - Tómas R. Einarsson",
+        "favorites_url": "tidal://album:335442168"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.9",
+        "isContextMenu": 1
+      },
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "335442168"
+          }
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "menu": 1,
+            "id": "335442168",
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "335442168",
+            "type": "album"
+          }
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": "335442168",
+            "type": "album"
+          }
+        }
+      },
+      "text": "Shade of Blue\nTómas R. Einarsson",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F11c2cee5%2F5a80%2F4486%2F9c71%2Fe56e76d24075%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.10"
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/ce371f10/a2ac/4a92/8606/0841d2800761/1280x1280.jpg",
+        "favorites_type": "playlist",
+        "favorites_url": "tidal://album:83971361",
+        "favorites_title": "Three of a Kind - Vanja Orlandic"
+      },
+      "text": "Three of a Kind\nVanja Orlandic",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fce371f10%2Fa2ac%2F4a92%2F8606%2F0841d2800761%2F1280x1280.jpg/image.jpg",
+      "actions": {
+        "add": {
+          "params": {
+            "menu": 1,
+            "id": "83971361",
+            "type": "album"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "83971361",
+            "menu": 1,
+            "type": "album"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add-hold": {
+          "params": {
+            "menu": 1,
+            "id": "83971361",
+            "type": "album"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "id": "83971361",
+            "menu": 1,
+            "type": "album"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        }
+      }
+    },
+    {
+      "type": "playlist",
+      "text": "Figure In Blue\nCharles Lloyd",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fc29d65e7%2Fe6b5%2F4fa8%2F8258%2Fd01b7d4a20d5%2F1280x1280.jpg/image.jpg",
+      "actions": {
+        "play": {
+          "params": {
+            "id": "464578470",
+            "menu": 1,
+            "type": "album"
+          },
+          "nextWindow": "nowPlaying",
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "id": "464578470",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "more": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "464578470"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add": {
+          "params": {
+            "type": "album",
+            "id": "464578470",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.11",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/c29d65e7/e6b5/4fa8/8258/d01b7d4a20d5/1280x1280.jpg",
+        "favorites_title": "Figure In Blue - Charles Lloyd",
+        "favorites_url": "tidal://album:464578470"
+      }
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F364f3820%2F91da%2F4a69%2F8b5c%2F678bb7b309c1%2F1280x1280.jpg/image.jpg",
+      "text": "kind of LIVES\nPaolo Fresu",
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "519529547",
+            "type": "album"
+          }
+        },
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "519529547",
+            "type": "album"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "519529547",
+            "type": "album"
+          }
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "519529547",
+            "type": "album"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.12"
+      },
+      "presetParams": {
+        "favorites_title": "kind of LIVES - Paolo Fresu",
+        "favorites_url": "tidal://album:519529547",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/364f3820/91da/4a69/8b5c/678bb7b309c1/1280x1280.jpg"
+      }
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F8c5b2ee0%2F4b50%2F4602%2Fa80e%2Fd179d35f81e0%2F1280x1280.jpg/image.jpg",
+      "text": "Kind of Blue - America [E]\nTQ",
+      "actions": {
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "30116969"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "play": {
+          "params": {
+            "type": "album",
+            "id": "30116969",
+            "menu": 1
+          },
+          "nextWindow": "nowPlaying",
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "params": {
+            "id": "30116969",
+            "menu": 1,
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "30116969",
+            "type": "album"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.13",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "favorites_url": "tidal://album:30116969",
+        "favorites_title": "Kind of Blue - America [E] - TQ",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/8c5b2ee0/4b50/4602/a80e/d179d35f81e0/1280x1280.jpg"
+      },
+      "type": "playlist"
+    },
+    {
+      "actions": {
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "165965056"
+          }
+        },
+        "add": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "165965056"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        },
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "165965056",
+            "type": "album"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "165965056",
+            "type": "album"
+          }
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fe82160bb%2F91be%2F42d0%2Fa6ca%2F9bd4b9cea64d%2F1280x1280.jpg/image.jpg",
+      "text": "Kind of Swing (Mg Kos)\nMind Games",
+      "presetParams": {
+        "favorites_title": "Kind of Swing (Mg Kos) - Mind Games",
+        "favorites_url": "tidal://album:165965056",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/e82160bb/91be/42d0/a6ca/9bd4b9cea64d/1280x1280.jpg"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.14"
+      },
+      "type": "playlist"
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.15"
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/a0074ef1/abdb/4581/af2c/dae20e7f1158/1280x1280.jpg",
+        "favorites_url": "tidal://album:466816048",
+        "favorites_title": "Shades of Blue - Lightseeds"
+      },
+      "text": "Shades of Blue\nLightseeds",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fa0074ef1%2Fabdb%2F4581%2Faf2c%2Fdae20e7f1158%2F1280x1280.jpg/image.jpg",
+      "actions": {
+        "add": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "466816048"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "params": {
+            "menu": 1,
+            "id": "466816048",
+            "type": "album"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "466816048"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ]
+        },
+        "play": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "466816048"
+          },
+          "nextWindow": "nowPlaying",
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        }
+      },
+      "type": "playlist"
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.16"
+      },
+      "presetParams": {
+        "favorites_url": "tidal://album:548739642",
+        "favorites_title": "The Quiet Kind of Blue - Enlly Blue",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/fb07952d/e216/4d27/8563/2ed38cbf1e8d/1280x1280.jpg"
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Ffb07952d%2Fe216%2F4d27%2F8563%2F2ed38cbf1e8d%2F1280x1280.jpg/image.jpg",
+      "text": "The Quiet Kind of Blue\nEnlly Blue",
+      "actions": {
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "548739642"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "album",
+            "id": "548739642",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "params": {
+            "menu": 1,
+            "id": "548739642",
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "548739642"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "type": "playlist"
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F3d50891f%2F7a60%2F4d3e%2Fa777%2F60a443f2ce40%2F1280x1280.jpg/image.jpg",
+      "text": "kind of MILES\nPaolo Fresu",
+      "actions": {
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "album",
+            "id": "416675674",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "id": "416675674",
+            "menu": 1,
+            "type": "album"
+          }
+        },
+        "more": {
+          "params": {
+            "menu": 1,
+            "id": "416675674",
+            "type": "album"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "416675674",
+            "type": "album"
+          }
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.17"
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/3d50891f/7a60/4d3e/a777/60a443f2ce40/1280x1280.jpg",
+        "favorites_url": "tidal://album:416675674",
+        "favorites_title": "kind of MILES - Paolo Fresu"
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.18"
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/627f4c24/076a/4015/b266/471ab3e4c62b/1280x1280.jpg",
+        "favorites_title": "Another Kind of Soul (Live) - Tony Kofi",
+        "favorites_url": "tidal://album:222563659"
+      },
+      "text": "Another Kind of Soul (Live)\nTony Kofi",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F627f4c24%2F076a%2F4015%2Fb266%2F471ab3e4c62b%2F1280x1280.jpg/image.jpg",
+      "actions": {
+        "add-hold": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "222563659"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "play": {
+          "params": {
+            "menu": 1,
+            "id": "222563659",
+            "type": "album"
+          },
+          "nextWindow": "nowPlaying",
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "params": {
+            "menu": 1,
+            "id": "222563659",
+            "type": "album"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "222563659",
+            "type": "album"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      }
+    },
+    {
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "233851559"
+          }
+        },
+        "play": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0,
+          "params": {
+            "id": "233851559",
+            "menu": 1,
+            "type": "album"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add": {
+          "params": {
+            "type": "album",
+            "menu": 1,
+            "id": "233851559"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "album",
+            "id": "233851559",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F3a306d6e%2F5359%2F4df3%2F9873%2Fda6a7500ee98%2F1280x1280.jpg/image.jpg",
+      "text": "What Kind of Blue Are You?\nWinter",
+      "presetParams": {
+        "favorites_url": "tidal://album:233851559",
+        "favorites_title": "What Kind of Blue Are You? - Winter",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/3a306d6e/5359/4df3/9873/da6a7500ee98/1280x1280.jpg"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.3.19",
+        "isContextMenu": 1
+      },
+      "type": "playlist"
+    }
+  ],
+  "count": 100,
+  "window": {
+    "windowStyle": "icon_list"
+  }
+}

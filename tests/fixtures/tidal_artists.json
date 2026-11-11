@@ -1,0 +1,752 @@
+{
+  "offset": 0,
+  "title": "Artists",
+  "base": {
+    "actions": {
+      "add-hold": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "itemsParams": "params"
+      },
+      "playControl": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "playControlParams",
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.3.2"
+        }
+      },
+      "play": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "nextWindow": "nowPlaying",
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "player": 0
+      },
+      "add": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "go": {
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "more": {
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ]
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "type": "outline",
+      "addAction": "go",
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "artist",
+            "menu": 1,
+            "id": 11982
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.0"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F558790ef%2F6c6b%2F4e33%2Fb985%2F900c53c12758%2F750x750.jpg/image.jpg",
+      "text": "Kind Of Blue"
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fffc32fda%2Fde53%2F4bff%2F89ef%2Fee170ad88f64%2F750x750.jpg/image.jpg",
+      "text": "Natalie Imbruglia",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.1"
+          }
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "id": 1882,
+            "menu": 1,
+            "type": "artist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "type": "outline",
+      "addAction": "go"
+    },
+    {
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.2",
+            "menu": "globalsearch"
+          }
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": 8835,
+            "menu": 1,
+            "type": "artist"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "text": "Robbie Williams",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F92cdb241%2F92c2%2F48c8%2F92c8%2Fb4f64f13c344%2F750x750.jpg/image.jpg",
+      "type": "outline",
+      "addAction": "go"
+    },
+    {
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": 10444,
+            "menu": 1,
+            "type": "artist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.3"
+          }
+        }
+      },
+      "text": "Loreena McKennitt",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F0b31acba%2F2ef8%2F4078%2Fa8a0%2F560884f8b835%2F750x750.jpg/image.jpg",
+      "type": "outline",
+      "addAction": "go"
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.4"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "type": "artist",
+            "id": 10091,
+            "menu": 1
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "text": "ENIGMA",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F89b2ff06%2F2f8c%2F4540%2Fa856%2Fe918dfaa8313%2F750x750.jpg/image.jpg",
+      "addAction": "go",
+      "type": "outline"
+    },
+    {
+      "type": "outline",
+      "addAction": "go",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F9836d3d1%2F0b8c%2F450f%2Fa867%2F78d58b775d97%2F750x750.jpg/image.jpg",
+      "text": "Hooverphonic",
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.5",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "artist",
+            "id": 1271,
+            "menu": 1
+          }
+        }
+      }
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.6",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "artist",
+            "id": 12034,
+            "menu": 1
+          }
+        }
+      },
+      "text": "Morcheeba",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fc30966ef%2F1373%2F462a%2Fbd12%2F8af4a3ec8a24%2F750x750.jpg/image.jpg",
+      "addAction": "go",
+      "type": "outline"
+    },
+    {
+      "addAction": "go",
+      "type": "outline",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.7",
+            "menu": "globalsearch"
+          }
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": 9045,
+            "type": "artist"
+          }
+        }
+      },
+      "text": "Moby",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fccf10bc4%2F5c14%2F4d7e%2F94c0%2Fab8ecedc3dcb%2F750x750.jpg/image.jpg"
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.8",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": 1736,
+            "type": "artist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "text": "Dido",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F8d713d6e%2Ffa63%2F4db0%2F81de%2F6e19d0c7acc3%2F750x750.jpg/image.jpg",
+      "addAction": "go",
+      "type": "outline"
+    },
+    {
+      "addAction": "go",
+      "type": "outline",
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "id": 9366,
+            "menu": 1,
+            "type": "artist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        },
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.9"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F598806d2%2F8866%2F410e%2Fb7e6%2F0d724a9d84b0%2F750x750.jpg/image.jpg",
+      "text": "R.E.M."
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.10",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "artist",
+            "menu": 1,
+            "id": 1741
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "text": "Savage Garden",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F7eb9f2eb%2F7bb9%2F436c%2F821d%2F8c641bb4a664%2F750x750.jpg/image.jpg",
+      "addAction": "go",
+      "type": "outline"
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fe11debbb%2Fa25d%2F4410%2F9dc0%2Fbb6114ddff30%2F750x750.jpg/image.jpg",
+      "text": "Miles Davis",
+      "actions": {
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "id": 55,
+            "menu": 1,
+            "type": "artist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        },
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.11",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "addAction": "go",
+      "type": "outline"
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fcdf59317%2F5b47%2F44a4%2F844e%2F0812822395a1%2F750x750.jpg/image.jpg",
+      "text": "Bill Evans",
+      "actions": {
+        "more": {
+          "params": {
+            "menu": 1,
+            "id": 1158,
+            "type": "artist"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.12",
+            "menu": "globalsearch"
+          }
+        }
+      },
+      "addAction": "go",
+      "type": "outline"
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.13"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": 6974,
+            "type": "artist"
+          }
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F9428da74%2F9c17%2F420e%2Fa9bc%2F16515c514229%2F750x750.jpg/image.jpg",
+      "text": "Kenny Burrell",
+      "type": "outline",
+      "addAction": "go"
+    },
+    {
+      "text": "Ben Webster",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F2ca11fa6%2F8473%2F401a%2Fb98c%2Fadd91c7e0710%2F750x750.jpg/image.jpg",
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.14"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "artist",
+            "menu": 1,
+            "id": 6199
+          }
+        }
+      },
+      "type": "outline",
+      "addAction": "go"
+    },
+    {
+      "addAction": "go",
+      "type": "outline",
+      "text": "Hank Mobley",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fd7b8bfd0%2F8ab7%2F4684%2F8847%2Fb8ee229f05b7%2F750x750.jpg/image.jpg",
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.15",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "id": 3504582,
+            "menu": 1,
+            "type": "artist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      }
+    },
+    {
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.16",
+            "menu": "globalsearch"
+          }
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "menu": 1,
+            "id": 11094,
+            "type": "artist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "text": "Miles Davis Sextet",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F15451586%2Fe122%2F4894%2Fb0cd%2F7b4a727be102%2F750x750.jpg/image.jpg",
+      "addAction": "go",
+      "type": "outline"
+    },
+    {
+      "addAction": "go",
+      "type": "outline",
+      "actions": {
+        "more": {
+          "params": {
+            "type": "artist",
+            "menu": 1,
+            "id": 32296720
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.17",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "text": "indys blu",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F9b58d2f5%2F45e7%2F495e%2Fa195%2F695eeca6de20%2F750x750.jpg/image.jpg"
+    },
+    {
+      "addAction": "go",
+      "type": "outline",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F31fe9186%2Fc6e9%2F4531%2Fad0d%2F4476156a8688%2F750x750.jpg/image.jpg",
+      "text": "The Bill Evans Trio",
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.18"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "artist",
+            "menu": 1,
+            "id": 3762072
+          }
+        }
+      }
+    },
+    {
+      "type": "outline",
+      "addAction": "go",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F2574746f%2Fbc8d%2F4010%2F99bf%2Fac5b2b0f4b62%2F750x750.jpg/image.jpg",
+      "text": "Archie Shepp Quartet",
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "artist",
+            "id": 4120559,
+            "menu": 1
+          }
+        },
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.2.19"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      }
+    }
+  ],
+  "count": 52,
+  "window": {
+    "windowStyle": "home_menu"
+  }
+}

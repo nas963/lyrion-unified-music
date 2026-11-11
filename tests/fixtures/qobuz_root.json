@@ -1,0 +1,160 @@
+{
+  "offset": 0,
+  "title": "Qobuz",
+  "base": {
+    "actions": {
+      "go": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ]
+      },
+      "add": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "more": {
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "add-hold": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ]
+      },
+      "play": {
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "player": 0,
+        "itemsParams": "params",
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "playControl": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "playControlParams",
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.2"
+        }
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.0"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "icon": "html/images/albums.png",
+      "text": "Releases",
+      "addAction": "go"
+    },
+    {
+      "addAction": "go",
+      "icon": "html/images/artists.png",
+      "text": "Artists",
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.1"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.2.2",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "text": "Songs",
+      "icon": "html/images/playlists.png",
+      "addAction": "go"
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.3"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "icon": "html/images/playlists.png",
+      "text": "Playlists",
+      "addAction": "go"
+    }
+  ],
+  "count": 4,
+  "window": {
+    "windowStyle": "home_menu"
+  }
+}

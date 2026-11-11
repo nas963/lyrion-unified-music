@@ -1,0 +1,116 @@
+[% PROCESS settings/header.html %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_PRIMARY_SOURCE" desc="PLUGIN_UNIFIEDMUSIC_PRIMARY_SOURCE_DESC" %]
+		<select class="stdedit" name="umPrimarySource">
+			<option [% IF um.primarySource == 'local' %]selected[% END %] value="local">Local</option>
+			<option [% IF um.primarySource == 'qobuz' %]selected[% END %] value="qobuz">Qobuz</option>
+			<option [% IF um.primarySource == 'tidal' %]selected[% END %] value="tidal">TIDAL</option>
+		</select>
+	[% END %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_CATEGORIES" desc="PLUGIN_UNIFIEDMUSIC_CATEGORIES_DESC" %]
+		<input type="hidden" name="umCategoryRows" value="[% umCategoryRows %]">
+		[% FOREACH category = umCategories %]
+		<div class="umRow">
+			<input type="hidden" name="umCategoryOriginal[% loop.index %]" value="[% category.original | html %]">
+			<input type="checkbox" name="umCategoryActive[% loop.index %]" title="Active" [% IF category.active %]checked[% END %]>
+			<input type="text" class="stdedit" name="umCategoryName[% loop.index %]" value="[% category.name | html %]" size="20" placeholder="Name">
+			<div class="umGenres"><input type="hidden" name="umCategoryGenres[% loop.index %]" value="[% category.genres | html %]"></div>
+		</div>
+		[% END %]
+		<script src="[% webroot %]plugins/UnifiedMusic/settings/genres.js"></script>
+		<script>window.UnifiedGenres.init();</script>
+	[% END %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_TRACK_COUNT" desc="PLUGIN_UNIFIEDMUSIC_TRACK_COUNT_DESC" %]
+		<input type="number" class="stdedit" name="umTrackCount" value="[% um.trackCount | html %]" min="5" max="100">
+	[% END %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_MODEL" desc="PLUGIN_UNIFIEDMUSIC_MODEL_DESC" %]
+		<select class="stdedit" name="umModel">
+			[% FOREACH model = umModels %]
+			<option [% IF um.model == model.id %]selected[% END %] value="[% model.id %]">[% model.id %][% IF !model.available %] (no API key)[% END %]</option>
+			[% END %]
+		</select>
+	[% END %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_ANTHROPIC_KEY" desc="PLUGIN_UNIFIEDMUSIC_KEY_DESC" %]
+		<input type="password" class="stdedit" name="umAnthropicKey" value="" size="50" autocomplete="off" placeholder="[% IF umHasAnthropic %]Saved[% END %]">
+	[% END %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_OPENAI_KEY" desc="PLUGIN_UNIFIEDMUSIC_KEY_DESC" %]
+		<input type="password" class="stdedit" name="umOpenaiKey" value="" size="50" autocomplete="off" placeholder="[% IF umHasOpenai %]Saved[% END %]">
+	[% END %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_RUN_TIME" desc="PLUGIN_UNIFIEDMUSIC_RUN_TIME_DESC" %]
+		<input type="time" class="stdedit" name="umRunTime" value="[% um.runTime | html %]">
+		<input type="text" class="stdedit" name="umTimeZone" value="[% um.timeZone | html %]" size="24">
+	[% END %]
+
+	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_RUN_NOW" desc="PLUGIN_UNIFIEDMUSIC_RUN_NOW_DESC" %]
+		<input type="button" class="stdclick" id="umRun" value="Run now">
+		<input type="button" class="stdclick" id="umRefresh" value="Refresh">
+		<div id="umStatus"></div>
+		<script>
+		(function () {
+			var box = document.getElementById("umStatus");
+			var timer;
+
+			function call(command) {
+				return fetch("/jsonrpc.js", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ id: 1, method: "slim.request", params: ["", command] })
+				}).then(function (response) { return response.json(); });
+			}
+
+			function line(text) {
+				var row = document.createElement("div");
+				row.textContent = text;
+				box.appendChild(row);
+			}
+
+			function show(result) {
+				box.textContent = "";
+				var last = result.last;
+				if (result.running) {
+					line("Creating mixes...");
+				} else if (last) {
+					line("Last run: " + last.ok.length + " ready, " + last.failed.length + " failed.");
+					last.failed.forEach(function (failed) { line(failed.name + ": " + failed.error); });
+				} else {
+					line("No run yet.");
+				}
+				return result.running;
+			}
+
+			function refresh() {
+				clearTimeout(timer);
+				return call(["unifiedmusic", "mix", "status"]).then(function (data) {
+					if (show(data.result)) {
+						timer = setTimeout(refresh, 3000);
+					}
+				}).catch(function () {
+					box.textContent = "The server did not answer.";
+				});
+			}
+
+			document.getElementById("umRefresh").addEventListener("click", refresh);
+			document.getElementById("umRun").addEventListener("click", function () {
+				box.textContent = "Creating mixes...";
+				call(["unifiedmusic", "mix", "run"]).then(function (data) {
+					if (data.result && data.result.no_player) {
+						box.textContent = "No player is connected. Qobuz and TIDAL need one.";
+						return;
+					}
+					return refresh();
+				}).catch(function () {
+					box.textContent = "The server did not answer.";
+				});
+			});
+			refresh();
+		})();
+		</script>
+	[% END %]
+
+[% PROCESS settings/footer.html %]

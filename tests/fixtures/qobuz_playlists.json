@@ -1,0 +1,272 @@
+{
+  "offset": 0,
+  "title": "Playlists",
+  "base": {
+    "actions": {
+      "add-hold": {
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0,
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "playControl": {
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.2.3"
+        },
+        "itemsParams": "playControlParams",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ]
+      },
+      "play": {
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "player": 0,
+        "itemsParams": "params",
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "add": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "player": 0,
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "go": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "more": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "window": {
+          "isContextMenu": 1
+        },
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "params"
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.0",
+        "isContextMenu": 1
+      },
+      "text": "British Blues Boom\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F1790770_952da69dc1ae193f8dca472565a26479_rectangle.jpg/image.jpg"
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.1"
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F3182674_7137f0976a6d535e1460dc4997674ba2_rectangle.jpg/image.jpg",
+      "text": "Lucinda Williams\nQobuz UK",
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.2",
+        "isContextMenu": 1
+      },
+      "text": "Emmylou Harris\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F39525068_0bebaa26204225ca5138ca999f0c1cc1_rectangle.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.3"
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F49495275_e40d000f6e051a567a5a584ec91deb15_rectangle.jpg/image.jpg",
+      "text": "Vol. 22: New finds and old favourites from around the world and through the years\nQobuz UK"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F2068008_fbaa7be5c4a4887c10f960dd3025f0d1_rectangle.jpg/image.jpg",
+      "text": "Michael Jackson, by others...\nQobuz UK",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.4"
+      }
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.5"
+      },
+      "text": "Bluegrass Essentials\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F12979898_f61b804df840f4be378f3afd9bfa289d_rectangle.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.6",
+        "isContextMenu": 1
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F6890502_4c321823e467ae5dc24f1e1e03d95f27_rectangle.jpg/image.jpg",
+      "text": "Frank Sinatra\nQobuz UK"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F36348108_c67b922faad3e95ce9bbea6a1e89e741_rectangle.jpg/image.jpg",
+      "text": "Johann Strauss II\nQobuz UK",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.7",
+        "isContextMenu": 1
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.8",
+        "isContextMenu": 1
+      },
+      "text": "Guitar Legends\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F1753891_89a5971b0e2e4f03b4202da65703cb25_rectangle.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.9"
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F1321653_b77fe1d148910279be3a61a512b92c7b_rectangle.jpg/image.jpg",
+      "text": "Gregory Porter\nQobuz UK"
+    },
+    {
+      "type": "playlist",
+      "text": "Sam Cooke\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F5295530_96dc55cd7c63e6279927e2048f74d734_rectangle.jpg/image.jpg",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.10"
+      }
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.11",
+        "isContextMenu": 1
+      },
+      "text": "Blues Classics\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F2731766_24f6c6e8894fa28255704c6ef42e516d_rectangle.jpg/image.jpg"
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.12"
+      },
+      "text": "Elvis Presley\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F1321655_c522a1d8346814cdc59f5b37b61e6f1e_rectangle.jpg/image.jpg",
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "text": "70s Style\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F15100037_b7446aed2e6e98a47d11e904d15d8aae_rectangle.jpg/image.jpg",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.13",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "type": "playlist",
+      "text": "Bethlehem Records\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F13954380_4107f79a6d9df9eda3e67c1d3e5ff8b1_rectangle.jpg/image.jpg",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.14"
+      }
+    },
+    {
+      "type": "playlist",
+      "text": "Listening to the Blues with Slash\nQobuz UK",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F21752030_8e50e9d3b24e4661b8aca667487aa008_rectangle.jpg/image.jpg",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.15"
+      }
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F1568659_rectangle.jpg/image.jpg",
+      "text": "Fats Domino 1928 - 2017\nQobuz UK",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.16",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F17512088_db4c09fdba0b1475ad600be818a30b1c_rectangle.jpg/image.jpg",
+      "text": "Shindig! Presents: The US Origins Of The British Invasion 1964-66\nQobuz UK",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.17"
+      },
+      "type": "playlist"
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.18"
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F2199563_4acb5fd36725ec8283a3644d9d3a6985_rectangle.jpg/image.jpg",
+      "text": "Nat King Cole\nQobuz UK",
+      "type": "playlist"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fplaylists%2F2742253_3bdad1c4bed1f0e8f7234d5e0f934238_rectangle.jpg/image.jpg",
+      "text": "Daughters of Dusty Springfield\nQobuz UK",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.3.19"
+      },
+      "type": "playlist"
+    }
+  ],
+  "count": 200,
+  "window": {
+    "windowStyle": "icon_list"
+  }
+}

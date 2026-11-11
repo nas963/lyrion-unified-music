@@ -1,0 +1,172 @@
+{
+  "offset": 0,
+  "title": "TIDAL",
+  "base": {
+    "actions": {
+      "go": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "add": {
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "player": 0,
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "more": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        },
+        "window": {
+          "isContextMenu": 1
+        }
+      },
+      "add-hold": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "play": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "itemsParams": "params",
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "playControl": {
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.3"
+        },
+        "window": {
+          "isContextMenu": 1
+        },
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "playControlParams"
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.0",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "text": "Everything",
+      "addAction": "go"
+    },
+    {
+      "addAction": "go",
+      "text": "Playlists",
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.1",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "addAction": "go",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.2",
+            "menu": "globalsearch"
+          }
+        }
+      },
+      "text": "Artists"
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3.3"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "text": "Albums",
+      "addAction": "go"
+    },
+    {
+      "text": "Songs",
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.3.4",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "addAction": "go"
+    }
+  ],
+  "count": 5,
+  "window": {
+    "windowStyle": "text_list"
+  }
+}

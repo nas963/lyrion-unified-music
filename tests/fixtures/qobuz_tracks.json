@@ -1,0 +1,525 @@
+{
+  "offset": 0,
+  "title": "Songs",
+  "base": {
+    "actions": {
+      "set-preset-0": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:0"
+        ],
+        "player": 0
+      },
+      "set-preset-9": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:9"
+        ],
+        "player": 0
+      },
+      "play": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "itemsParams": "params",
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "set-preset-7": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:7"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "go": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "itemsParams": "params",
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "add": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "player": 0
+      },
+      "set-preset-3": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:3"
+        ]
+      },
+      "set-preset-5": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:5"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "set-preset-8": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:8"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "playControl": {
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.2.2"
+        },
+        "itemsParams": "playControlParams",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0
+      },
+      "more": {
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "set-preset-2": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:2"
+        ],
+        "player": 0
+      },
+      "set-preset-6": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:6"
+        ]
+      },
+      "set-preset-4": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:4"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "set-preset-1": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:1"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "add-hold": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "goAction": "play",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F28%2F24%2F5099749522428_600.jpg/image.jpg",
+      "text": "So What\nMiles Davis - Kind Of Blue",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.0",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.0"
+      },
+      "presetParams": {
+        "favorites_url": "qobuz://13176083.flac",
+        "favorites_title": "So What by Miles Davis from Kind Of Blue",
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/28/24/5099749522428_600.jpg"
+      },
+      "style": "itemplay"
+    },
+    {
+      "goAction": "play",
+      "presetParams": {
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/28/24/5099749522428_600.jpg",
+        "favorites_url": "qobuz://13176085.flac",
+        "favorites_title": "Blue in Green by Miles Davis from Kind Of Blue"
+      },
+      "style": "itemplay",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.1",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.1"
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F28%2F24%2F5099749522428_600.jpg/image.jpg",
+      "text": "Blue in Green\nMiles Davis - Kind Of Blue"
+    },
+    {
+      "text": "Freddie Freeloader\nMiles Davis - Kind Of Blue",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F28%2F24%2F5099749522428_600.jpg/image.jpg",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.2",
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.2"
+      },
+      "style": "itemplay",
+      "presetParams": {
+        "favorites_url": "qobuz://13176084.flac",
+        "favorites_title": "Freddie Freeloader by Miles Davis from Kind Of Blue",
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/28/24/5099749522428_600.jpg"
+      },
+      "goAction": "play"
+    },
+    {
+      "goAction": "play",
+      "style": "itemplay",
+      "presetParams": {
+        "icon": "https://static.qobuz.com/images/covers/28/24/5099749522428_600.jpg",
+        "favorites_type": "audio",
+        "favorites_url": "qobuz://13176086.flac",
+        "favorites_title": "All Blues by Miles Davis from Kind Of Blue"
+      },
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.3",
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.3",
+        "isContextMenu": 1
+      },
+      "text": "All Blues\nMiles Davis - Kind Of Blue",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F28%2F24%2F5099749522428_600.jpg/image.jpg"
+    },
+    {
+      "presetParams": {
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/28/24/5099749522428_600.jpg",
+        "favorites_title": "Flamenco Sketches by Miles Davis from Kind Of Blue",
+        "favorites_url": "qobuz://13176087.flac"
+      },
+      "style": "itemplay",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.4",
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.4",
+        "isContextMenu": 1
+      },
+      "text": "Flamenco Sketches\nMiles Davis - Kind Of Blue",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F28%2F24%2F5099749522428_600.jpg/image.jpg",
+      "goAction": "play"
+    },
+    {
+      "goAction": "play",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F60%2F0888880696069_600.jpg/image.jpg",
+      "text": "Blue in Green\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "presetParams": {
+        "favorites_url": "qobuz://13276.flac",
+        "favorites_title": "Blue in Green by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/69/60/0888880696069_600.jpg"
+      },
+      "style": "itemplay",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.5",
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.5",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "text": "So What\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F60%2F0888880696069_600.jpg/image.jpg",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.6",
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.6"
+      },
+      "presetParams": {
+        "icon": "https://static.qobuz.com/images/covers/69/60/0888880696069_600.jpg",
+        "favorites_type": "audio",
+        "favorites_title": "So What by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_url": "qobuz://13274.flac"
+      },
+      "style": "itemplay",
+      "goAction": "play"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fsc%2Fwb%2Fpmm9oz4jkwbsc_600.jpg/image.jpg",
+      "text": "So What\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.7",
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.7"
+      },
+      "style": "itemplay",
+      "presetParams": {
+        "favorites_title": "So What by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_url": "qobuz://48097770.flac",
+        "icon": "https://static.qobuz.com/images/covers/sc/wb/pmm9oz4jkwbsc_600.jpg",
+        "favorites_type": "audio"
+      },
+      "goAction": "play"
+    },
+    {
+      "goAction": "play",
+      "presetParams": {
+        "favorites_url": "qobuz://20273753.flac",
+        "favorites_title": "So What by Miles Davis from Kind of Blue (Mono)",
+        "icon": "https://static.qobuz.com/images/covers/47/07/0886444350747_600.jpg",
+        "favorites_type": "audio"
+      },
+      "style": "itemplay",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.8",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.8"
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F47%2F07%2F0886444350747_600.jpg/image.jpg",
+      "text": "So What\nMiles Davis - Kind of Blue (Mono)"
+    },
+    {
+      "goAction": "play",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fsc%2Fwb%2Fpmm9oz4jkwbsc_600.jpg/image.jpg",
+      "text": "Freddie Freeloader\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.9",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.9"
+      },
+      "presetParams": {
+        "favorites_title": "Freddie Freeloader by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_url": "qobuz://48097771.flac",
+        "icon": "https://static.qobuz.com/images/covers/sc/wb/pmm9oz4jkwbsc_600.jpg",
+        "favorites_type": "audio"
+      },
+      "style": "itemplay"
+    },
+    {
+      "goAction": "play",
+      "text": "Blue in Green\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fsc%2Fwb%2Fpmm9oz4jkwbsc_600.jpg/image.jpg",
+      "style": "itemplay",
+      "presetParams": {
+        "favorites_url": "qobuz://48097772.flac",
+        "favorites_title": "Blue in Green by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "icon": "https://static.qobuz.com/images/covers/sc/wb/pmm9oz4jkwbsc_600.jpg",
+        "favorites_type": "audio"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.10",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.10"
+      }
+    },
+    {
+      "goAction": "play",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F60%2F0888880696069_600.jpg/image.jpg",
+      "text": "Flamenco Sketches\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.11",
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.11",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "https://static.qobuz.com/images/covers/69/60/0888880696069_600.jpg",
+        "favorites_type": "audio",
+        "favorites_title": "Flamenco Sketches by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_url": "qobuz://13278.flac"
+      },
+      "style": "itemplay"
+    },
+    {
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.12",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.12"
+      },
+      "presetParams": {
+        "icon": "https://static.qobuz.com/images/covers/61/07/0886444350761_600.jpg",
+        "favorites_type": "audio",
+        "favorites_url": "qobuz://20273759.flac",
+        "favorites_title": "So What by Miles Davis from Kind of Blue (Mono)"
+      },
+      "style": "itemplay",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F61%2F07%2F0886444350761_600.jpg/image.jpg",
+      "text": "So What\nMiles Davis - Kind of Blue (Mono)",
+      "goAction": "play"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fsc%2Fwb%2Fpmm9oz4jkwbsc_600.jpg/image.jpg",
+      "text": "All Blues\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "style": "itemplay",
+      "presetParams": {
+        "favorites_url": "qobuz://48097773.flac",
+        "favorites_title": "All Blues by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/sc/wb/pmm9oz4jkwbsc_600.jpg"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.13",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.13"
+      },
+      "goAction": "play"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F60%2F0888880696069_600.jpg/image.jpg",
+      "text": "Freddie Freeloader\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.14",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.14"
+      },
+      "style": "itemplay",
+      "presetParams": {
+        "favorites_url": "qobuz://13275.flac",
+        "favorites_title": "Freddie Freeloader by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "icon": "https://static.qobuz.com/images/covers/69/60/0888880696069_600.jpg",
+        "favorites_type": "audio"
+      },
+      "goAction": "play"
+    },
+    {
+      "goAction": "play",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.15",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.15"
+      },
+      "presetParams": {
+        "favorites_url": "qobuz://48097774.flac",
+        "favorites_title": "Flamenco Sketches by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "icon": "https://static.qobuz.com/images/covers/sc/wb/pmm9oz4jkwbsc_600.jpg",
+        "favorites_type": "audio"
+      },
+      "style": "itemplay",
+      "text": "Flamenco Sketches\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fsc%2Fwb%2Fpmm9oz4jkwbsc_600.jpg/image.jpg"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F60%2F0888880696069_600.jpg/image.jpg",
+      "text": "All Blues\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "style": "itemplay",
+      "presetParams": {
+        "icon": "https://static.qobuz.com/images/covers/69/60/0888880696069_600.jpg",
+        "favorites_type": "audio",
+        "favorites_title": "All Blues by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_url": "qobuz://13277.flac"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.16",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.16"
+      },
+      "goAction": "play"
+    },
+    {
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.17",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.17"
+      },
+      "style": "itemplay",
+      "presetParams": {
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/sc/wb/pmm9oz4jkwbsc_600.jpg",
+        "favorites_title": "Flamenco Sketches by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_url": "qobuz://48097775.flac"
+      },
+      "text": "Flamenco Sketches\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fsc%2Fwb%2Fpmm9oz4jkwbsc_600.jpg/image.jpg",
+      "goAction": "play"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fsc%2Fwb%2Fpmm9oz4jkwbsc_600.jpg/image.jpg",
+      "text": "On Green Dolphin Street\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.18",
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.18"
+      },
+      "style": "itemplay",
+      "presetParams": {
+        "favorites_url": "qobuz://48097785.flac",
+        "favorites_title": "On Green Dolphin Street by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "icon": "https://static.qobuz.com/images/covers/sc/wb/pmm9oz4jkwbsc_600.jpg",
+        "favorites_type": "audio"
+      },
+      "goAction": "play"
+    },
+    {
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.2.2.19",
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.2.19"
+      },
+      "presetParams": {
+        "favorites_title": "Stella By Starlight by Miles Davis from Kind Of Blue (Legacy Edition)",
+        "favorites_url": "qobuz://13291.flac",
+        "favorites_type": "audio",
+        "icon": "https://static.qobuz.com/images/covers/69/60/0888880696069_600.jpg"
+      },
+      "style": "itemplay",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F60%2F0888880696069_600.jpg/image.jpg",
+      "text": "Stella By Starlight\nMiles Davis - Kind Of Blue (Legacy Edition)",
+      "goAction": "play"
+    }
+  ],
+  "count": 200,
+  "window": {
+    "windowStyle": "icon_list"
+  }
+}

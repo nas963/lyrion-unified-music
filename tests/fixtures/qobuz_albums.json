@@ -1,0 +1,272 @@
+{
+  "offset": 0,
+  "title": "Releases",
+  "base": {
+    "actions": {
+      "play": {
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        },
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "itemsParams": "params"
+      },
+      "playControl": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "playControlParams",
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.2.0"
+        },
+        "window": {
+          "isContextMenu": 1
+        }
+      },
+      "add-hold": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "more": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "params",
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "go": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "add": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        }
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.0",
+        "isContextMenu": 1
+      },
+      "text": "Kind Of Blue\nMiles Davis (1959)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F28%2F24%2F5099749522428_600.jpg/image.jpg"
+    },
+    {
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F60%2F0888880696069_600.jpg/image.jpg",
+      "text": "Kind Of Blue (Legacy Edition)\nMiles Davis (2009)",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.1"
+      },
+      "type": "playlist"
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.2"
+      },
+      "text": "Kind of Blue (Remastered)\nMiles Davis (1959)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F8a%2Fr9%2Ffdasb7heir98a_600.jpg/image.jpg",
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F47%2F07%2F0886444350747_600.jpg/image.jpg",
+      "text": "Kind of Blue (Mono) (Mono Version)\nMiles Davis (1959)",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.3"
+      }
+    },
+    {
+      "text": "What Kind of Blue Are You?\nWinter (2022)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fhc%2Fxp%2Fqm8vajeh4xphc_600.jpg/image.jpg",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.4"
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fyc%2Fsk%2Fvabb38vo9skyc_600.jpg/image.jpg",
+      "text": "Three Of A Kind\nThe Stylistics, The Chi-Lites, Harold Melvin & The Blue Notes (2008)",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.5",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.6"
+      },
+      "text": "Some Kind of Blue\nNoire (2025)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fza%2Ft3%2Fpjqya1n43t3za_600.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.7",
+        "isContextMenu": 1
+      },
+      "text": "BD Music Presents Kind of Blue\nMiles Davis (2021)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F2a%2Fjl%2Fx6m24h69ijl2a_600.jpg/image.jpg"
+    },
+    {
+      "text": "Kind Of Blue - HD Re-Mastered 2010\nMiles Davis (2010)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F6b%2Fkr%2Fqsieqfb10kr6b_600.jpg/image.jpg",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.8"
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F69%2F55%2F3610154015569_600.jpg/image.jpg",
+      "text": "Kind Of Blue (Stereo Version) (Stereo Version)\nMiles Davis (1959)",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.9",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.10"
+      },
+      "text": "Kind of Blue\nMiles Davis (2018)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F9a%2F9m%2Fgqq1grrc19m9a_600.jpg/image.jpg",
+      "type": "playlist"
+    },
+    {
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.11",
+        "isContextMenu": 1
+      },
+      "text": "Solo Wurlitzer Electric Piano: Miles Davis' Kind of Blue\nSolo Sounds (2017)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F41%2F86%2F0191018878641_600.jpg/image.jpg",
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.12"
+      },
+      "text": "My Kind Of Blue\nChristophe Goze (2024)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fzb%2F13%2Fpbg3uran913zb_600.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "text": "Kind of Blue\nMiles Davis Quintet (1959)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2F6b%2Fgv%2Fnkknk1v08gv6b_600.jpg/image.jpg",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.13",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Ffb%2Fui%2Fmuqmttj1quifb_600.jpg/image.jpg",
+      "text": "Sweet Kind of Blue\nEmily Barker (2017)",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.14",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.15"
+      },
+      "text": "Kind of Blue\nMiles Davis (1959)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fxb%2Fod%2Fq19vlvntcodxb_600.jpg/image.jpg",
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.16",
+        "isContextMenu": 1
+      },
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Frc%2F87%2Flann2t03h87rc_600.jpg/image.jpg",
+      "text": "Sweet Kind of Blue (Deluxe Edition)\nEmily Barker (2017)"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fpc%2Ffx%2Fz4ngli299fxpc_600.jpg/image.jpg",
+      "text": "Kind Of Blue Train - HD Re-Masterered\nMiles Davis & John Coltrane (2010)",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.17",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "type": "playlist",
+      "text": "Kind Of New 2: Blue Is Paris\nJason Miles (2017)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Foc%2Fil%2Fupqkxk0cuiloc_600.jpg/image.jpg",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.18",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.2.0.19"
+      },
+      "text": "Kind of Blue\nSwiss Blues Authority (2000)",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fcovers%2Fxb%2Fxc%2Frgqnwmq6sxcxb_600.jpg/image.jpg"
+    }
+  ],
+  "count": 200,
+  "window": {
+    "windowStyle": "icon_list"
+  }
+}

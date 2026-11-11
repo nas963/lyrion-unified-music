@@ -1,0 +1,174 @@
+{
+  "offset": 0,
+  "title": "Search Kind of Blue in:",
+  "base": {
+    "actions": {
+      "playControl": {
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "_index": "0",
+          "_quantity": "30",
+          "menu": "1",
+          "search": "Kind of Blue"
+        },
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "playControlParams"
+      },
+      "play": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "nextWindow": "nowPlaying",
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ]
+      },
+      "add-hold": {
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0,
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "more": {
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0
+      },
+      "add": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "player": 0
+      },
+      "go": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "params"
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "text": "My Music",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.0"
+          }
+        }
+      },
+      "addAction": "go",
+      "type": "opml"
+    },
+    {
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.1"
+          }
+        }
+      },
+      "text": "Artist information",
+      "type": "outline",
+      "addAction": "go"
+    },
+    {
+      "addAction": "go",
+      "text": "Qobuz",
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.3"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "text": "TIDAL",
+      "addAction": "go"
+    },
+    {
+      "text": "YouTube",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.4",
+            "menu": "globalsearch"
+          }
+        }
+      },
+      "addAction": "go"
+    }
+  ],
+  "count": 5,
+  "window": {
+    "windowStyle": "text_list"
+  }
+}

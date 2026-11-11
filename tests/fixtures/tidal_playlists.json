@@ -1,0 +1,1622 @@
+{
+  "offset": 0,
+  "title": "Playlists",
+  "base": {
+    "actions": {
+      "add-hold": {
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0,
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "set-preset-1": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:1"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "set-preset-4": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:4"
+        ]
+      },
+      "set-preset-6": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:6"
+        ]
+      },
+      "set-preset-2": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:2"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "more": {
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0,
+        "itemsParams": "params",
+        "params": {
+          "menu": "globalsearch"
+        },
+        "window": {
+          "isContextMenu": 1
+        }
+      },
+      "playControl": {
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.3.1"
+        },
+        "window": {
+          "isContextMenu": 1
+        },
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0,
+        "itemsParams": "playControlParams"
+      },
+      "set-preset-8": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:8"
+        ]
+      },
+      "set-preset-5": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:5"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "set-preset-3": {
+        "itemsParams": "presetParams",
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:3"
+        ]
+      },
+      "add": {
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "go": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "items"
+        ]
+      },
+      "set-preset-7": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:7"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "play": {
+        "nextWindow": "nowPlaying",
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "set-preset-9": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:9"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "set-preset-0": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:0"
+        ],
+        "itemsParams": "presetParams"
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "id": "cf02ee8a-07d2-4054-9af2-51898ee7a700",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "id": "cf02ee8a-07d2-4054-9af2-51898ee7a700",
+            "menu": 1,
+            "type": "playlist"
+          }
+        },
+        "play": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0,
+          "nextWindow": "nowPlaying",
+          "params": {
+            "menu": 1,
+            "id": "cf02ee8a-07d2-4054-9af2-51898ee7a700",
+            "type": "playlist"
+          }
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "type": "playlist",
+            "id": "cf02ee8a-07d2-4054-9af2-51898ee7a700",
+            "menu": 1
+          }
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F520ea76e%2F5bfc%2F4584%2Faa9c%2Fc8d32db2783f%2F1080x1080.jpg/image.jpg",
+      "text": "Blue Note in the 1970s",
+      "presetParams": {
+        "favorites_title": "Blue Note in the 1970s",
+        "favorites_url": "tidal://playlist:cf02ee8a-07d2-4054-9af2-51898ee7a700",
+        "icon": "http://resources.tidal.com/images/520ea76e/5bfc/4584/aa9c/c8d32db2783f/1080x1080.jpg",
+        "favorites_type": "playlist"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.0",
+        "isContextMenu": 1
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.1"
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/5bafda6a/66a0/460a/bd72/f7aaa46fc790/1080x1080.jpg",
+        "favorites_type": "playlist",
+        "favorites_title": "Doug Wamble: Shades of Blues",
+        "favorites_url": "tidal://playlist:2179308a-43f9-4670-80cf-14d95e053a95"
+      },
+      "text": "Doug Wamble: Shades of Blues",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F5bafda6a%2F66a0%2F460a%2Fbd72%2Ff7aaa46fc790%2F1080x1080.jpg/image.jpg",
+      "actions": {
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "2179308a-43f9-4670-80cf-14d95e053a95",
+            "type": "playlist"
+          }
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": "2179308a-43f9-4670-80cf-14d95e053a95",
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "2179308a-43f9-4670-80cf-14d95e053a95",
+            "type": "playlist"
+          }
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "menu": 1,
+            "id": "2179308a-43f9-4670-80cf-14d95e053a95",
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        }
+      }
+    },
+    {
+      "type": "playlist",
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "995975b8-bd2f-438f-bc04-5dd769c1b33d"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "995975b8-bd2f-438f-bc04-5dd769c1b33d",
+            "type": "playlist"
+          }
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "playlist",
+            "id": "995975b8-bd2f-438f-bc04-5dd769c1b33d",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "id": "995975b8-bd2f-438f-bc04-5dd769c1b33d",
+            "menu": 1,
+            "type": "playlist"
+          }
+        }
+      },
+      "text": "1959! Songs of the Year\nRay Charles, The Isley Brothers, Lloyd Price, Miles Davis",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F8424f22b%2F64d3%2F4247%2Fb867%2F335700548352%2F1080x1080.jpg/image.jpg",
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/8424f22b/64d3/4247/b867/335700548352/1080x1080.jpg",
+        "favorites_title": "1959! Songs of the Year",
+        "favorites_url": "tidal://playlist:995975b8-bd2f-438f-bc04-5dd769c1b33d"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.2",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.3",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/10af2481/f894/41ed/891b/4467a4263191/1080x1080.jpg",
+        "favorites_type": "playlist",
+        "favorites_title": "Miles Davis Essentials",
+        "favorites_url": "tidal://playlist:cf72e4ba-8199-4d68-870a-d1fe1b1f8623"
+      },
+      "text": "Miles Davis Essentials",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F10af2481%2Ff894%2F41ed%2F891b%2F4467a4263191%2F1080x1080.jpg/image.jpg",
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "playlist",
+            "id": "cf72e4ba-8199-4d68-870a-d1fe1b1f8623",
+            "menu": 1
+          }
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "id": "cf72e4ba-8199-4d68-870a-d1fe1b1f8623",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "cf72e4ba-8199-4d68-870a-d1fe1b1f8623"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "cf72e4ba-8199-4d68-870a-d1fe1b1f8623",
+            "menu": 1,
+            "type": "playlist"
+          }
+        }
+      },
+      "type": "playlist"
+    },
+    {
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "playlist",
+            "id": "bc6633c5-1d45-40fe-b077-8d076507f577",
+            "menu": 1
+          }
+        },
+        "play": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0,
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "playlist",
+            "id": "bc6633c5-1d45-40fe-b077-8d076507f577",
+            "menu": 1
+          }
+        },
+        "add": {
+          "params": {
+            "id": "bc6633c5-1d45-40fe-b077-8d076507f577",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "bc6633c5-1d45-40fe-b077-8d076507f577",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F837b510e%2Face1%2F4427%2F8f03%2Fc5206255c639%2F1080x1080.jpg/image.jpg",
+      "text": "Jazz Has the Blues",
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/837b510e/ace1/4427/8f03/c5206255c639/1080x1080.jpg",
+        "favorites_url": "tidal://playlist:bc6633c5-1d45-40fe-b077-8d076507f577",
+        "favorites_title": "Jazz Has the Blues"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.4",
+        "isContextMenu": 1
+      },
+      "type": "playlist"
+    },
+    {
+      "actions": {
+        "add": {
+          "params": {
+            "menu": 1,
+            "id": "bc3f4782-6a64-4a08-9e76-de405cc08cf1",
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "bc3f4782-6a64-4a08-9e76-de405cc08cf1"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "bc3f4782-6a64-4a08-9e76-de405cc08cf1"
+          }
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "id": "bc3f4782-6a64-4a08-9e76-de405cc08cf1",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        }
+      },
+      "text": "Evolution: Miles Davis (Bebop to Second Great Quintet) \nMiles Davis",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F374af648%2F6c87%2F4ba1%2F9b64%2Fe2c5dc832b2c%2F1080x1080.jpg/image.jpg",
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/374af648/6c87/4ba1/9b64/e2c5dc832b2c/1080x1080.jpg",
+        "favorites_type": "playlist",
+        "favorites_title": "Evolution: Miles Davis (Bebop to Second Great Quintet) ",
+        "favorites_url": "tidal://playlist:bc3f4782-6a64-4a08-9e76-de405cc08cf1"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.5"
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/5e5ced1c/6c0c/41f9/b1f4/2e3cbb56dcad/1080x1080.jpg",
+        "favorites_url": "tidal://playlist:0b716335-801e-47f3-a1b2-75efcdcd3708",
+        "favorites_title": "Jazz: Headphone Classics"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.6"
+      },
+      "actions": {
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "id": "0b716335-801e-47f3-a1b2-75efcdcd3708",
+            "menu": 1,
+            "type": "playlist"
+          }
+        },
+        "play": {
+          "params": {
+            "menu": 1,
+            "id": "0b716335-801e-47f3-a1b2-75efcdcd3708",
+            "type": "playlist"
+          },
+          "nextWindow": "nowPlaying",
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "id": "0b716335-801e-47f3-a1b2-75efcdcd3708",
+            "menu": 1,
+            "type": "playlist"
+          }
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "0b716335-801e-47f3-a1b2-75efcdcd3708",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "text": "Jazz: Headphone Classics",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F5e5ced1c%2F6c0c%2F41f9%2Fb1f4%2F2e3cbb56dcad%2F1080x1080.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.7"
+      },
+      "presetParams": {
+        "favorites_url": "tidal://playlist:f5b565ce-0b6e-41a5-a3a4-c4e3991cfde1",
+        "favorites_title": "Jazz Romance",
+        "icon": "http://resources.tidal.com/images/8fff83d1/4299/4793/9909/cfe6d49acce5/1080x1080.jpg",
+        "favorites_type": "playlist"
+      },
+      "text": "Jazz Romance",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F8fff83d1%2F4299%2F4793%2F9909%2Fcfe6d49acce5%2F1080x1080.jpg/image.jpg",
+      "actions": {
+        "add-hold": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "f5b565ce-0b6e-41a5-a3a4-c4e3991cfde1"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ]
+        },
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "params": {
+            "id": "f5b565ce-0b6e-41a5-a3a4-c4e3991cfde1",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "type": "playlist",
+            "id": "f5b565ce-0b6e-41a5-a3a4-c4e3991cfde1",
+            "menu": 1
+          }
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "id": "f5b565ce-0b6e-41a5-a3a4-c4e3991cfde1",
+            "menu": 1
+          }
+        }
+      }
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "favorites_url": "tidal://playlist:1b26f293-d4d9-4011-bd05-2647de30a28e",
+        "favorites_title": "1950s Jazz",
+        "icon": "http://resources.tidal.com/images/7a945ceb/9238/4a99/8023/ac7086a33a9c/1080x1080.jpg",
+        "favorites_type": "playlist"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.8"
+      },
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "1b26f293-d4d9-4011-bd05-2647de30a28e"
+          }
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "type": "playlist",
+            "id": "1b26f293-d4d9-4011-bd05-2647de30a28e",
+            "menu": 1
+          }
+        },
+        "play": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "1b26f293-d4d9-4011-bd05-2647de30a28e",
+            "type": "playlist"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add-hold": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "1b26f293-d4d9-4011-bd05-2647de30a28e"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        }
+      },
+      "text": "1950s Jazz",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F7a945ceb%2F9238%2F4a99%2F8023%2Fac7086a33a9c%2F1080x1080.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "favorites_title": "Jazz Classics: Dolby Atmos",
+        "favorites_url": "tidal://playlist:1d3333c2-e213-425d-93e4-c3667e8b1d53",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/8bbe1686/fb1a/4c7e/bd19/1d7a3387e232/1080x1080.jpg"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.9"
+      },
+      "actions": {
+        "add-hold": {
+          "params": {
+            "type": "playlist",
+            "id": "1d3333c2-e213-425d-93e4-c3667e8b1d53",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "playlist",
+            "id": "1d3333c2-e213-425d-93e4-c3667e8b1d53",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "type": "playlist",
+            "id": "1d3333c2-e213-425d-93e4-c3667e8b1d53",
+            "menu": 1
+          }
+        },
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "id": "1d3333c2-e213-425d-93e4-c3667e8b1d53",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F8bbe1686%2Ffb1a%2F4c7e%2Fbd19%2F1d7a3387e232%2F1080x1080.jpg/image.jpg",
+      "text": "Jazz Classics: Dolby Atmos"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F4c7bab56%2Fe5f2%2F497b%2F8dab%2F17e743edd457%2F1080x1080.jpg/image.jpg",
+      "text": "Winter Jazz",
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "playlist",
+            "id": "ff0d8134-f700-431d-b49a-729b7a4e1581",
+            "menu": 1
+          }
+        },
+        "play": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "ff0d8134-f700-431d-b49a-729b7a4e1581"
+          },
+          "nextWindow": "nowPlaying",
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "ff0d8134-f700-431d-b49a-729b7a4e1581"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "id": "ff0d8134-f700-431d-b49a-729b7a4e1581",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.10"
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/4c7bab56/e5f2/497b/8dab/17e743edd457/1080x1080.jpg",
+        "favorites_url": "tidal://playlist:ff0d8134-f700-431d-b49a-729b7a4e1581",
+        "favorites_title": "Winter Jazz"
+      }
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F29848603%2F192e%2F43da%2Fb937%2Fde841050ce3c%2F1080x1080.jpg/image.jpg",
+      "text": "Cool Jazz 101",
+      "actions": {
+        "add-hold": {
+          "params": {
+            "id": "c1f1c110-5bf3-413b-83d0-eb8dc4632eb2",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ]
+        },
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "c1f1c110-5bf3-413b-83d0-eb8dc4632eb2"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add": {
+          "params": {
+            "menu": 1,
+            "id": "c1f1c110-5bf3-413b-83d0-eb8dc4632eb2",
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "id": "c1f1c110-5bf3-413b-83d0-eb8dc4632eb2",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.11"
+      },
+      "presetParams": {
+        "favorites_title": "Cool Jazz 101",
+        "favorites_url": "tidal://playlist:c1f1c110-5bf3-413b-83d0-eb8dc4632eb2",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/29848603/192e/43da/b937/de841050ce3c/1080x1080.jpg"
+      }
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fab6ccc86%2F8ad2%2F4876%2Fb838%2F8abad81bd0e8%2F1080x1080.jpg/image.jpg",
+      "text": "Blue Note Records Classics: Dolby Atmos ",
+      "actions": {
+        "play": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "c98a6ab2-56d3-4840-af97-f8e9843b410e"
+          },
+          "nextWindow": "nowPlaying",
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "c98a6ab2-56d3-4840-af97-f8e9843b410e"
+          }
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "id": "c98a6ab2-56d3-4840-af97-f8e9843b410e",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        },
+        "add": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "c98a6ab2-56d3-4840-af97-f8e9843b410e"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.12",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/ab6ccc86/8ad2/4876/b838/8abad81bd0e8/1080x1080.jpg",
+        "favorites_type": "playlist",
+        "favorites_url": "tidal://playlist:c98a6ab2-56d3-4840-af97-f8e9843b410e",
+        "favorites_title": "Blue Note Records Classics: Dolby Atmos "
+      }
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "favorites_title": "Hard Bop & Postbop 101",
+        "favorites_url": "tidal://playlist:9e9a3554-056d-4eaa-8e5a-1f8d448d8f16",
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/af8fcb3f/4cf5/48fa/bc62/5bafdb29cad9/1080x1080.jpg"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.13"
+      },
+      "actions": {
+        "play": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "9e9a3554-056d-4eaa-8e5a-1f8d448d8f16",
+            "type": "playlist"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add-hold": {
+          "params": {
+            "id": "9e9a3554-056d-4eaa-8e5a-1f8d448d8f16",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "more": {
+          "params": {
+            "menu": 1,
+            "id": "9e9a3554-056d-4eaa-8e5a-1f8d448d8f16",
+            "type": "playlist"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "9e9a3554-056d-4eaa-8e5a-1f8d448d8f16",
+            "type": "playlist"
+          }
+        }
+      },
+      "text": "Hard Bop & Postbop 101",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Faf8fcb3f%2F4cf5%2F48fa%2Fbc62%2F5bafdb29cad9%2F1080x1080.jpg/image.jpg"
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F15509044%2F3c32%2F489d%2F9541%2Fcd5f63723007%2F1080x1080.jpg/image.jpg",
+      "text": "Kenny Burrell Essentials\nKenny Burrell, John Coltrane",
+      "actions": {
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "menu": 1,
+            "id": "7ad437b1-84ab-48d1-a458-01e93bc62132",
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "player": 0
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "7ad437b1-84ab-48d1-a458-01e93bc62132",
+            "type": "playlist"
+          }
+        },
+        "more": {
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "7ad437b1-84ab-48d1-a458-01e93bc62132"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add": {
+          "params": {
+            "id": "7ad437b1-84ab-48d1-a458-01e93bc62132",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.14"
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/15509044/3c32/489d/9541/cd5f63723007/1080x1080.jpg",
+        "favorites_title": "Kenny Burrell Essentials",
+        "favorites_url": "tidal://playlist:7ad437b1-84ab-48d1-a458-01e93bc62132"
+      },
+      "type": "playlist"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fa48b2463%2Fd404%2F41a4%2Fab60%2Fe6ee2b751206%2F1080x1080.jpg/image.jpg",
+      "text": "Blue Note: Hot Jazz to Bebop",
+      "actions": {
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "38a5898e-2861-4191-aa0e-1ad6319398e4"
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add-hold": {
+          "params": {
+            "type": "playlist",
+            "id": "38a5898e-2861-4191-aa0e-1ad6319398e4",
+            "menu": 1
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "id": "38a5898e-2861-4191-aa0e-1ad6319398e4",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add": {
+          "params": {
+            "menu": 1,
+            "id": "38a5898e-2861-4191-aa0e-1ad6319398e4",
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.15",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "favorites_url": "tidal://playlist:38a5898e-2861-4191-aa0e-1ad6319398e4",
+        "favorites_title": "Blue Note: Hot Jazz to Bebop",
+        "icon": "http://resources.tidal.com/images/a48b2463/d404/41a4/ab60/e6ee2b751206/1080x1080.jpg",
+        "favorites_type": "playlist"
+      }
+    },
+    {
+      "type": "playlist",
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.16",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/bce2ace5/edb4/4e31/9951/1480868cec9c/1080x1080.jpg",
+        "favorites_title": "Blue Note: Hard Bop & Soul-Jazz",
+        "favorites_url": "tidal://playlist:93a17d75-8eea-458a-b09e-a4c4f6b1f08d"
+      },
+      "text": "Blue Note: Hard Bop & Soul-Jazz\nArt Blakey, John Coltrane, Hank Mobley, Lee Morgan",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fbce2ace5%2Fedb4%2F4e31%2F9951%2F1480868cec9c%2F1080x1080.jpg/image.jpg",
+      "actions": {
+        "play": {
+          "nextWindow": "nowPlaying",
+          "params": {
+            "type": "playlist",
+            "id": "93a17d75-8eea-458a-b09e-a4c4f6b1f08d",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        },
+        "add-hold": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "93a17d75-8eea-458a-b09e-a4c4f6b1f08d"
+          }
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "id": "93a17d75-8eea-458a-b09e-a4c4f6b1f08d",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        },
+        "add": {
+          "params": {
+            "id": "93a17d75-8eea-458a-b09e-a4c4f6b1f08d",
+            "menu": 1,
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0
+        }
+      }
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "favorites_url": "tidal://playlist:7c65b346-7e10-4600-8e91-39db435dd68f",
+        "favorites_title": "Blue Note: Rebirth",
+        "icon": "http://resources.tidal.com/images/daa3e8d7/546a/41a6/a3e9/c9b0322c8e1a/1080x1080.jpg",
+        "favorites_type": "playlist"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.17"
+      },
+      "actions": {
+        "add": {
+          "params": {
+            "type": "playlist",
+            "id": "7c65b346-7e10-4600-8e91-39db435dd68f",
+            "menu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ]
+        },
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "7c65b346-7e10-4600-8e91-39db435dd68f"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        },
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "playlist",
+            "id": "7c65b346-7e10-4600-8e91-39db435dd68f",
+            "menu": 1
+          }
+        },
+        "play": {
+          "params": {
+            "menu": 1,
+            "id": "7c65b346-7e10-4600-8e91-39db435dd68f",
+            "type": "playlist"
+          },
+          "nextWindow": "nowPlaying",
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ]
+        }
+      },
+      "text": "Blue Note: Rebirth",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fdaa3e8d7%2F546a%2F41a6%2Fa3e9%2Fc9b0322c8e1a%2F1080x1080.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/6f9bd4ed/b91f/40de/9993/3a6a295ac4d5/1080x1080.jpg",
+        "favorites_type": "playlist",
+        "favorites_title": "Conscious Jazz",
+        "favorites_url": "tidal://playlist:a780a289-e1a9-4a03-b389-7716feee5c11"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.18",
+        "isContextMenu": 1
+      },
+      "actions": {
+        "add-hold": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0,
+          "params": {
+            "type": "playlist",
+            "id": "a780a289-e1a9-4a03-b389-7716feee5c11",
+            "menu": 1
+          }
+        },
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "params": {
+            "type": "playlist",
+            "id": "a780a289-e1a9-4a03-b389-7716feee5c11",
+            "menu": 1
+          },
+          "nextWindow": "nowPlaying"
+        },
+        "add": {
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "a780a289-e1a9-4a03-b389-7716feee5c11",
+            "type": "playlist"
+          }
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "playlist",
+            "menu": 1,
+            "id": "a780a289-e1a9-4a03-b389-7716feee5c11"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "text": "Conscious Jazz",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F6f9bd4ed%2Fb91f%2F40de%2F9993%2F3a6a295ac4d5%2F1080x1080.jpg/image.jpg"
+    },
+    {
+      "type": "playlist",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F428dd21b%2F4e6b%2F49f6%2Fb22d%2Fbc319a22edbf%2F1080x1080.jpg/image.jpg",
+      "text": "Musicology: Selmer Mark VI Saxophone",
+      "actions": {
+        "play": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "play"
+          ],
+          "nextWindow": "nowPlaying",
+          "params": {
+            "menu": 1,
+            "id": "0692544b-a6a5-4cdb-a2a2-ba61d3046c16",
+            "type": "playlist"
+          }
+        },
+        "add-hold": {
+          "params": {
+            "menu": 1,
+            "id": "0692544b-a6a5-4cdb-a2a2-ba61d3046c16",
+            "type": "playlist"
+          },
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "insert"
+          ],
+          "player": 0
+        },
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": "0692544b-a6a5-4cdb-a2a2-ba61d3046c16",
+            "type": "playlist"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        },
+        "add": {
+          "player": 0,
+          "cmd": [
+            "tidal_browse",
+            "playlist",
+            "add"
+          ],
+          "params": {
+            "menu": 1,
+            "id": "0692544b-a6a5-4cdb-a2a2-ba61d3046c16",
+            "type": "playlist"
+          }
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.1.19",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "favorites_type": "playlist",
+        "icon": "http://resources.tidal.com/images/428dd21b/4e6b/49f6/b22d/bc319a22edbf/1080x1080.jpg",
+        "favorites_title": "Musicology: Selmer Mark VI Saxophone",
+        "favorites_url": "tidal://playlist:0692544b-a6a5-4cdb-a2a2-ba61d3046c16"
+      }
+    }
+  ],
+  "count": 35,
+  "window": {
+    "windowStyle": "icon_list"
+  }
+}

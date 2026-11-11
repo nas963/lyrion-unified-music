@@ -1,0 +1,279 @@
+{
+  "offset": 0,
+  "title": "Artists",
+  "base": {
+    "actions": {
+      "go": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "params"
+      },
+      "add": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "player": 0
+      },
+      "more": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "window": {
+          "isContextMenu": 1
+        },
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "add-hold": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0,
+        "itemsParams": "params"
+      },
+      "play": {
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        },
+        "nextWindow": "nowPlaying"
+      },
+      "playControl": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "playControlParams",
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.2.1"
+        }
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "addAction": "go",
+      "text": "Kind Of Blue",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fartists%2Fcovers%2Fsmall%2F9409dd451c118e336d74ecfb2d832d79.jpg/image.jpg",
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.0"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "text": "Third Kind of Blue",
+      "icon": "html/images/artists.png",
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.1",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "addAction": "go"
+    },
+    {
+      "addAction": "go",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.2",
+            "menu": "globalsearch"
+          }
+        }
+      },
+      "icon": "html/images/artists.png",
+      "text": "A Strange Kind of Blue"
+    },
+    {
+      "icon": "html/images/artists.png",
+      "text": "Another Kind of Blue",
+      "actions": {
+        "go": {
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.3"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      },
+      "addAction": "go"
+    },
+    {
+      "addAction": "go",
+      "text": "Kind of Blue Sweden",
+      "icon": "html/images/artists.png",
+      "actions": {
+        "go": {
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.4",
+            "menu": "globalsearch"
+          },
+          "cmd": [
+            "globalsearch",
+            "items"
+          ]
+        }
+      }
+    },
+    {
+      "addAction": "go",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.5",
+            "menu": "globalsearch"
+          }
+        }
+      },
+      "icon": "html/images/artists.png",
+      "text": "KindOfBlueInGreen"
+    },
+    {
+      "addAction": "go",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.6",
+            "menu": "globalsearch"
+          }
+        }
+      },
+      "icon": "html/images/artists.png",
+      "text": "King of Blue"
+    },
+    {
+      "text": "Earl King and Roomful of Blues",
+      "icon": "/imageproxy/https%3A%2F%2Fstatic.qobuz.com%2Fimages%2Fartists%2Fcovers%2Fsmall%2F085cb8ee6d563273e9d3fd641158fdf3.jpg/image.jpg",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.7"
+          }
+        }
+      },
+      "addAction": "go"
+    },
+    {
+      "text": "King Asher III of Blueberry Hills",
+      "icon": "html/images/artists.png",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.8"
+          }
+        }
+      },
+      "addAction": "go"
+    },
+    {
+      "addAction": "go",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.9",
+            "menu": "globalsearch"
+          }
+        }
+      },
+      "icon": "html/images/artists.png",
+      "text": "All Creatures of Our God and King Hymn Country Bluegrass"
+    },
+    {
+      "text": "Blessed King of Longing",
+      "icon": "html/images/artists.png",
+      "actions": {
+        "go": {
+          "cmd": [
+            "globalsearch",
+            "items"
+          ],
+          "params": {
+            "menu": "globalsearch",
+            "item_id": "349e8393_Kind%20of%20Blue.2.1.10"
+          }
+        }
+      },
+      "addAction": "go"
+    }
+  ],
+  "count": 11,
+  "window": {
+    "windowStyle": "home_menu"
+  }
+}

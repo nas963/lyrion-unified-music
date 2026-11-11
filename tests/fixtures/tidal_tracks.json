@@ -1,0 +1,885 @@
+{
+  "offset": 0,
+  "title": "Songs",
+  "base": {
+    "actions": {
+      "set-preset-8": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:8"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "set-preset-5": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:5"
+        ],
+        "player": 0
+      },
+      "playControl": {
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ],
+        "itemsParams": "playControlParams",
+        "window": {
+          "isContextMenu": 1
+        },
+        "params": {
+          "_index": "0",
+          "_quantity": "20",
+          "menu": "1",
+          "item_id": "349e8393_Kind%20of%20Blue.3.4"
+        }
+      },
+      "add": {
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "add"
+        ],
+        "params": {
+          "menu": "globalsearch"
+        }
+      },
+      "go": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "nextWindow": "nowPlaying",
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "player": 0
+      },
+      "set-preset-3": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:3"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "set-preset-7": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:7"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "play": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "nextWindow": "nowPlaying",
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "play"
+        ],
+        "player": 0
+      },
+      "set-preset-0": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:0"
+        ],
+        "player": 0
+      },
+      "set-preset-9": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:9"
+        ],
+        "player": 0
+      },
+      "add-hold": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "itemsParams": "params",
+        "cmd": [
+          "globalsearch",
+          "playlist",
+          "insert"
+        ],
+        "player": 0
+      },
+      "set-preset-1": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:1"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "set-preset-4": {
+        "itemsParams": "presetParams",
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:4"
+        ],
+        "player": 0
+      },
+      "set-preset-6": {
+        "player": 0,
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:6"
+        ],
+        "itemsParams": "presetParams"
+      },
+      "set-preset-2": {
+        "cmd": [
+          "jivefavorites",
+          "set_preset",
+          "key:2"
+        ],
+        "player": 0,
+        "itemsParams": "presetParams"
+      },
+      "more": {
+        "params": {
+          "menu": "globalsearch"
+        },
+        "window": {
+          "isContextMenu": 1
+        },
+        "itemsParams": "params",
+        "player": 0,
+        "cmd": [
+          "globalsearch",
+          "items"
+        ]
+      }
+    }
+  },
+  "item_loop": [
+    {
+      "type": "audio",
+      "goAction": "play",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.0",
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.0",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/558790ef/6c6b/4e33/b985/900c53c12758/1280x1280.jpg",
+        "favorites_type": "audio",
+        "favorites_url": "tidal://169025.flc",
+        "favorites_title": "Bitter Blue - Radio Version - Kind Of Blue"
+      },
+      "actions": {
+        "more": {
+          "params": {
+            "id": "169025",
+            "menu": 1,
+            "type": "track"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "style": "itemplay",
+      "text": "Bitter Blue - Radio Version\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F558790ef%2F6c6b%2F4e33%2Fb985%2F900c53c12758%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "text": "Rising Sugar\nKind Of Blue",
+      "style": "itemplay",
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "track",
+            "menu": 1,
+            "id": "1978318"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "presetParams": {
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_url": "tidal://1978318.flc",
+        "favorites_title": "Rising Sugar - Kind Of Blue"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.1",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.1"
+      },
+      "goAction": "play",
+      "type": "audio"
+    },
+    {
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_type": "audio",
+        "favorites_url": "tidal://1978313.flc",
+        "favorites_title": "Black And Blue - Kind Of Blue"
+      },
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.2",
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.2",
+        "isContextMenu": 1
+      },
+      "actions": {
+        "more": {
+          "params": {
+            "type": "track",
+            "id": "1978313",
+            "menu": 1
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "type": "audio",
+      "goAction": "play",
+      "style": "itemplay",
+      "text": "Black And Blue\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "type": "audio",
+      "goAction": "play",
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.3",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.3"
+      },
+      "presetParams": {
+        "favorites_url": "tidal://233851569.flc",
+        "favorites_title": "kind of blue - Winter",
+        "icon": "http://resources.tidal.com/images/3a306d6e/5359/4df3/9873/da6a7500ee98/1280x1280.jpg",
+        "favorites_type": "audio"
+      },
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "233851569",
+            "menu": 1,
+            "type": "track"
+          }
+        }
+      },
+      "style": "itemplay",
+      "text": "kind of blue\nWinter",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F3a306d6e%2F5359%2F4df3%2F9873%2Fda6a7500ee98%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "type": "audio",
+      "goAction": "play",
+      "presetParams": {
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/558790ef/6c6b/4e33/b985/900c53c12758/1280x1280.jpg",
+        "favorites_title": "End of the Century - Kind Of Blue",
+        "favorites_url": "tidal://169028.flc"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.4",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.4"
+      },
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "type": "track",
+            "id": "169028",
+            "menu": 1
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "style": "itemplay",
+      "text": "End of the Century\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F558790ef%2F6c6b%2F4e33%2Fb985%2F900c53c12758%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_type": "audio",
+        "favorites_url": "tidal://1978320.flc",
+        "favorites_title": "My Love Went Running - Kind Of Blue"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.5",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.5"
+      },
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "track",
+            "menu": 1,
+            "id": "1978320"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "type": "audio",
+      "goAction": "play",
+      "style": "itemplay",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "text": "My Love Went Running\nKind Of Blue"
+    },
+    {
+      "presetParams": {
+        "favorites_url": "tidal://1978322.flc",
+        "favorites_title": "Turning - Kind Of Blue",
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg"
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.6",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.6"
+      },
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "id": "1978322",
+            "menu": 1,
+            "type": "track"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "type": "audio",
+      "goAction": "play",
+      "style": "itemplay",
+      "text": "Turning\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "text": "Blue in Green (feat. John Coltrane & Bill Evans)\nMiles Davis",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F5b3b8e43%2F97ef%2F4eb3%2Fae88%2F54c80a995b9b%2F1280x1280.jpg/image.jpg",
+      "style": "itemplay",
+      "goAction": "play",
+      "type": "audio",
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "track",
+            "menu": 1,
+            "id": "2178488"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "presetParams": {
+        "favorites_url": "tidal://2178488.flc",
+        "favorites_title": "Blue in Green (feat. John Coltrane & Bill Evans) - Miles Davis",
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/5b3b8e43/97ef/4eb3/ae88/54c80a995b9b/1280x1280.jpg"
+      },
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.7",
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.7",
+        "isContextMenu": 1
+      }
+    },
+    {
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_type": "audio",
+        "favorites_title": "Morning Light - Kind Of Blue",
+        "favorites_url": "tidal://1978323.flc"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.8",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.8"
+      },
+      "actions": {
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "id": "1978323",
+            "menu": 1,
+            "type": "track"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "type": "audio",
+      "goAction": "play",
+      "style": "itemplay",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "text": "Morning Light\nKind Of Blue"
+    },
+    {
+      "text": "What's In A Kiss\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "style": "itemplay",
+      "actions": {
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "type": "track",
+            "id": "1978315",
+            "menu": 1
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.9",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.9"
+      },
+      "presetParams": {
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_url": "tidal://1978315.flc",
+        "favorites_title": "What's In A Kiss - Kind Of Blue"
+      },
+      "goAction": "play",
+      "type": "audio"
+    },
+    {
+      "style": "itemplay",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "text": "Sleep\nKind Of Blue",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.10",
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.10",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "favorites_url": "tidal://1978321.flc",
+        "favorites_title": "Sleep - Kind Of Blue",
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_type": "audio"
+      },
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "id": "1978321",
+            "menu": 1,
+            "type": "track"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "type": "audio",
+      "goAction": "play"
+    },
+    {
+      "style": "itemplay",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "text": "Strange\nKind Of Blue",
+      "type": "audio",
+      "goAction": "play",
+      "presetParams": {
+        "favorites_url": "tidal://1978324.flc",
+        "favorites_title": "Strange - Kind Of Blue",
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_type": "audio"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.11",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.11"
+      },
+      "actions": {
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "type": "track",
+            "id": "1978324",
+            "menu": 1
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      }
+    },
+    {
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_type": "audio",
+        "favorites_title": "Run - Kind Of Blue",
+        "favorites_url": "tidal://1978314.flc"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.12",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.12"
+      },
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "menu": 1,
+            "id": "1978314",
+            "type": "track"
+          }
+        }
+      },
+      "type": "audio",
+      "goAction": "play",
+      "style": "itemplay",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "text": "Run\nKind Of Blue"
+    },
+    {
+      "text": "The Same (Home Mix)\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F558790ef%2F6c6b%2F4e33%2Fb985%2F900c53c12758%2F1280x1280.jpg/image.jpg",
+      "style": "itemplay",
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "track",
+            "id": "169031",
+            "menu": 1
+          }
+        }
+      },
+      "presetParams": {
+        "favorites_title": "The Same (Home Mix) - Kind Of Blue",
+        "favorites_url": "tidal://169031.flc",
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/558790ef/6c6b/4e33/b985/900c53c12758/1280x1280.jpg"
+      },
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.13",
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.13",
+        "isContextMenu": 1
+      },
+      "goAction": "play",
+      "type": "audio"
+    },
+    {
+      "goAction": "play",
+      "type": "audio",
+      "actions": {
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "track",
+            "id": "169033",
+            "menu": 1
+          }
+        }
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.14",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.14"
+      },
+      "presetParams": {
+        "favorites_title": "Places - Kind Of Blue",
+        "favorites_url": "tidal://169033.flc",
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/558790ef/6c6b/4e33/b985/900c53c12758/1280x1280.jpg"
+      },
+      "text": "Places\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F558790ef%2F6c6b%2F4e33%2Fb985%2F900c53c12758%2F1280x1280.jpg/image.jpg",
+      "style": "itemplay"
+    },
+    {
+      "text": "Places - Acoustic Version\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F558790ef%2F6c6b%2F4e33%2Fb985%2F900c53c12758%2F1280x1280.jpg/image.jpg",
+      "style": "itemplay",
+      "actions": {
+        "more": {
+          "params": {
+            "type": "track",
+            "menu": 1,
+            "id": "169038"
+          },
+          "window": {
+            "isContextMenu": 1
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "presetParams": {
+        "favorites_title": "Places - Acoustic Version - Kind Of Blue",
+        "favorites_url": "tidal://169038.flc",
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/558790ef/6c6b/4e33/b985/900c53c12758/1280x1280.jpg"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.15",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.15"
+      },
+      "goAction": "play",
+      "type": "audio"
+    },
+    {
+      "type": "audio",
+      "goAction": "play",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.16",
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.16",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/d604273a/98b3/4901/b74b/5def200d0c16/1280x1280.jpg",
+        "favorites_type": "audio",
+        "favorites_title": "Jazz and Philosophy - Kind Of Blue",
+        "favorites_url": "tidal://274387303.flc"
+      },
+      "actions": {
+        "more": {
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0,
+          "params": {
+            "menu": 1,
+            "id": "274387303",
+            "type": "track"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "style": "itemplay",
+      "text": "Jazz and Philosophy\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2Fd604273a%2F98b3%2F4901%2Fb74b%2F5def200d0c16%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "params": {
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.17",
+        "isContextMenu": 1,
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.17"
+      },
+      "presetParams": {
+        "favorites_type": "audio",
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_title": "Metropolis - Kind Of Blue",
+        "favorites_url": "tidal://1978317.flc"
+      },
+      "actions": {
+        "more": {
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "params": {
+            "type": "track",
+            "menu": 1,
+            "id": "1978317"
+          },
+          "window": {
+            "isContextMenu": 1
+          }
+        }
+      },
+      "type": "audio",
+      "goAction": "play",
+      "style": "itemplay",
+      "text": "Metropolis\nKind Of Blue",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg"
+    },
+    {
+      "style": "itemplay",
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F507568d6%2F1ea7%2F4b72%2Fa825%2Fa4f77c4f400f%2F1280x1280.jpg/image.jpg",
+      "text": "Belsize Park\nKind Of Blue",
+      "params": {
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.18",
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.18",
+        "isContextMenu": 1
+      },
+      "presetParams": {
+        "icon": "http://resources.tidal.com/images/507568d6/1ea7/4b72/a825/a4f77c4f400f/1280x1280.jpg",
+        "favorites_type": "audio",
+        "favorites_url": "tidal://1978319.flc",
+        "favorites_title": "Belsize Park - Kind Of Blue"
+      },
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "track",
+            "menu": 1,
+            "id": "1978319"
+          },
+          "cmd": [
+            "tidal_info",
+            "items"
+          ],
+          "player": 0
+        }
+      },
+      "type": "audio",
+      "goAction": "play"
+    },
+    {
+      "icon": "/imageproxy/http%3A%2F%2Fresources.tidal.com%2Fimages%2F25ede24d%2F9ad2%2F49e7%2F9aa9%2F5972f2c31081%2F1280x1280.jpg/image.jpg",
+      "text": "Pocaluj Mnie\nKind Of Blue",
+      "style": "itemplay",
+      "goAction": "play",
+      "type": "audio",
+      "actions": {
+        "more": {
+          "window": {
+            "isContextMenu": 1
+          },
+          "params": {
+            "type": "track",
+            "menu": 1,
+            "id": "1977924"
+          },
+          "player": 0,
+          "cmd": [
+            "tidal_info",
+            "items"
+          ]
+        }
+      },
+      "presetParams": {
+        "favorites_title": "Pocaluj Mnie - Kind Of Blue",
+        "favorites_url": "tidal://1977924.flc",
+        "icon": "http://resources.tidal.com/images/25ede24d/9ad2/49e7/9aa9/5972f2c31081/1280x1280.jpg",
+        "favorites_type": "audio"
+      },
+      "params": {
+        "isContextMenu": 1,
+        "item_id": "349e8393_Kind%20of%20Blue.3.4.19",
+        "touchToPlay": "349e8393_Kind%20of%20Blue.3.4.19"
+      }
+    }
+  ],
+  "count": 100,
+  "window": {
+    "windowStyle": "icon_list"
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "albums_loop": [
+    {
+      "id": 17581,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20of%20Blue&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind of Blue",
+      "album": "Kind of Blue",
+      "year": 1959,
+      "artwork_track_id": "2de8c66e",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 17667,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20Of%20Blue&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind Of Blue",
+      "album": "Kind Of Blue",
+      "year": 1959,
+      "artwork_track_id": "d098e5c7",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 17717,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20Of%20Blue&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind Of Blue",
+      "album": "Kind Of Blue",
+      "year": 0,
+      "artwork_track_id": "6392e761",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 17761,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20Of%20Blue&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind Of Blue",
+      "album": "Kind Of Blue",
+      "year": 0,
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 23715,
+      "performance": "",
+      "favorites_url": "db:album.title=KIND%20OF%20BLUE&contributor.name=MILES%20DAVIS",
+      "favorites_title": "KIND OF BLUE",
+      "album": "KIND OF BLUE",
+      "year": 2001,
+      "artwork_track_id": "2e31985e",
+      "artist_id": 12605,
+      "artist": "MILES DAVIS"
+    },
+    {
+      "id": 23716,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20of%20Blue&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind of Blue",
+      "album": "Kind of Blue",
+      "year": 2015,
+      "artwork_track_id": "82d6844a",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 17719,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20Of%20Blue%20(Columbia%2FLegacy%20SACD%20064935%209)&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind Of Blue (Columbia/Legacy SACD 064935 9)",
+      "album": "Kind Of Blue (Columbia/Legacy SACD 064935 9)",
+      "year": 1959,
+      "artwork_track_id": "8b0ed851",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 17715,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20Of%20Blue.%2050th%20Anniversary%20Collector's%20Edition%20(CD1)&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind Of Blue. 50th Anniversary Collector's Edition (CD1)",
+      "album": "Kind Of Blue. 50th Anniversary Collector's Edition (CD1)",
+      "year": 2008,
+      "artwork_track_id": "78e42127",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 17718,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20Of%20Blue&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind Of Blue",
+      "album": "Kind Of Blue",
+      "year": 1959,
+      "artwork_track_id": "49e0273a",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 10821,
+      "performance": "",
+      "favorites_url": "db:album.title=My%20Kind%20Of%20Blues&contributor.name=Various%20Artists",
+      "favorites_title": "My Kind Of Blues",
+      "album": "My Kind Of Blues",
+      "year": 0,
+      "artwork_track_id": "d8039ea7",
+      "artist_id": 7400,
+      "artist": "Various Artists"
+    },
+    {
+      "id": 17716,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20Of%20Blue.%2050th%20Anniversary%20Collector's%20Edition%20(CD2)&contributor.name=Miles%20Davis",
+      "favorites_title": "Kind Of Blue. 50th Anniversary Collector's Edition (CD2)",
+      "album": "Kind Of Blue. 50th Anniversary Collector's Edition (CD2)",
+      "year": 2008,
+      "artwork_track_id": "5907da2f",
+      "artist_id": 10029,
+      "artist": "Miles Davis"
+    },
+    {
+      "id": 19015,
+      "performance": "",
+      "favorites_url": "db:album.title=Genius%20%2B%20Soul%20%3D%20Jazz%3B%20My%20kind%20of%20Jazz&contributor.name=Ray%20Charles",
+      "favorites_title": "Genius + Soul = Jazz; My kind of Jazz",
+      "album": "Genius + Soul = Jazz; My kind of Jazz",
+      "year": 1997,
+      "artwork_track_id": "07253e98",
+      "artist_id": 8103,
+      "artist": "Ray Charles"
+    },
+    {
+      "id": 21202,
+      "performance": "",
+      "favorites_url": "db:album.title=Essential%20Blues%20CD4%20(The%20Voices%20Of%20Blues)&contributor.name=Various%20Artists",
+      "favorites_title": "Essential Blues CD4 (The Voices Of Blues)",
+      "album": "Essential Blues CD4 (The Voices Of Blues)",
+      "year": 2008,
+      "artist_id": 7400,
+      "artist": "Various Artists"
+    },
+    {
+      "id": 14879,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20of%20Silver%20-%20CD4&contributor.name=Horace%20Silver",
+      "favorites_title": "Kind of Silver - CD4",
+      "album": "Kind of Silver - CD4",
+      "year": 1959,
+      "artwork_track_id": "d47b6ace",
+      "artist_id": 8534,
+      "artist": "Horace Silver"
+    },
+    {
+      "id": 14880,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20of%20Silver%20-%20CD5&contributor.name=Horace%20Silver",
+      "favorites_title": "Kind of Silver - CD5",
+      "album": "Kind of Silver - CD5",
+      "year": 1959,
+      "artwork_track_id": "fe9a0083",
+      "artist_id": 8534,
+      "artist": "Horace Silver"
+    },
+    {
+      "id": 21553,
+      "performance": "",
+      "favorites_url": "db:album.title=King%20Of%20The%20Delta%20Blues%20Singers&contributor.name=Robert%20Johnson",
+      "favorites_title": "King Of The Delta Blues Singers",
+      "album": "King Of The Delta Blues Singers",
+      "year": 1961,
+      "artwork_track_id": "c9328538",
+      "artist_id": 8986,
+      "artist": "Robert Johnson"
+    },
+    {
+      "id": 14877,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20of%20Silver%20-%20CD2&contributor.name=Horace%20Silver",
+      "favorites_title": "Kind of Silver - CD2",
+      "album": "Kind of Silver - CD2",
+      "year": 1956,
+      "artwork_track_id": "76231488",
+      "artist_id": 8534,
+      "artist": "Horace Silver"
+    },
+    {
+      "id": 14881,
+      "performance": "",
+      "favorites_url": "db:album.title=Kind%20of%20Silver%20-%20CD6&contributor.name=Horace%20Silver",
+      "favorites_title": "Kind of Silver - CD6",
+      "album": "Kind of Silver - CD6",
+      "year": 1965,
+      "artwork_track_id": "88c505e4",
+      "artist_id": 8534,
+      "artist": "Horace Silver"
+    },
+    {
+      "id": 21056,
+      "performance": "",
+      "favorites_url": "db:album.title=500%20Greatest%20Songs%20of%20All%20Time%20by%20Rolling%20Stone%20Magazine%202021&contributor.name=Various%20Artists",
+      "favorites_title": "500 Greatest Songs of All Time by Rolling Stone Magazine 2021",
+      "album": "500 Greatest Songs of All Time by Rolling Stone Magazine 2021",
+      "year": 2003,
+      "artwork_track_id": "0d89a16a",
+      "artist_id": 7400,
+      "artist": "Various Artists"
+    },
+    {
+      "id": 21060,
+      "performance": "",
+      "favorites_url": "db:album.title=500%20Greatest%20Songs%20of%20All%20Time%20by%20Rolling%20Stone%20Magazine%202021&contributor.name=Various%20Artists",
+      "favorites_title": "500 Greatest Songs of All Time by Rolling Stone Magazine 2021",
+      "album": "500 Greatest Songs of All Time by Rolling Stone Magazine 2021",
+      "year": 2007,
+      "artwork_track_id": "5d80dc43",
+      "artist_id": 7400,
+      "artist": "Various Artists"
+    }
+  ],
+  "count": 149
+}

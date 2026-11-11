@@ -1,0 +1,15 @@
+<?xml version='1.0' standalone='yes'?>
+<extensions>
+  <targetApplication>
+    <id>SlimServer</id>
+    <minVersion>9.0</minVersion>
+    <maxVersion>*</maxVersion>
+  </targetApplication>
+  <optionsURL>plugins/UnifiedMusic/settings/basic.html</optionsURL>
+  <creator>UnifiedMusic</creator>
+  <version>1.0.3</version>
+  <name>PLUGIN_UNIFIEDMUSIC</name>
+  <description>PLUGIN_UNIFIEDMUSIC_DESC</description>
+  <defaultState>enabled</defaultState>
+  <module>Plugins::UnifiedMusic::Plugin</module>
+</extensions>

@@ -1,28 +1,43 @@
 # Unified Music za Lyrion: instalacija
 
-Objedinjena pretraga lokalne biblioteke, Qobuza i TIDAL-a, i dnevni AI miksovi u Material Skin-u.
+Plugin dodaje u Material Skin zajedničku pretragu lokalne biblioteke, Qobuz-a i TIDAL-a, i dnevne miksove koje predlaže AI.
 
-## Uslovi
-- Lyrion Music Server 9.x na Debian ili Ubuntu sistemu, instaliran paketom (`lyrionmusicserver` servis).
-- Instaliran originalni Material Skin plugin iz Lyrion podešavanja.
-- Za servise: instalirani i prijavljeni Qobuz i TIDAL pluginovi.
-- Za miksove: API ključ za `claude-haiku-5-5` (Anthropic) ili `gpt-6-luna` (OpenAI).
+## Šta ti treba
+- Lyrion Music Server 9.x na Debianu ili Ubuntu-u, instaliran kao paket (`lyrionmusicserver` servis).
+- Material Skin, instaliran iz Lyrion podešavanja (Settings → Plugins).
+- Za Qobuz i TIDAL: njihovi Lyrion pluginovi, prijavljeni. Nisu obavezni, plugin radi i samo sa lokalnom bibliotekom.
+- Za dnevne miksove: API ključ za Anthropic (`claude-haiku-5-5`) ili OpenAI (`gpt-6-luna`).
 
 ## Instalacija i ažuriranje
-Na serveru pokreni jednu komandu:
+Na serveru, preko SSH-a, pokreni:
 
 ```bash
 curl -fsSL https://github.com/nas963/lyrion-unified-music/releases/latest/download/get.sh | sudo bash
 ```
 
-Komanda preuzima poslednje izdanje, proverava mu ispravnost i pokreće instalaciju. Isto važi i za ažuriranje. Radi samo dok je repo javan.
+Ako javi da mu treba `curl` ili `python3`, prvo instaliraj šta fali:
 
-Instalacija postavlja plugin i restartuje Lyrion, što prekida reprodukciju. Material Skin se ne menja: plugin u njegov `custom.js` dodaje jedan blok koji učitava naše dodatke.
+```bash
+sudo apt install curl python3
+```
 
-Ako nova verzija Material Skin-a promeni ono na šta se dodaci oslanjaju, Material nastavlja da radi, samo bez dodataka, dok ne izađe novo izdanje ovog paketa.
+Komanda preuzima poslednje izdanje, proverava mu ispravnost i pokreće instalaciju. Ista komanda služi i za ažuriranje.
+
+Instalacija restartuje Lyrion, pa će muzika na kratko stati. Posle toga osveži Material u browser-u.
+
+Material Skin se ne menja: plugin u njegov `custom.js` dodaje jedan blok koji učitava dodatke. Ako nova verzija Material Skin-a promeni ono na šta se dodaci oslanjaju, Material nastavlja da radi, samo bez dodataka, dok ne izađe novo izdanje ovog paketa.
 
 ## Podešavanje
-U Lyrion podešavanjima pluginova otvori **Unified Music**: unesi kategorije, API ključ i vreme noćnog pokretanja, pa sačuvaj. API ključevi se čuvaju na serveru kao običan tekst.
+U Lyrion-u otvori Settings → Plugins → **Unified Music**. Unesi:
+- kategorije miksova i žanrove za njih,
+- API ključ,
+- vreme noćnog pravljenja miksova.
+
+Zatim sačuvaj. API ključ se na serveru čuva kao običan tekst.
+
+## Korišćenje
+- **Pretraga:** običnom pretragom u Material-u dobijaš rezultate iz svih izvora odjednom.
+- **Miksovi:** na početnoj strani je **Your Daily Mixes**. Stariji dani su u meniju sa tri tačke, pod **Previous days**.
 
 ## Uklanjanje
 

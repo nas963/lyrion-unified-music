@@ -7,7 +7,7 @@
   </targetApplication>
   <optionsURL>plugins/UnifiedMusic/settings/basic.html</optionsURL>
   <creator>UnifiedMusic</creator>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
   <name>PLUGIN_UNIFIEDMUSIC</name>
   <description>PLUGIN_UNIFIEDMUSIC_DESC</description>
   <defaultState>enabled</defaultState>

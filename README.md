@@ -13,7 +13,7 @@ Install or update on the server with one command:
 curl -fsSL https://github.com/nas963/lyrion-unified-music/releases/latest/download/get.sh | sudo bash
 ```
 
-Installation guide in Serbian, with requirements, setup and removal: [packaging/README.md](packaging/README.md).
+Installation guide with requirements, setup and removal: [English](packaging/README.en.md), [Serbian](packaging/README.md).
 
 ## License
 

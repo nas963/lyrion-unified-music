@@ -17,7 +17,7 @@ sub new {
 sub search {
 	my ($self, $term, $done, $key) = @_;
 
-	my @queue = @{ $self->{order} };
+	my @queue = grep { $self->{sources}{$_} } @{ $self->{order} };
 	my $next;
 	$next = sub {
 		my $name = shift @queue;

@@ -2,9 +2,9 @@
 
 	[% WRAPPER setting title="PLUGIN_UNIFIEDMUSIC_PRIMARY_SOURCE" desc="PLUGIN_UNIFIEDMUSIC_PRIMARY_SOURCE_DESC" %]
 		<select class="stdedit" name="umPrimarySource">
-			<option [% IF um.primarySource == 'local' %]selected[% END %] value="local">Local</option>
-			<option [% IF um.primarySource == 'qobuz' %]selected[% END %] value="qobuz">Qobuz</option>
-			<option [% IF um.primarySource == 'tidal' %]selected[% END %] value="tidal">TIDAL</option>
+			[% FOREACH source IN umSources %]
+			<option [% IF um.primarySource == source.id %]selected[% END %] value="[% source.id %]">[% source.name %]</option>
+			[% END %]
 		</select>
 	[% END %]
 

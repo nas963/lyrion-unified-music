@@ -7,6 +7,7 @@ use base qw(Slim::Web::Settings);
 use Slim::Utils::Prefs;
 
 use Plugins::UnifiedMusic::Mix::Config;
+use Plugins::UnifiedMusic::Search;
 
 my $prefs = preferences('plugin.unifiedmusic');
 my $EXTRA_ROWS = 3;
@@ -70,6 +71,7 @@ sub handler {
 	}
 
 	$params->{um} = $stored;
+	$params->{umSources} = Plugins::UnifiedMusic::Search::source_options(Plugins::UnifiedMusic::Plugin::installed_services(), $stored->{primarySource});
 	$params->{umHasAnthropic} = length($stored->{anthropicKey} // '') ? 1 : 0;
 	$params->{umHasOpenai} = length($stored->{openaiKey} // '') ? 1 : 0;
 	$params->{umModels} = Plugins::UnifiedMusic::Mix::Config::available_models($stored);

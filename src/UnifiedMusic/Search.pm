@@ -12,6 +12,22 @@ my %LIST_FOR_KIND = (album => 'albums', track => 'tracks', artist => 'artists');
 my @LISTS = qw(albums tracks artists works playlists);
 
 my @DEFAULT_ORDER = qw(local qobuz tidal);
+my %SERVICE_MODULES = (qobuz => 'Plugins::Qobuz::Plugin', tidal => 'Plugins::TIDAL::Plugin');
+my %SOURCE_NAMES = (local => 'Local', qobuz => 'Qobuz', tidal => 'TIDAL');
+
+# Servisi cij je Lyrion plugin ucitan; ostali se ne pretrazuju i ne prijavljuju kao nedostupni.
+sub available_services {
+	my ($is_enabled) = @_;
+	return [grep { $is_enabled->($SERVICE_MODULES{$_}) } qw(qobuz tidal)];
+}
+
+# Izbor glavnog izvora: lokalna biblioteka, ucitani servisi i sacuvani izbor ako mu plugin vise nije ucitan.
+sub source_options {
+	my ($available, $primary) = @_;
+	my %present = map { $_ => 1 } @$available;
+	return [map { { id => $_, name => $SOURCE_NAMES{$_} . ($_ eq 'local' || $present{$_} ? '' : ' (not installed)') } }
+		grep { $_ eq 'local' || $present{$_} || $_ eq ($primary // '') } @DEFAULT_ORDER];
+}
 
 sub new {
 	my ($class, %args) = @_;

@@ -18,6 +18,7 @@ use Slim::Control::Request;
 use Slim::Networking::SimpleAsyncHTTP;
 use Slim::Player::Client;
 use Slim::Utils::Log;
+use Slim::Utils::PluginManager;
 use Slim::Utils::Prefs;
 use Slim::Utils::Timers;
 
@@ -187,6 +188,10 @@ sub _run {
 	}
 }
 
+sub installed_services {
+	return Plugins::UnifiedMusic::Search::available_services(sub { Slim::Utils::PluginManager->isEnabled($_[0]) });
+}
+
 sub _make_search {
 	my ($client) = @_;
 
@@ -196,12 +201,11 @@ sub _make_search {
 		_run($target ? $client : undef, $command, $done);
 	};
 
+	my %sources = (local => Plugins::UnifiedMusic::Source::Local->new(run => $run));
+	$sources{$_} = Plugins::UnifiedMusic::Source::Service->new(service => $_, run => $run, log => $warn) for @{ installed_services() };
+
 	return Plugins::UnifiedMusic::Search->new(
-		sources => {
-			local => Plugins::UnifiedMusic::Source::Local->new(run => $run),
-			qobuz => Plugins::UnifiedMusic::Source::Service->new(service => 'qobuz', run => $run, log => $warn),
-			tidal => Plugins::UnifiedMusic::Source::Service->new(service => 'tidal', run => $run, log => $warn),
-		},
+		sources => \%sources,
 		source_order => Plugins::UnifiedMusic::Search::source_order_for_primary($prefs->get('primarySource')),
 		timeout      => $TIMEOUT,
 		set_timer    => \&_set_timer,
@@ -219,12 +223,11 @@ sub _make_ordered_search {
 		_run($target ? $client : undef, $command, $done);
 	};
 
+	my %sources = (local => Plugins::UnifiedMusic::Source::Local->new(run => $run, only => 'track'));
+	$sources{$_} = Plugins::UnifiedMusic::Source::Service->new(service => $_, run => $run, log => $warn, only => 'track') for @{ installed_services() };
+
 	return Plugins::UnifiedMusic::Mix::OrderedSearch->new(
-		sources => {
-			local => Plugins::UnifiedMusic::Source::Local->new(run => $run, only => 'track'),
-			qobuz => Plugins::UnifiedMusic::Source::Service->new(service => 'qobuz', run => $run, log => $warn, only => 'track'),
-			tidal => Plugins::UnifiedMusic::Source::Service->new(service => 'tidal', run => $run, log => $warn, only => 'track'),
-		},
+		sources => \%sources,
 		order  => Plugins::UnifiedMusic::Search::source_order_for_primary($config->{primarySource}),
 		client => $client ? $client->id : undef,
 		delay  => sub { _set_timer($SERVICE_PAUSE, $_[0]) },

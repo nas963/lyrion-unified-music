@@ -111,4 +111,15 @@ for my $term ('', '   ') {
 	ok !$timer->{seconds}, 'prazna pretraga bez tajmera';
 }
 
+{
+	my %loaded = ('Plugins::TIDAL::Plugin' => 1);
+	is_deeply Plugins::UnifiedMusic::Search::available_services(sub { $loaded{ $_[0] } }), ['tidal'], 'samo ucitani servisi';
+	is_deeply Plugins::UnifiedMusic::Search::available_services(sub { 0 }), [], 'bez servisa';
+
+	my $names = sub { [map { "$_->{id}=$_->{name}" } @{ Plugins::UnifiedMusic::Search::source_options(@_) }] };
+	is_deeply $names->(['tidal'], 'local'), ['local=Local', 'tidal=TIDAL'], 'nudi lokalno i ucitane';
+	is_deeply $names->([], 'qobuz'), ['local=Local', 'qobuz=Qobuz (not installed)'], 'sacuvan izbor ostaje vidljiv';
+	is_deeply $names->([qw(qobuz tidal)], undef), ['local=Local', 'qobuz=Qobuz', 'tidal=TIDAL'], 'svi izvori';
+}
+
 done_testing;

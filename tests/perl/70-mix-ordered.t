@@ -84,4 +84,17 @@ sub setup {
 	is_deeply \@opened, ['Songs'], 'servis otvara samo pesme';
 }
 
+{
+	my %sources = (local => FakeOrderedSource->new(items => []), tidal => FakeOrderedSource->new(items => hit('tidal', 't://1')));
+	my @delays;
+	my $search = Plugins::UnifiedMusic::Mix::OrderedSearch->new(
+		sources => \%sources, order => [qw(qobuz local tidal)], client => 'c',
+		delay => sub { push @delays, 1; $_[0]->() },
+	);
+	my @out;
+	$search->search('A T', sub { push @out, $_[0] }, $key);
+	is $out[0]{tracks}[0]{versions}[0]{url}, 't://1', 'servis bez plugina se preskace';
+	is scalar @delays, 1, 'pauza samo posle stvarnog servisa';
+}
+
 done_testing;

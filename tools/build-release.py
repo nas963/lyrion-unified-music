@@ -32,7 +32,7 @@ def main():
     # Stalan naziv omogucava adresu /releases/latest/download/unifiedmusic.zip.
     target = dist / 'unifiedmusic.zip'
     with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as out:
-        for name in ('install.sh', 'uninstall.sh', 'README.md'):
+        for name in ('install.sh', 'uninstall.sh', 'README.md', 'README.en.md'):
             out.writestr(f'{top}/{name}', lf_bytes(ROOT / 'packaging' / name))
         out.writestr(f'{top}/LICENSE', lf_bytes(ROOT / 'LICENSE'))
         for path in sorted(PLUGIN.rglob('*')):

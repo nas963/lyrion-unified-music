@@ -85,6 +85,8 @@ sub initPlugin {
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'mix', 'status'], [0, 1, 1, \&_cliMixStatus]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'mix', 'rename'], [0, 0, 1, \&_cliMixRename]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'run'], [0, 0, 1, \&_cliImportRun]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'continue'], [0, 0, 1, \&_cliImportContinue]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'cancel'], [0, 0, 1, \&_cliImportCancel]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'status'], [0, 1, 1, \&_cliImportStatus]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'items'], [0, 1, 1, \&_cliImportItems]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'play'], [1, 0, 1, \&_cliImportPlay]);
@@ -537,22 +539,38 @@ sub _save_import_playlist {
 	$try->();
 }
 
+sub _append_import_playlist {
+	my ($id, $urls, $done) = @_;
+
+	_run_all(undef, [map { ['playlists', 'edit', 'cmd:add', "playlist_id:$id", "url:$_"] } @$urls], sub { $done->({ id => $id }) });
+}
+
 sub _import_summary {
 	my ($entry) = @_;
 	return undef unless $entry;
-	return { map { $_ => $entry->{$_} } grep { defined $entry->{$_} } qw(id name date found total tracks error playlist_id) };
+	return { map { $_ => $entry->{$_} } grep { defined $entry->{$_} } qw(id name date found total tracks error playlist_id appended) };
 }
 
 # Lyrion cita vrednost parametra samo do kraja reda, pa Material salje tekst URI-kodiran.
-sub _import_text {
-	my ($request) = @_;
+sub _import_param {
+	my ($request, $name) = @_;
 
-	my $text = $request->getParam('text');
-	return $text unless defined $text && ($request->getParam('encoding') // '') eq 'uri';
-	$text =~ s/%([0-9A-Fa-f]{2})/chr(hex($1))/ge;
-	return Encode::decode('UTF-8', $text);
+	my $value = $request->getParam($name);
+	return $value unless defined $value && ($request->getParam('encoding') // '') eq 'uri';
+	$value =~ s/%([0-9A-Fa-f]{2})/chr(hex($1))/ge;
+	return Encode::decode('UTF-8', $value);
 }
 
+sub _import_ai {
+	my $config = _stored_config();
+	my $provider = Plugins::UnifiedMusic::Mix::Config::provider_for_model($config->{model} // '');
+	my $key = Plugins::UnifiedMusic::Mix::Config::key_for_model($config);
+	return undef unless $provider && length($key // '');
+	my $class = $provider eq 'openai' ? 'Plugins::UnifiedMusic::AI::OpenAI' : 'Plugins::UnifiedMusic::AI::Anthropic';
+	return { adapter => $class->new(http => \&_http), model => $config->{model}, api_key => $key };
+}
+
+# Prvi korak: model cita tekst; rezultat ceka u stanju "review" da ga korisnik potvrdi.
 sub _cliImportRun {
 	my ($request) = @_;
 
@@ -561,17 +579,57 @@ sub _cliImportRun {
 		return $request->setStatusDone;
 	}
 
-	my $config = _stored_config();
-	my $provider = Plugins::UnifiedMusic::Mix::Config::provider_for_model($config->{model} // '');
-	my $key = Plugins::UnifiedMusic::Mix::Config::key_for_model($config);
-	if (!$provider || !length($key // '')) {
+	my $ai = _import_ai();
+	if (!$ai) {
 		$request->addResult('error', 'Choose a model and enter its API key in the Unified Music settings.');
 		return $request->setStatusDone;
 	}
 
-	my $client = $request->client || _any_client();
 	my $date = _now()->{date};
-	%import = (running => 1, stage => 'reading', started => time());
+	%import = (running => 1, stage => 'reading', started => time(), last => $import{last});
+
+	my $finish = sub {
+		my ($result) = @_;
+		if ($result->{error}) {
+			$log->warn("UnifiedMusic: uvoz liste nije uspeo: $result->{error}");
+			%import = (running => 0, last => { error => $result->{error}, date => $date });
+			return;
+		}
+		%import = (running => 0, stage => 'review', review => { list => $result->{list}, date => $date, model => $ai->{model} }, last => $import{last});
+	};
+
+	eval {
+		Plugins::UnifiedMusic::Import::Job::extract({
+			%$ai,
+			text => _import_param($request, 'text'),
+			date => $date,
+			log  => sub { $log->warn($_[0]) },
+		}, $finish);
+		1;
+	} or $finish->({ error => "Import failed: $@" });
+
+	$request->addResult('started', 1);
+	$request->setStatusDone;
+}
+
+# Drugi korak: pretraga i nova ili postojeca plejlista.
+sub _cliImportContinue {
+	my ($request) = @_;
+
+	my $review = $import{review};
+	if ($import{running} || !$review) {
+		$request->addResult('error', $import{running} ? 'An import is already running.' : 'There is no recognised list to import. Analyze the text again.');
+		return $request->setStatusDone;
+	}
+
+	my $playlist_id = $request->getParam('playlist_id');
+	my $target = defined $playlist_id && length $playlist_id
+		? { id => $playlist_id, name => _import_param($request, 'playlist_name') // '' }
+		: { name => _import_param($request, 'name') };
+
+	my $client = $request->client || _any_client();
+	my $date = $review->{date};
+	%import = (running => 1, stage => 'searching', started => time(), last => $import{last});
 
 	my $finish = sub {
 		my ($result) = @_;
@@ -583,19 +641,16 @@ sub _cliImportRun {
 		%import = (running => 0, last => _import_summary($entry));
 	};
 
-	my $adapter_class = $provider eq 'openai' ? 'Plugins::UnifiedMusic::AI::OpenAI' : 'Plugins::UnifiedMusic::AI::Anthropic';
 	eval {
-		Plugins::UnifiedMusic::Import::Job::run({
-			adapter  => $adapter_class->new(http => \&_http),
-			model    => $config->{model},
-			api_key  => $key,
-			text     => _import_text($request),
-			name     => $request->getParam('name'),
+		Plugins::UnifiedMusic::Import::Job::build({
+			list     => $review->{list},
+			target   => $target,
 			date     => $date,
+			model    => $review->{model},
 			resolver => _import_resolver($client),
-			save     => \&_save_import_playlist,
+			create   => \&_save_import_playlist,
+			append   => \&_append_import_playlist,
 			progress => sub { my ($state) = @_; $import{$_} = $state->{$_} for keys %$state },
-			log      => sub { $log->warn($_[0]) },
 		}, $finish);
 		1;
 	} or $finish->({ error => "Import failed: $@" });
@@ -604,12 +659,29 @@ sub _cliImportRun {
 	$request->setStatusDone;
 }
 
+sub _cliImportCancel {
+	my ($request) = @_;
+
+	if (!$import{running}) {
+		delete $import{review};
+		delete $import{stage};
+	}
+	$request->setStatusDone;
+}
+
 sub _cliImportStatus {
 	my ($request) = @_;
 
 	$request->addResult('running', $import{running} ? 1 : 0);
 	for my $field (qw(stage done total current)) {
-		$request->addResult($field, $import{$field}) if $import{running} && defined $import{$field};
+		$request->addResult($field, $import{$field}) if ($import{running} || $import{review}) && defined $import{$field};
+	}
+	if (!$import{running} && $import{review}) {
+		my $list = $import{review}{list};
+		$request->addResult('review', {
+			name  => $list->{name},
+			items => [map { my $item = $_; +{ map { $_ => $item->{$_} } grep { defined $item->{$_} } qw(type artist title composer artist_only whole_work) } } @{ $list->{items} }],
+		});
 	}
 	$request->addResult('last', $import{last}) if $import{last};
 	$request->setStatusDone;
@@ -620,7 +692,13 @@ sub _cliImportItems {
 
 	my $id = $request->getParam('id');
 	if (!defined $id) {
-		$request->addResult('imports', [map { _import_summary($_) } @{ $history->list }]);
+		$request->addResult('imports', [map {
+			my $entry = $_;
+			my $summary = _import_summary($entry);
+			# Za filter u Material-u: izvodjaci i naslovi iz liste.
+			$summary->{terms} = join ' ', map { ($_->{artist} // '') . ' ' . ($_->{title} // '') . ' ' . ($_->{found} ? ($_->{found}{title} // '') : '') } @{ $entry->{items} || [] };
+			$summary;
+		} @{ $history->list }]);
 		$request->addResult('running', $import{running} ? 1 : 0);
 		return $request->setStatusDone;
 	}

@@ -38,7 +38,7 @@ Zatim sačuvaj. API ključ se na serveru čuva kao običan tekst.
 ## Korišćenje
 - **Pretraga:** običnom pretragom u Material-u dobijaš rezultate iz svih izvora odjednom.
 - **Miksovi:** na početnoj strani je **Your Daily Mixes**. Stariji dani su u meniju sa tri tačke, pod **Previous days**.
-- **Uvoz liste:** na početnoj strani je **Imported lists** → **Import list from text**. Nalepi tekst sa spiskom (npr. ono što Gemini napiše za YouTube video). AI prepoznaje albume i pesme; za izvođača bez navedenog albuma bira reprezentativni album. Sve se traži po redosledu izvora iz podešavanja i čuva kao Lyrion plejlista. U istoj listi se vidi šta je nađeno i gde, a šta nije.
+- **Uvoz liste:** na početnoj strani je **Imported lists** → **Import list from text**. Nalepi tekst sa spiskom (npr. ono što Gemini napiše za YouTube video). AI prepoznaje albume i pesme; za izvođača bez navedenog albuma bira reprezentativni album. Pre pretrage vidiš prepoznate stavke, možeš da izmeniš predloženi naziv ili izabereš postojeću plejlistu koju treba dopuniti. Sve se traži po redosledu izvora iz podešavanja. U istoj listi se vidi šta je nađeno i gde, a šta nije; lupa u gornjoj traci filtrira uvezene liste po nazivu, izvođačima i naslovima.
 
 ## Uklanjanje
 

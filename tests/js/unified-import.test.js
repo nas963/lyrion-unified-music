@@ -60,11 +60,62 @@ test('tekst napretka i rezultata', () => {
 
 test('tekst sa vise redova ide URI-kodiran', () => {
     const { importRunCommandFor } = require(bundle);
-    const command = importRunCommandFor('1. A - "B"\n2. Č: D', '  Moja   lista ');
+    const command = importRunCommandFor('1. A - "B"\n2. Č: D');
     assert.deepStrictEqual(command.slice(0, 4), ['unifiedmusic', 'import', 'run', 'encoding:uri']);
     assert.ok(!/\n/.test(command[4]));
     assert.strictEqual(decodeURIComponent(command[4].slice(5)), '1. A - "B"\n2. Č: D');
-    assert.strictEqual(command[5], 'name:Moja lista');
+    assert.strictEqual(command.length, 5);
+});
+
+test('drugi korak: nova ili postojeca plejlista', () => {
+    const { importContinueCommand } = require(bundle);
+    const created = importContinueCommand({ name: '  Moja   lista: Č ' });
+    assert.deepStrictEqual(created.slice(0, 4), ['unifiedmusic', 'import', 'continue', 'encoding:uri']);
+    assert.strictEqual(decodeURIComponent(created[4].slice(5)), 'Moja lista: Č');
+    assert.strictEqual(created.length, 5);
+
+    const appended = importContinueCommand({ id: 42, name: 'Jazz & Co' });
+    assert.strictEqual(appended[4], 'playlist_id:42');
+    assert.strictEqual(decodeURIComponent(appended[5].slice(14)), 'Jazz & Co');
+});
+
+test('pregled prepoznatih stavki', () => {
+    const { importReviewLines } = require(bundle);
+    assert.deepStrictEqual(importReviewLines({ items: [
+        { type: 'album', artist: 'Hiromi', title: 'Alive', artist_only: 1 },
+        { type: 'album', artist: 'Miles Davis', title: 'Kind of Blue' },
+        { type: 'track', artist: 'Peter Hurford', title: 'Organ Sonata No. 1', whole_work: 1 },
+        { type: 'track', artist: 'Paul Simon', title: '50 Ways' },
+    ] }), ['Album (representative): Hiromi - Alive', 'Album: Miles Davis - Kind of Blue', 'Work: Peter Hurford - Organ Sonata No. 1', 'Track: Paul Simon - 50 Ways']);
+});
+
+test('dopuna se razlikuje od nove plejliste u listi', () => {
+    const items = importListToItems({ imports: [
+        { id: '1', name: 'Jazz', date: '2026-11-13', found: 1, total: 1, tracks: 7, playlist_id: 5, appended: 1 },
+        { id: '2', name: 'Jazz', date: '2026-11-13', found: 3, total: 3, tracks: 24, playlist_id: 5 },
+    ] }, options);
+    assert.match(items[1].subtitle, /added to playlist/);
+    assert.strictEqual(items[1].icon, 'playlist_add');
+    assert.doesNotMatch(items[2].subtitle, /added/);
+});
+
+test('dopunjena plejlista u poruci', () => {
+    assert.match(importResultText({ name: 'Jazz', playlist_id: 3, found: 2, total: 2, tracks: 5, appended: 1 }), /Playlist "Jazz" extended: 2 of 2 found/);
+});
+
+test('filter liste uvoza', () => {
+    const { importFilterItems } = require(bundle);
+    const items = importListToItems({ imports: [
+        { id: '1', name: 'Fusion heroes', date: '2026-11-13', found: 9, total: 10, tracks: 87, playlist_id: 5, terms: 'Hiromi Alive Snarky Puppy Culcha Vulcha' },
+        { id: '2', name: 'HiFi test', date: '2026-11-12', found: 10, total: 10, tracks: 14, playlist_id: 6, terms: 'Antonín Dvořák Đorđe Balašević' },
+    ] }, options);
+    assert.strictEqual(importFilterItems(items, '').length, 3);
+    assert.deepStrictEqual(importFilterItems(items, 'fusion').map(i => i.id), ['import.new', 'import.entry.0']);
+    assert.deepStrictEqual(importFilterItems(items, 'snarky  hiromi').map(i => i.importId), [undefined, '1']);
+    assert.deepStrictEqual(importFilterItems(items, 'dvorak').map(i => i.importId), [undefined, '2']);
+    assert.deepStrictEqual(importFilterItems(items, 'djordje').map(i => i.importId), [undefined, '2']);
+    assert.deepStrictEqual(importFilterItems(items, '2026-11-12').map(i => i.importId), [undefined, '2']);
+    assert.deepStrictEqual(importFilterItems(items, 'nema').map(i => i.importId), [undefined]);
 });
 
 test('klasika: stavovi i drugi snimak', () => {

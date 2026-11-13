@@ -13,7 +13,7 @@ my $BLOCK = <<"END_BLOCK";
 $START
 (function () {
     var script = document.createElement("script");
-    script.src = "/plugins/UnifiedMusic/material/unified-material.js?v=" + Math.floor(Date.now() / 3600000);
+    script.src = "/plugins/UnifiedMusic/material/unified-material.js?v=" + Date.now();
     document.body.appendChild(script);
 })();
 $END

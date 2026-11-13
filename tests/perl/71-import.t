@@ -258,60 +258,85 @@ package FakeResolver {
 }
 package main;
 
-{
-	my $list = { list => { name => 'Fusion', items => [{ type => 'album', artist => 'Hiromi', title => 'Spark' }, { type => 'track', artist => 'X', title => 'Y' }] } };
-	my $adapter = FakeAdapter->new({ error => 'HTTP 500', retryable => 1 }, $list);
-	my $resolver = FakeResolver->new([
-		{ type => 'album', artist => 'Hiromi', title => 'Spark', found => { source => 'qobuz', urls => ['q://1', 'q://2'] } },
-		{ type => 'track', artist => 'X', title => 'Y', found => { source => 'local', urls => ['q://2'] } },
-		{ type => 'track', artist => 'Z', title => 'W', missing => 1 },
-	]);
-	my (@saved, @out, @progress);
-	Plugins::UnifiedMusic::Import::Job::run({
-		adapter => $adapter, resolver => $resolver, model => 'claude-haiku-5-5', api_key => 'k', text => 'lista', name => '', date => '2026-11-13',
-		save => sub { push @saved, [@_[0, 1]]; $_[2]->({ id => 7, name => "$_[0] (2)" }) },
-		progress => sub { push @progress, $_[0]{stage} },
-	}, sub { push @out, $_[0] });
+my $results3 = [
+	{ type => 'album', artist => 'Hiromi', title => 'Spark', found => { source => 'qobuz', urls => ['q://1', 'q://2'] } },
+	{ type => 'track', artist => 'X', title => 'Y', found => { source => 'local', urls => ['q://2'] } },
+	{ type => 'track', artist => 'Z', title => 'W', missing => 1 },
+];
+my $fusion = { name => 'Fusion', items => [{ type => 'album', artist => 'Hiromi', title => 'Spark' }, { type => 'track', artist => 'X', title => 'Y' }] };
 
+{
+	my $adapter = FakeAdapter->new({ error => 'HTTP 500', retryable => 1 }, { list => { %$fusion } });
+	my @out;
+	Plugins::UnifiedMusic::Import::Job::extract({ adapter => $adapter, model => 'm', api_key => 'k', text => 'lista', date => '2026-11-13' }, sub { push @out, $_[0] });
 	is scalar @{ $adapter->{requests} }, 2, 'ponovljen zahtev posle privremene greske';
 	is $adapter->{requests}[0]{schema_name}, 'listening_list', 'sema liste';
-	is $saved[0][0], 'Fusion', 'naziv od modela kad korisnik ne da svoj';
-	is_deeply $saved[0][1], ['q://1', 'q://2'], 'adrese bez ponavljanja';
-	is $out[0]{name}, 'Fusion (2)', 'stvarni naziv plejliste';
+	is $out[0]{list}{name}, 'Fusion', 'predlog naziva od modela';
+	is scalar @{ $out[0]{list}{items} }, 2, 'stavke za pregled';
+
+	@out = ();
+	Plugins::UnifiedMusic::Import::Job::extract({ adapter => FakeAdapter->new({ list => { name => '  ', items => [{ type => 'track', artist => 'A', title => 'B' }] } }), text => 'x', date => '2026-11-13' }, sub { push @out, $_[0] });
+	is $out[0]{list}{name}, 'Imported list 2026-11-13', 'naziv kad ga model ne predlozi';
+}
+
+{
+	my (@created, @out, @progress);
+	Plugins::UnifiedMusic::Import::Job::build({
+		list => $fusion, target => { name => '  Moja   lista ' }, resolver => FakeResolver->new($results3), date => '2026-11-13', model => 'm',
+		create => sub { push @created, [@_[0, 1]]; $_[2]->({ id => 7, name => "$_[0] (2)" }) },
+		append => sub { die 'ne sme' },
+		progress => sub { push @progress, $_[0]{stage} },
+	}, sub { push @out, $_[0] });
+	is $created[0][0], 'Moja lista', 'naziv koji je korisnik izmenio';
+	is_deeply $created[0][1], ['q://1', 'q://2'], 'adrese bez ponavljanja';
+	is $out[0]{name}, 'Moja lista (2)', 'stvarni naziv plejliste';
 	is $out[0]{playlist_id}, 7, 'id plejliste';
-	is $out[0]{found}, 2, 'nadjeno';
-	is $out[0]{total}, 3, 'ukupno';
-	is $out[0]{tracks}, 2, 'pesama';
-	is_deeply \@progress, [qw(reading searching saving)], 'faze';
+	is_deeply [@{ $out[0] }{qw(found total tracks)}], [2, 3, 2], 'nadjeno, ukupno, pesama';
+	ok !$out[0]{appended}, 'nova plejlista';
+	is_deeply \@progress, [qw(searching saving)], 'faze';
+
+	(@created, @out) = ();
+	Plugins::UnifiedMusic::Import::Job::build({
+		list => $fusion, target => { name => '' }, resolver => FakeResolver->new($results3), date => 'd',
+		create => sub { push @created, $_[0]; $_[2]->({ id => 1, name => $_[0] }) },
+	}, sub { push @out, $_[0] });
+	is $created[0], 'Fusion', 'prazan naziv -> predlog modela';
+
+	my @appended;
+	@out = ();
+	Plugins::UnifiedMusic::Import::Job::build({
+		list => $fusion, target => { id => 42, name => 'Jazz favorites' }, resolver => FakeResolver->new($results3), date => 'd',
+		create => sub { die 'ne sme' },
+		append => sub { push @appended, [@_[0, 1]]; $_[2]->({ id => $_[0] }) },
+	}, sub { push @out, $_[0] });
+	is_deeply \@appended, [[42, ['q://1', 'q://2']]], 'dopuna postojece plejliste';
+	is $out[0]{name}, 'Jazz favorites', 'naziv postojece plejliste';
+	is $out[0]{playlist_id}, 42, 'id postojece plejliste';
+	ok $out[0]{appended}, 'oznaka dopune';
 }
 
 {
 	my @out;
-	Plugins::UnifiedMusic::Import::Job::run({ adapter => FakeAdapter->new, resolver => FakeResolver->new([]), text => '  ', save => sub {} }, sub { push @out, $_[0] });
+	Plugins::UnifiedMusic::Import::Job::extract({ adapter => FakeAdapter->new, text => '  ' }, sub { push @out, $_[0] });
 	like $out[0]{error}, qr/Paste/, 'prazan tekst';
 
 	@out = ();
-	Plugins::UnifiedMusic::Import::Job::run({
-		adapter => FakeAdapter->new({ list => { name => 'N', items => [{ type => 'track', artist => 'A', title => 'B' }] } }),
+	Plugins::UnifiedMusic::Import::Job::build({
+		list => { name => 'N', items => [{ type => 'track', artist => 'A', title => 'B' }] },
 		resolver => FakeResolver->new([{ type => 'track', artist => 'A', title => 'B', missing => 1 }]),
-		text => 'x', name => 'Moja', save => sub { die 'ne sme' },
+		target => { name => 'Moja' }, create => sub { die 'ne sme' },
 	}, sub { push @out, $_[0] });
 	like $out[0]{error}, qr/None of the 1/, 'nista nije nadjeno';
 	is scalar @{ $out[0]{items} }, 1, 'stavke ostaju za pregled';
 
 	@out = ();
 	my $adapter = FakeAdapter->new({ list => { name => 'N', items => [] }, raw => '{}' }, { list => { name => 'N', items => [{ type => 'track', artist => 'A', title => 'B' }] } });
-	Plugins::UnifiedMusic::Import::Job::run({
-		adapter => $adapter, resolver => FakeResolver->new([{ type => 'track', artist => 'A', title => 'B', found => { source => 'local', urls => ['u'] } }]),
-		text => 'x', save => sub { $_[2]->({ id => 1, name => $_[0] }) },
-	}, sub { push @out, $_[0] });
+	Plugins::UnifiedMusic::Import::Job::extract({ adapter => $adapter, text => 'x' }, sub { push @out, $_[0] });
 	is scalar @{ $adapter->{requests} }, 2, 'prazna lista se ponavlja jednom';
-	is $out[0]{found}, 1, 'drugi pokusaj uspeva';
+	is scalar @{ $out[0]{list}{items} }, 1, 'drugi pokusaj uspeva';
 
 	@out = ();
-	Plugins::UnifiedMusic::Import::Job::run({
-		adapter => FakeAdapter->new({ error => 'HTTP 401', retryable => 0 }), resolver => FakeResolver->new([]), text => 'x', save => sub {},
-	}, sub { push @out, $_[0] });
+	Plugins::UnifiedMusic::Import::Job::extract({ adapter => FakeAdapter->new({ error => 'HTTP 401', retryable => 0 }), text => 'x' }, sub { push @out, $_[0] });
 	like $out[0]{error}, qr/HTTP 401/, 'greska modela';
 }
 

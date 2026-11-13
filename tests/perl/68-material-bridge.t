@@ -22,5 +22,6 @@ my $old = merge('') =~ s/unified-material\.js/stara.js/r;
 my $updated = merge($old);
 unlike $updated, qr/stara\.js/, 'stari blok se zamenjuje';
 is(() = $updated =~ /UnifiedMusic start/g, 1, 'samo jedan blok');
+like $empty, qr/unified-material\.js\?v=" \+ Date\.now\(\);/, 'skripta se uvek ucitava sveza posle azuriranja';
 
 done_testing;

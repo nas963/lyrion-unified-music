@@ -74,6 +74,7 @@ sub initPlugin {
 
 	$store = Plugins::UnifiedMusic::Mix::Store->new(dir => catdir(Slim::Utils::Prefs::dir(), 'unifiedmusic', 'mixes'));
 	$history = Plugins::UnifiedMusic::Import::History->new(file => catdir(Slim::Utils::Prefs::dir(), 'unifiedmusic', 'imports.json'));
+	eval { $history->compact; 1 } or $log->error("UnifiedMusic: spajanje uvoza nije uspelo: $@");
 
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'search'], [0, 1, 1, \&_cliSearch]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'mixes', 'items'], [0, 1, 1, \&_cliMixes]);
@@ -91,6 +92,7 @@ sub initPlugin {
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'items'], [0, 1, 1, \&_cliImportItems]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'play'], [1, 0, 1, \&_cliImportPlay]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'delete'], [0, 0, 1, \&_cliImportDelete]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'rename'], [0, 0, 1, \&_cliImportRename]);
 
 	if (main::WEBUI) {
 		require Plugins::UnifiedMusic::Settings;
@@ -634,11 +636,17 @@ sub _cliImportContinue {
 	my $finish = sub {
 		my ($result) = @_;
 		my $entry = { %$result, id => sprintf('%d-%04d', time(), int(rand(10000))), date => $date, created => time() };
+		my $last = _import_summary($entry);
 		if ($result->{items}) {
-			eval { $history->add($entry); 1 } or $log->error("UnifiedMusic: uvoz nije zapisan: $@");
+			eval {
+				# Dopuna ide u zapis plejliste; poruka i dalje govori samo o ovom uvozu.
+				my $saved = $result->{appended} ? $history->add_to_playlist($entry) : $history->add($entry);
+				$last->{id} = $saved->{id};
+				1;
+			} or $log->error("UnifiedMusic: uvoz nije zapisan: $@");
 		}
 		$log->warn("UnifiedMusic: uvoz liste nije uspeo: $result->{error}") if $result->{error};
-		%import = (running => 0, last => _import_summary($entry));
+		%import = (running => 0, last => $last);
 	};
 
 	eval {
@@ -738,6 +746,41 @@ sub _cliImportDelete {
 
 	$request->addResult('deleted', $history->remove($request->getParam('id')));
 	$request->setStatusDone;
+}
+
+# Novi naziv uvezene liste i njene plejliste; plejlista sa istim nazivom se ne prepisuje.
+sub _cliImportRename {
+	my ($request) = @_;
+
+	my $id = $request->getParam('id');
+	my $entry = $history->get($id);
+	my $name = Plugins::UnifiedMusic::Import::Job::clean_name(_import_param($request, 'name'));
+	my $fail = sub {
+		$request->addResult('error', $_[0]);
+		$request->setStatusDone;
+	};
+	return $fail->('This imported list no longer exists.') unless $entry;
+	return $fail->('Enter a name.') unless length $name;
+
+	my $save = sub {
+		$history->set_name($id, $name);
+		$request->addResult('name', $name);
+		$request->setStatusDone;
+	};
+	my $playlist = $entry->{playlist_id};
+	return $save->() unless defined $playlist;
+
+	$request->setStatusProcessing;
+	_run(undef, ['playlists', 'rename', "playlist_id:$playlist", "newname:$name", 'dry_run:1'], sub {
+		my ($check) = @_;
+		return $fail->('The playlist was not found; it may have been deleted.') unless $check;
+		my $other = $check->{overwritten_playlist_id};
+		return $fail->(qq{A playlist named "$name" already exists.}) if defined $other && $other ne $playlist;
+		_run(undef, ['playlists', 'rename', "playlist_id:$playlist", "newname:$name"], sub {
+			return $fail->('The playlist could not be renamed.') unless $_[0];
+			$save->();
+		});
+	});
 }
 
 1;

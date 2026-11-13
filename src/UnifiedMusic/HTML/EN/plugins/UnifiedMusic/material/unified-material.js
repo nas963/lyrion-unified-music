@@ -538,6 +538,10 @@ function importContinueCommand(target) {
     return command.concat(["name:" + encodeURIComponent(importCleanName(target.name))]);
 }
 
+function importRenameCommand(id, name) {
+    return ["unifiedmusic", "import", "rename", "id:" + id, "encoding:uri", "name:" + encodeURIComponent(importCleanName(name))];
+}
+
 function importReviewLines(review) {
     return ((review && review.items) || []).map(function (item) {
         let kind = "album"==item.type ? (item.artist_only ? "Album (representative)" : "Album") : (item.whole_work ? "Work" : "Track");
@@ -594,7 +598,7 @@ let importPollTimer;
 
 function importOptions() {
     let menu = mixRowMenu(mixActionIds());
-    return { entryMenu: menu.concat([REMOVE_ACTION]), removeMenu: [REMOVE_ACTION], itemMenu: menu, defaultImage: DEFAULT_COVER,
+    return { entryMenu: menu.concat([DIVIDER, RENAME_ACTION, REMOVE_ACTION]), removeMenu: [REMOVE_ACTION], itemMenu: menu, defaultImage: DEFAULT_COVER,
              getEmblem: function (source) { return getEmblem(source + ":"); } };
 }
 
@@ -674,6 +678,19 @@ function importHandleAction(view, act, item) {
     let cmd = PLAY_ACTION==act ? "play" : INSERT_ACTION==act ? "insert" : ADD_ACTION==act ? "add" : undefined;
     if (undefined!=cmd && undefined!=item.importId) {
         importRunCommand(view, importPlayCommand(cmd, item.importId, item.importIndex));
+    } else if (RENAME_ACTION==act && undefined!=item.importId) {
+        promptForText(i18n("Rename"), item.rawTitle, item.rawTitle, i18n("Rename")).then(resp => {
+            if (!resp.ok || undefined==resp.value || ""==importCleanName(resp.value) || importCleanName(resp.value)==item.rawTitle) {
+                return;
+            }
+            lmsCommand("", importRenameCommand(item.importId, resp.value)).then(({data}) => {
+                let result = data.result || {};
+                if (undefined!=result.error) {
+                    bus.$emit('showError', undefined, result.error);
+                }
+                importOpenList(view, undefined, true);
+            }).catch(importError);
+        });
     } else if (REMOVE_ACTION==act && undefined!=item.importId) {
         confirm('Remove "' + item.rawTitle + '" from imported lists? The playlist itself stays.', i18n("Remove")).then(res => {
             if (res) {
@@ -990,7 +1007,7 @@ function importPoll(onProgress, onDone, view) {
 const LMS_UNIFIED_SEARCH_TIMEOUT = 15000;
 const UNIFIED_LOCAL_EMBLEM = { name: "folder-local", bgnd: "#607d8b", color: "#fff" };
 const UNIFIED_REQUIRED = ["browseClick", "browseItemAction", "browseHeaderAction", "browseHandleListResponse", "browseItemMenu",
-                          "getEmblem", "lmsCommand", "promptForText", "choose", "confirm", "ACTIONS", "REMOVE_ACTION", "SEARCH_LIST_ACTION", "bus", "app"];
+                          "getEmblem", "lmsCommand", "promptForText", "choose", "confirm", "ACTIONS", "REMOVE_ACTION", "RENAME_ACTION", "DIVIDER", "SEARCH_LIST_ACTION", "bus", "app"];
 const UNIFIED_WAIT_MS = 200;
 const UNIFIED_WAIT_LIMIT = 300;
 let TOP_DAILY_ID;
@@ -1309,7 +1326,7 @@ if (typeof module !== "undefined") {
         importListToItems: importListToItems, importDetailToItems: importDetailToItems, importPlayCommand: importPlayCommand,
         importStatusText: importStatusText, importRunCommandFor: importRunCommandFor, importContinueCommand: importContinueCommand,
         importReviewLines: importReviewLines, importFilterItems: importFilterItems, importResultText: importResultText,
-        UNIFIED_LOCAL_EMBLEM: UNIFIED_LOCAL_EMBLEM
+        importRenameCommand: importRenameCommand, UNIFIED_LOCAL_EMBLEM: UNIFIED_LOCAL_EMBLEM
     };
 } else {
     unifiedWaitForMaterial(0);

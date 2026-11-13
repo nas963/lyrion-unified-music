@@ -46,6 +46,65 @@ sub add {
 	return $entry;
 }
 
+# Dopuna postojece plejliste ide u zapis koji vec postoji za tu plejlistu.
+sub add_to_playlist {
+	my ($self, $entry) = @_;
+
+	my $id = $entry->{playlist_id};
+	my ($old) = defined $id ? grep { defined $_->{playlist_id} && $_->{playlist_id} eq $id } @{ $self->list } : ();
+	return $self->add($old ? combine($old, $entry) : $entry);
+}
+
+sub combine {
+	my ($old, $new) = @_;
+
+	my %merged = %$old;
+	$merged{items} = [@{ $old->{items} || [] }, @{ $new->{items} || [] }];
+	$merged{$_} = ($old->{$_} // 0) + ($new->{$_} // 0) for qw(found total tracks);
+	$merged{name} = $new->{name} if defined $new->{name} && length $new->{name};
+	$merged{date} = $new->{date} if defined $new->{date};
+	my $time = $new->{updated} // $new->{created};
+	$merged{updated} = $time if defined $time;
+	delete $merged{error} if $merged{found};
+	return \%merged;
+}
+
+# Ranije verzije su svaku dopunu pisale kao poseban zapis; spaja ih u jedan po plejlisti.
+sub compact {
+	my ($self) = @_;
+
+	my $all = $self->list;
+	my (%at, @out);
+	for my $entry (reverse @$all) {
+		my $id = $entry->{playlist_id};
+		if (defined $id && exists $at{$id}) {
+			$out[$at{$id}] = combine($out[$at{$id}], $entry);
+			next;
+		}
+		$at{$id} = scalar @out if defined $id;
+		push @out, $entry;
+	}
+	return 0 if @out == @$all;
+
+	my %order = map { $out[$_] => $_ } 0 .. $#out;
+	@out = sort { _time($b) <=> _time($a) || $order{$b} <=> $order{$a} } @out;
+	$self->_write(\@out);
+	return 1;
+}
+
+sub _time { return $_[0]{updated} // $_[0]{created} // 0 }
+
+sub set_name {
+	my ($self, $id, $name) = @_;
+
+	my $all = $self->list;
+	my ($entry) = grep { ($_->{id} // '') eq ($id // '') } @$all;
+	return undef unless $entry;
+	$entry->{name} = $name;
+	$self->_write($all);
+	return $entry;
+}
+
 sub remove {
 	my ($self, $id) = @_;
 

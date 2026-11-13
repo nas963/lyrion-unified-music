@@ -375,4 +375,37 @@ my $fusion = { name => 'Fusion', items => [{ type => 'album', artist => 'Hiromi'
 	is $history->get('id20'), undef, 'obrisan';
 }
 
+# --- Dopuna plejliste ide u isti zapis; stari razdvojeni zapisi se spajaju ---
+{
+	my $dir = tempdir(CLEANUP => 1);
+	my $history = Plugins::UnifiedMusic::Import::History->new(file => "$dir/imports.json");
+	$history->add({ id => 'a', name => 'Jazz', playlist_id => 7, found => 3, total => 3, tracks => 24, created => 1, items => [{ title => 'A' }] });
+	$history->add({ id => 'b', name => 'Druga', playlist_id => 8, found => 1, total => 1, tracks => 5, created => 2, items => [{ title => 'B' }] });
+	my $saved = $history->add_to_playlist({ id => 'c', name => 'Jazz', playlist_id => 7, appended => 1, found => 1, total => 2, tracks => 7, created => 3, date => 'D', items => [{ title => 'C' }, { title => 'C2' }] });
+	is $saved->{id}, 'a', 'dopuna zadrzava zapis plejliste';
+	is scalar @{ $history->list }, 2, 'nema novog zapisa';
+	is $history->list->[0]{id}, 'a', 'dopunjena lista ide na vrh';
+	is_deeply [map { $_->{title} } @{ $saved->{items} }], ['A', 'C', 'C2'], 'stavke se nadovezuju';
+	is_deeply [@$saved{qw(found total tracks date)}], [4, 5, 31, 'D'], 'zbir brojeva i novi datum';
+	ok !$saved->{appended}, 'lista napravljena uvozom ostaje obicna';
+	is $history->add_to_playlist({ id => 'd', name => 'Tudja', playlist_id => 9, appended => 1, items => [] })->{id}, 'd', 'prva dopuna druge plejliste je novi zapis';
+
+	my $old = Plugins::UnifiedMusic::Import::History->new(file => "$dir/old.json");
+	$old->add($_) for
+		{ id => 'x1', name => 'H', playlist_id => 1, found => 12, total => 12, tracks => 82, created => 10, items => [{ title => 1 }] },
+		{ id => 'y',  name => 'Y', playlist_id => 2, found => 1, total => 1, tracks => 1, created => 11, items => [] },
+		{ id => 'x2', name => 'H', playlist_id => 1, appended => 1, found => 9, total => 9, tracks => 79, created => 12, items => [{ title => 2 }] },
+		{ id => 'x3', name => 'H', playlist_id => 1, appended => 1, found => 17, total => 20, tracks => 182, created => 13, items => [{ title => 3 }] },
+		{ id => 'e',  name => 'E', error => 'x', created => 14 };
+	ok $old->compact, 'spajanje starih zapisa';
+	is_deeply [map { $_->{id} } @{ $old->list }], ['e', 'x1', 'y'], 'jedan zapis po plejlisti, po vremenu';
+	is_deeply [@{ $old->get('x1') }{qw(found total tracks)}], [38, 41, 343], 'zbir';
+	is_deeply [map { $_->{title} } @{ $old->get('x1')->{items} }], [1, 2, 3], 'redosled stavki';
+	ok !$old->compact, 'drugi put nema izmena';
+
+	is $old->set_name('x1', 'Novo')->{name}, 'Novo', 'promena naziva';
+	is $old->get('x1')->{name}, 'Novo', 'naziv je zapisan';
+	is $old->set_name('nema', 'X'), undef, 'nepostojeci zapis';
+}
+
 done_testing;

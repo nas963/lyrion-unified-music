@@ -118,6 +118,13 @@ test('filter liste uvoza', () => {
     assert.deepStrictEqual(importFilterItems(items, 'nema').map(i => i.importId), [undefined]);
 });
 
+test('promena naziva uvezene liste', () => {
+    const { importRenameCommand } = require(bundle);
+    const command = importRenameCommand('17-1', '  Jazz  rock: Č ');
+    assert.deepStrictEqual(command.slice(0, 5), ['unifiedmusic', 'import', 'rename', 'id:17-1', 'encoding:uri']);
+    assert.strictEqual(decodeURIComponent(command[5].slice(5)), 'Jazz rock: Č');
+});
+
 test('klasika: stavovi i drugi snimak', () => {
     const items = importDetailToItems({ import: { id: 'x' }, items: [
         { type: 'track', artist: 'Howard Griffiths', title: 'Kol Nidrei', composer: 'Max Bruch', whole_work: 1,

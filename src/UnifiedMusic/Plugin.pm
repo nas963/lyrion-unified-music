@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use base qw(Slim::Plugin::Base);
 
+use Encode ();
 use File::Basename qw(dirname);
 use File::Copy qw(copy);
 use File::Path qw(make_path);
@@ -17,6 +18,7 @@ use Time::HiRes;
 use Slim::Control::Request;
 use Slim::Networking::SimpleAsyncHTTP;
 use Slim::Player::Client;
+use Slim::Player::ProtocolHandlers;
 use Slim::Utils::Log;
 use Slim::Utils::PluginManager;
 use Slim::Utils::Prefs;
@@ -25,6 +27,10 @@ use Slim::Utils::Timers;
 use Plugins::UnifiedMusic::AI::Anthropic;
 use Plugins::UnifiedMusic::AI::Common;
 use Plugins::UnifiedMusic::AI::OpenAI;
+use Plugins::UnifiedMusic::Import::Album;
+use Plugins::UnifiedMusic::Import::History;
+use Plugins::UnifiedMusic::Import::Job;
+use Plugins::UnifiedMusic::Import::Resolver;
 use Plugins::UnifiedMusic::MaterialBridge;
 use Plugins::UnifiedMusic::Mix::Cli;
 use Plugins::UnifiedMusic::Mix::Config;
@@ -49,7 +55,8 @@ my $log = Slim::Utils::Log->addLogCategory({
 	description  => 'PLUGIN_UNIFIEDMUSIC',
 });
 
-my ($store, $scheduler);
+my ($store, $scheduler, $history);
+my %import = (running => 0);
 
 sub getDisplayName { 'PLUGIN_UNIFIEDMUSIC' }
 
@@ -66,6 +73,7 @@ sub initPlugin {
 	_install_material_bridge();
 
 	$store = Plugins::UnifiedMusic::Mix::Store->new(dir => catdir(Slim::Utils::Prefs::dir(), 'unifiedmusic', 'mixes'));
+	$history = Plugins::UnifiedMusic::Import::History->new(file => catdir(Slim::Utils::Prefs::dir(), 'unifiedmusic', 'imports.json'));
 
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'search'], [0, 1, 1, \&_cliSearch]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'mixes', 'items'], [0, 1, 1, \&_cliMixes]);
@@ -76,6 +84,11 @@ sub initPlugin {
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'mix', 'run'], [0, 0, 1, \&_cliMixRun]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'mix', 'status'], [0, 1, 1, \&_cliMixStatus]);
 	Slim::Control::Request::addDispatch(['unifiedmusic', 'mix', 'rename'], [0, 0, 1, \&_cliMixRename]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'run'], [0, 0, 1, \&_cliImportRun]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'status'], [0, 1, 1, \&_cliImportStatus]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'items'], [0, 1, 1, \&_cliImportItems]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'play'], [1, 0, 1, \&_cliImportPlay]);
+	Slim::Control::Request::addDispatch(['unifiedmusic', 'import', 'delete'], [0, 0, 1, \&_cliImportDelete]);
 
 	if (main::WEBUI) {
 		require Plugins::UnifiedMusic::Settings;
@@ -417,6 +430,235 @@ sub _cliMixRun {
 			$prefs->set('lastResult', $result);
 		}
 	});
+	$request->setStatusDone;
+}
+
+# --- Uvoz liste iz teksta ---
+
+sub _import_resolver {
+	my ($client) = @_;
+
+	my $warn = sub { $log->warn($_[0]) };
+	my $run = sub {
+		my ($target, $command, $done) = @_;
+		_run($target ? $client : undef, $command, $done);
+	};
+	my $services = installed_services();
+	my %sources;
+	for my $type (qw(track album)) {
+		$sources{$type}{local} = Plugins::UnifiedMusic::Source::Local->new(run => $run, only => $type);
+		$sources{$type}{$_} = Plugins::UnifiedMusic::Source::Service->new(service => $_, run => $run, log => $warn, only => $type) for @$services;
+	}
+	my %present = map { $_ => 1 } 'local', @$services;
+
+	return Plugins::UnifiedMusic::Import::Resolver->new(
+		order    => [grep { $present{$_} } @{ Plugins::UnifiedMusic::Search::source_order_for_primary($prefs->get('primarySource')) }],
+		search   => sub {
+			my ($type, $source, $term, $done) = @_;
+			$sources{$type}{$source}->search($term, { client => $client ? $client->id : undef }, sub { $done->($_[0]{items}) });
+		},
+		expand   => sub { _expand_album($client, @_) },
+		delay    => sub { _set_timer($SERVICE_PAUSE, $_[0]) },
+		defer    => sub { _set_timer(0, $_[0]) },
+		progress => sub {
+			my ($index, $total, $entry) = @_;
+			@import{qw(stage done total current)} = ('searching', $index - 1, $total, "$entry->{artist} - $entry->{title}");
+		},
+	);
+}
+
+# Album u adrese pesama: lokalno kroz titles, servis kroz meni albuma, na kraju explodePlaylist.
+sub _expand_album {
+	my ($client, $item, $done) = @_;
+
+	my $play = $item->{play} || {};
+	if (defined $play->{album_id}) {
+		return _run(undef, ['titles', 0, 999, "album_id:$play->{album_id}", 'tags:u', 'sort:tracknum'], sub {
+			my ($result) = @_;
+			$done->([map { $_->{url} } @{ $result && $result->{titles_loop} || [] }]);
+		});
+	}
+
+	my $explode = sub {
+		my $url = $play->{url};
+		my $handler = defined $url ? Slim::Player::ProtocolHandlers->handlerForURL($url) : undef;
+		return $done->([]) unless $client && $handler && $handler->can('explodePlaylist');
+		eval { $handler->explodePlaylist($client, $url, sub { $done->(Plugins::UnifiedMusic::Import::Album::only_tracks($_[0])) }); 1 }
+			or do { $log->warn("UnifiedMusic: album $url nije razvijen: $@"); $done->([]) };
+	};
+
+	return $explode->() unless defined $item->{browse} && $client;
+
+	my $browse = sub {
+		my ($id, $callback) = @_;
+		_run($client, ['globalsearch', 'items', 0, 999, 'menu:1', "item_id:$id"], $callback);
+	};
+	$browse->($item->{browse}, sub {
+		my ($menu) = @_;
+		my $urls = Plugins::UnifiedMusic::Import::Album::track_urls($menu);
+		return $done->($urls) if @$urls;
+
+		my @discs = @{ Plugins::UnifiedMusic::Import::Album::disc_ids($menu) };
+		return $explode->() unless @discs;
+		my @all;
+		my $next;
+		$next = sub {
+			my $disc = shift @discs;
+			if (!defined $disc) {
+				undef $next;
+				return @all ? $done->(\@all) : $explode->();
+			}
+			$browse->($disc, sub { push @all, @{ Plugins::UnifiedMusic::Import::Album::track_urls($_[0]) }; $next->() });
+		};
+		$next->();
+	});
+}
+
+# Nova plejlista; ako naziv postoji, dodaje se " (2)", " (3)"...
+sub _save_import_playlist {
+	my ($name, $urls, $done) = @_;
+
+	my $attempt = 1;
+	my $try;
+	$try = sub {
+		my $candidate = $attempt == 1 ? $name : "$name ($attempt)";
+		_run(undef, ['playlists', 'new', "name:$candidate"], sub {
+			my $created = Plugins::UnifiedMusic::Mix::Cli::new_playlist_id($_[0]);
+			if ($created->{exists} && ++$attempt <= 50) {
+				return $try->();
+			}
+			undef $try;
+			return $done->({ error => 1 }) unless $created->{id};
+			_run_all(undef, [map { ['playlists', 'edit', 'cmd:add', "playlist_id:$created->{id}", "url:$_"] } @$urls], sub {
+				$done->({ id => $created->{id}, name => $candidate });
+			});
+		});
+	};
+	$try->();
+}
+
+sub _import_summary {
+	my ($entry) = @_;
+	return undef unless $entry;
+	return { map { $_ => $entry->{$_} } grep { defined $entry->{$_} } qw(id name date found total tracks error playlist_id) };
+}
+
+# Lyrion cita vrednost parametra samo do kraja reda, pa Material salje tekst URI-kodiran.
+sub _import_text {
+	my ($request) = @_;
+
+	my $text = $request->getParam('text');
+	return $text unless defined $text && ($request->getParam('encoding') // '') eq 'uri';
+	$text =~ s/%([0-9A-Fa-f]{2})/chr(hex($1))/ge;
+	return Encode::decode('UTF-8', $text);
+}
+
+sub _cliImportRun {
+	my ($request) = @_;
+
+	if ($import{running}) {
+		$request->addResult('running', 1);
+		return $request->setStatusDone;
+	}
+
+	my $config = _stored_config();
+	my $provider = Plugins::UnifiedMusic::Mix::Config::provider_for_model($config->{model} // '');
+	my $key = Plugins::UnifiedMusic::Mix::Config::key_for_model($config);
+	if (!$provider || !length($key // '')) {
+		$request->addResult('error', 'Choose a model and enter its API key in the Unified Music settings.');
+		return $request->setStatusDone;
+	}
+
+	my $client = $request->client || _any_client();
+	my $date = _now()->{date};
+	%import = (running => 1, stage => 'reading', started => time());
+
+	my $finish = sub {
+		my ($result) = @_;
+		my $entry = { %$result, id => sprintf('%d-%04d', time(), int(rand(10000))), date => $date, created => time() };
+		if ($result->{items}) {
+			eval { $history->add($entry); 1 } or $log->error("UnifiedMusic: uvoz nije zapisan: $@");
+		}
+		$log->warn("UnifiedMusic: uvoz liste nije uspeo: $result->{error}") if $result->{error};
+		%import = (running => 0, last => _import_summary($entry));
+	};
+
+	my $adapter_class = $provider eq 'openai' ? 'Plugins::UnifiedMusic::AI::OpenAI' : 'Plugins::UnifiedMusic::AI::Anthropic';
+	eval {
+		Plugins::UnifiedMusic::Import::Job::run({
+			adapter  => $adapter_class->new(http => \&_http),
+			model    => $config->{model},
+			api_key  => $key,
+			text     => _import_text($request),
+			name     => $request->getParam('name'),
+			date     => $date,
+			resolver => _import_resolver($client),
+			save     => \&_save_import_playlist,
+			progress => sub { my ($state) = @_; $import{$_} = $state->{$_} for keys %$state },
+			log      => sub { $log->warn($_[0]) },
+		}, $finish);
+		1;
+	} or $finish->({ error => "Import failed: $@" });
+
+	$request->addResult('started', 1);
+	$request->setStatusDone;
+}
+
+sub _cliImportStatus {
+	my ($request) = @_;
+
+	$request->addResult('running', $import{running} ? 1 : 0);
+	for my $field (qw(stage done total current)) {
+		$request->addResult($field, $import{$field}) if $import{running} && defined $import{$field};
+	}
+	$request->addResult('last', $import{last}) if $import{last};
+	$request->setStatusDone;
+}
+
+sub _cliImportItems {
+	my ($request) = @_;
+
+	my $id = $request->getParam('id');
+	if (!defined $id) {
+		$request->addResult('imports', [map { _import_summary($_) } @{ $history->list }]);
+		$request->addResult('running', $import{running} ? 1 : 0);
+		return $request->setStatusDone;
+	}
+
+	my $entry = $history->get($id);
+	if ($entry) {
+		$request->addResult('import', _import_summary($entry));
+		$request->addResult('items', [map {
+			my %row = %$_;
+			if ($row{found}) {
+				my %found = %{ $row{found} };
+				$found{count} = scalar @{ delete $found{urls} || [] };
+				$row{found} = \%found;
+			}
+			\%row;
+		} @{ $entry->{items} || [] }]);
+	}
+	$request->setStatusDone;
+}
+
+sub _cliImportPlay {
+	my ($request) = @_;
+
+	my $entry = $history->get($request->getParam('id'));
+	my $index = $request->getParam('item');
+	my @rows = grep { $_->{found} } $entry ? (defined $index ? ($entry->{items}[$index] // ()) : @{ $entry->{items} || [] }) : ();
+	my (%seen, @urls);
+	push @urls, grep { !$seen{$_}++ } @{ $_->{found}{urls} || [] } for @rows;
+
+	my $commands = Plugins::UnifiedMusic::Mix::Cli::queue_commands($request->getParam('cmd') // 'play', \@urls);
+	$request->setStatusProcessing;
+	_run_all($request->client, $commands, sub { $request->setStatusDone });
+}
+
+sub _cliImportDelete {
+	my ($request) = @_;
+
+	$request->addResult('deleted', $history->remove($request->getParam('id')));
 	$request->setStatusDone;
 }
 

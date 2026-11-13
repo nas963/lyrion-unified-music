@@ -14,10 +14,13 @@ sub new {
 	return bless { http => $args{http} }, $class;
 }
 
+# Zahtev moze doneti svoju semu i parser; bez njih se traze predlozi pesama.
 sub suggest {
 	my ($self, $request, $done) = @_;
 
 	my $key = $request->{api_key};
+	my $schema = $request->{schema} // schema();
+	my $parse = $request->{parse} // \&_suggestions;
 	my $body = encode_body({
 		model => $request->{model},
 		max_output_tokens => MAX_OUTPUT_TOKENS,
@@ -25,7 +28,7 @@ sub suggest {
 			{ role => 'system', content => $request->{prompt}{system} },
 			{ role => 'user', content => $request->{prompt}{user} },
 		],
-		text => { format => { type => 'json_schema', name => 'suggestions', strict => JSON::PP::true, schema => schema() } },
+		text => { format => { type => 'json_schema', name => $request->{schema_name} // 'suggestions', strict => JSON::PP::true, schema => $schema } },
 	});
 
 	$self->{http}->({
@@ -46,11 +49,16 @@ sub suggest {
 		return $done->({ error => 'The model declined the request.', retryable => 0 }) if grep { ($_->{type} // '') eq 'refusal' } @parts;
 
 		my ($text) = map { $_->{text} } grep { ($_->{type} // '') eq 'output_text' } @parts;
-		my $list = parse_suggestions($text);
-		return $done->({ error => 'The response was not valid JSON.', retryable => 1 }) unless $list;
+		my $result = $parse->($text);
+		return $done->({ error => 'The response was not valid JSON.', retryable => 1 }) unless $result;
 
-		$done->({ suggestions => $list });
+		$done->($result);
 	});
+}
+
+sub _suggestions {
+	my $list = parse_suggestions($_[0]);
+	return $list ? { suggestions => $list } : undef;
 }
 
 1;

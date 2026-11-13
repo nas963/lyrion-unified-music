@@ -1,12 +1,12 @@
 # Unified Music for Lyrion: installation
 
-The plugin adds to Material Skin a unified search across your local library, Qobuz and TIDAL, and daily mixes suggested by AI.
+The plugin adds to Material Skin a unified search across your local library, Qobuz and TIDAL, daily mixes suggested by AI, and playlists built from a text listing albums or songs (for example Gemini's summary of a YouTube video).
 
 ## Requirements
 - Lyrion Music Server 9.x on Debian or Ubuntu, installed as a package (`lyrionmusicserver` service).
 - Material Skin, installed from the Lyrion settings (Settings → Plugins).
 - For Qobuz and TIDAL: their Lyrion plugins, signed in. They are optional; the plugin also works with the local library only.
-- For daily mixes: an API key for Anthropic (`claude-haiku-5-5`) or OpenAI (`gpt-6-luna`).
+- For daily mixes and list import: an API key for Anthropic (`claude-haiku-5-5`) or OpenAI (`gpt-6-luna`).
 
 ## Install and update
 On the server, over SSH, run:
@@ -38,6 +38,7 @@ Then save. The API key is stored on the server as plain text.
 ## Usage
 - **Search:** the normal search in Material returns results from all sources at once.
 - **Mixes:** **Your Daily Mixes** is on the home screen. Earlier days are in the three-dot menu, under **Previous days**.
+- **List import:** on the home screen open **Imported lists** → **Import list from text** and paste a text with a list (for example what Gemini writes for a YouTube video). AI recognises albums and songs; for an artist without a named album it picks a representative album. Everything is searched in the source order from the settings and saved as a Lyrion playlist. The same list shows what was found where, and what was not.
 
 ## Uninstall
 

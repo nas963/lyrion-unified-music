@@ -1,6 +1,6 @@
 # Unified Music for Lyrion
 
-Unified search and daily AI mixes for Lyrion Music Server and the standard Material Skin.
+Unified search, daily AI mixes and playlists imported from text lists (for example Gemini summaries of YouTube videos) for Lyrion Music Server and the standard Material Skin.
 
 - `src/UnifiedMusic`: Lyrion plugin, including the add-on script for Material Skin.
 - `packaging`: installation scripts and user instructions.

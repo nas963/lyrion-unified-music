@@ -1,12 +1,12 @@
 # Unified Music za Lyrion: instalacija
 
-Plugin dodaje u Material Skin zajedničku pretragu lokalne biblioteke, Qobuz-a i TIDAL-a, i dnevne miksove koje predlaže AI.
+Plugin dodaje u Material Skin zajedničku pretragu lokalne biblioteke, Qobuz-a i TIDAL-a, dnevne miksove koje predlaže AI i plejliste napravljene iz teksta sa spiskom albuma ili pesama (npr. Gemini opis YouTube videa).
 
 ## Šta ti treba
 - Lyrion Music Server 9.x na Debianu ili Ubuntu-u, instaliran kao paket (`lyrionmusicserver` servis).
 - Material Skin, instaliran iz Lyrion podešavanja (Settings → Plugins).
 - Za Qobuz i TIDAL: njihovi Lyrion pluginovi, prijavljeni. Nisu obavezni, plugin radi i samo sa lokalnom bibliotekom.
-- Za dnevne miksove: API ključ za Anthropic (`claude-haiku-5-5`) ili OpenAI (`gpt-6-luna`).
+- Za dnevne miksove i uvoz lista: API ključ za Anthropic (`claude-haiku-5-5`) ili OpenAI (`gpt-6-luna`).
 
 ## Instalacija i ažuriranje
 Na serveru, preko SSH-a, pokreni:
@@ -38,6 +38,7 @@ Zatim sačuvaj. API ključ se na serveru čuva kao običan tekst.
 ## Korišćenje
 - **Pretraga:** običnom pretragom u Material-u dobijaš rezultate iz svih izvora odjednom.
 - **Miksovi:** na početnoj strani je **Your Daily Mixes**. Stariji dani su u meniju sa tri tačke, pod **Previous days**.
+- **Uvoz liste:** na početnoj strani je **Imported lists** → **Import list from text**. Nalepi tekst sa spiskom (npr. ono što Gemini napiše za YouTube video). AI prepoznaje albume i pesme; za izvođača bez navedenog albuma bira reprezentativni album. Sve se traži po redosledu izvora iz podešavanja i čuva kao Lyrion plejlista. U istoj listi se vidi šta je nađeno i gde, a šta nije.
 
 ## Uklanjanje
 

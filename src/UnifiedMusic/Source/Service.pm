@@ -81,6 +81,8 @@ sub _to_item {
 
 	my $url = $entry->{presetParams} ? $entry->{presetParams}{favorites_url} : undef;
 	$item{play} = ($url && ($type eq 'album' || $type eq 'track')) ? { url => $url } : { item_id => _item_id($entry) };
+	# Uvoz liste otvara album kroz globalsearch da bi dobio njegove pesme.
+	$item{browse} = _item_id($entry) if $type eq 'album' && defined _item_id($entry);
 
 	return \%item;
 }

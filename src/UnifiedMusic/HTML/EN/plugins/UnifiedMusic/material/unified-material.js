@@ -448,12 +448,373 @@ function mixHandleAction(view, act, item) {
     }
 }
 
+/* Uvoz liste iz teksta (npr. Gemini opis YouTube videa). */
+
+const IMPORT_POLL_MS = 2000;
+
+function importCount(n, one, many) {
+    return n + " " + (1==n ? one : many);
+}
+
+function importSummary(entry) {
+    if (undefined!=entry.error && undefined==entry.playlist_id) {
+        return entry.error;
+    }
+    return entry.found + " of " + entry.total + " found" + MIX_SEPARATOR + importCount(entry.tracks, "track", "tracks");
+}
+
+function importListToItems(resp, options) {
+    options = options || {};
+    let items = [{ id: "import.new", title: "Import list from text", subtitle: resp.running ? "An import is running…" : "Paste a list of albums or songs",
+                   icon: "add_circle_outline", importNew: true }];
+    return items.concat((resp.imports || []).map(function (entry, index) {
+        return { id: "import.entry." + index, title: unifiedEscapeTitle(entry.name || "Import " + entry.date), rawTitle: entry.name || "Import " + entry.date,
+                 subtitle: unifiedEscape(entry.date + MIX_SEPARATOR + importSummary(entry)), icon: "playlist_play", importId: entry.id,
+                 menu: undefined==entry.playlist_id ? options.removeMenu : options.entryMenu };
+    }));
+}
+
+function importDetailToItems(resp, options) {
+    options = options || {};
+    return (resp.items || []).map(function (row, index) {
+        let found = row.found;
+        let parts = [];
+        if (undefined==found) {
+            parts.push("Not found");
+            if (undefined!=row.artist) {
+                parts.push(unifiedEscape(row.artist));
+            }
+            return { id: "import.item." + index, title: unifiedEscapeTitle(row.title), subtitle: parts.join(MIX_SEPARATOR), icon: "search_off", importMissing: true };
+        }
+        if (undefined!=found.artist) {
+            parts.push(unifiedEscape(found.artist));
+        }
+        if ("album"==row.type) {
+            parts.push(importCount(found.count, "track", "tracks"));
+            if (row.artist_only) {
+                parts.push("representative album");
+            }
+        } else {
+            if (row.whole_work && found.count>1) {
+                parts.push(importCount(found.count, "movement", "movements"));
+            }
+            if (undefined!=found.album) {
+                parts.push(unifiedEscape(found.album));
+            }
+        }
+        if (found.other_performer) {
+            parts.push("other recording (wanted: " + unifiedEscape(row.artist) + ")");
+        }
+        return { id: "import.item." + index, title: unifiedEscapeTitle(found.title), subtitle: parts.join(MIX_SEPARATOR),
+                 image: undefined==found.image ? options.defaultImage : found.image, emblem: options.getEmblem ? options.getEmblem(found.source) : undefined,
+                 importId: resp.import ? resp.import.id : undefined, importIndex: index, menu: options.itemMenu };
+    });
+}
+
+function importPlayCommand(cmd, id, index) {
+    let command = ["unifiedmusic", "import", "play", "cmd:" + cmd, "id:" + id];
+    if (undefined!=index) {
+        command.push("item:" + index);
+    }
+    return command;
+}
+
+// Lyrion cita vrednost parametra samo do kraja reda; tekst ide URI-kodiran.
+function importRunCommandFor(text, name) {
+    return ["unifiedmusic", "import", "run", "encoding:uri", "text:" + encodeURIComponent(text), "name:" + name.replace(/\s+/g, " ").trim()];
+}
+
+function importStatusText(status) {
+    if ("reading"==status.stage) {
+        return "Reading the list with AI…";
+    }
+    if ("searching"==status.stage) {
+        return "Searching " + Math.min((status.done || 0) + 1, status.total || 1) + " / " + (status.total || "?") + (status.current ? ": " + status.current : "") + "…";
+    }
+    if ("saving"==status.stage) {
+        return "Saving the playlist…";
+    }
+    return "Working…";
+}
+
+function importResultText(last) {
+    if (undefined==last) {
+        return "The import finished.";
+    }
+    if (undefined==last.playlist_id) {
+        return last.error || "The import failed.";
+    }
+    return 'Playlist "' + last.name + '" created: ' + importSummary(last).replace(MIX_SEPARATOR, ", ") + ".";
+}
+
+/* Ispod je veza sa Material-om; koristi njegove globalne objekte. */
+
+let TOP_IMPORT_ID;
+let importPollTimer;
+
+function importOptions() {
+    let menu = mixRowMenu(mixActionIds());
+    return { entryMenu: menu.concat([REMOVE_ACTION]), removeMenu: [REMOVE_ACTION], itemMenu: menu, defaultImage: DEFAULT_COVER,
+             getEmblem: function (source) { return getEmblem(source + ":"); } };
+}
+
+function importIsItem(item) {
+    return undefined!=item && (item.importNew || undefined!=item.importId || item.importMissing);
+}
+
+function importShow(view, title, id, items, subtitle, current) {
+    let page = Object.assign({ cancache: false, title: title, id: id, type: "group" }, current || {});
+    browseHandleListResponse(view, page, { command: [], params: [] },
+                             { items: items, subtitle: subtitle, baseActions: [], canUseGrid: false, jumplist: [], allowHoverBtns: true });
+    if (undefined!=page.importId) {
+        view.tbarActions = [ADD_ACTION, INSERT_ACTION, PLAY_ACTION];
+    }
+}
+
+function importError(err) {
+    logError(err);
+    bus.$emit('showError', err);
+}
+
+function importOpenList(view, title, refresh) {
+    lmsCommand("", ["unifiedmusic", "import", "items"]).then(({data}) => {
+        let items = importListToItems(data.result, importOptions());
+        let subtitle = importCount(items.length-1, "list", "lists");
+        if (refresh) {
+            if (view.current && view.current.importList) {
+                view.items = items;
+                view.headerSubTitle = subtitle;
+            }
+            return;
+        }
+        importShow(view, title || "Imported lists", TOP_IMPORT_ID + ".open", items, subtitle, { importList: true });
+    }).catch(importError);
+}
+
+function importOpenDetail(view, item) {
+    lmsCommand("", ["unifiedmusic", "import", "items", "id:" + item.importId]).then(({data}) => {
+        if (undefined==data.result.import) {
+            bus.$emit('showError', undefined, "This import no longer exists.");
+            return;
+        }
+        let items = importDetailToItems(data.result, importOptions());
+        importShow(view, item.rawTitle, "import." + item.importId, items, importSummary(data.result.import),
+                   { importId: item.importId, rawTitle: item.rawTitle });
+    }).catch(importError);
+}
+
+function importRunCommand(view, command) {
+    if (!view.$store.state.player) {
+        bus.$emit('showError', undefined, i18n("No Player"));
+        return;
+    }
+    lmsCommand(view.playerId(), command).then(() => { bus.$emit('refreshStatus'); }).catch(importError);
+}
+
+function importHandleAction(view, act, item) {
+    let cmd = PLAY_ACTION==act ? "play" : INSERT_ACTION==act ? "insert" : ADD_ACTION==act ? "add" : undefined;
+    if (undefined!=cmd && undefined!=item.importId) {
+        importRunCommand(view, importPlayCommand(cmd, item.importId, item.importIndex));
+    } else if (REMOVE_ACTION==act && undefined!=item.importId) {
+        confirm('Remove "' + item.rawTitle + '" from imported lists? The playlist itself stays.', i18n("Remove")).then(res => {
+            if (res) {
+                lmsCommand("", ["unifiedmusic", "import", "delete", "id:" + item.importId]).then(() => {
+                    importOpenList(view, undefined, true);
+                }).catch(importError);
+            }
+        });
+    }
+}
+
+function importHandleHeaderAction(view, act, current) {
+    if (undefined==current || undefined==current.importId || [ADD_ACTION, INSERT_ACTION, PLAY_ACTION].indexOf(act)<0) {
+        return false;
+    }
+    importHandleAction(view, act, { importId: current.importId });
+    return true;
+}
+
+function importHandleClick(view, item, index, event) {
+    if (item.id==TOP_IMPORT_ID) {
+        importOpenList(view, item.title);
+        return true;
+    }
+    if (item.importNew) {
+        importDialog(view);
+        return true;
+    }
+    if (item.importMissing) {
+        return true;
+    }
+    if (undefined!=item.importIndex) {
+        browseItemMenu(view, item, index, event);
+        return true;
+    }
+    if (undefined!=item.importId) {
+        importOpenDetail(view, item);
+        return true;
+    }
+    return false;
+}
+
+function importElement(tag, style, text) {
+    let el = document.createElement(tag);
+    if (style) {
+        el.style.cssText = style;
+    }
+    if (undefined!=text) {
+        el.textContent = text;
+    }
+    return el;
+}
+
+// Prozor za tekst: Material nema visestruki unos u svojim dijalozima.
+function importDialog(view) {
+    let overlay = importElement("div", "position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center");
+    let box = importElement("div", "background:var(--popup-background-color, #fff);color:var(--text-color, #000);width:calc(100% - 32px);max-width:680px;max-height:calc(100% - 32px);" +
+                                   "overflow:auto;border-radius:8px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,0.4);display:flex;flex-direction:column;gap:10px;font-size:15px");
+    let field = "width:100%;box-sizing:border-box;background:transparent;color:inherit;border:1px solid var(--list-item-border-color, #888);border-radius:4px;padding:8px;font:inherit";
+    let title = importElement("div", "font-size:20px", "Import list from text");
+    let hint = importElement("div", "opacity:0.7;font-size:13px",
+                             "Paste a list of albums, songs or artists, for example the summary Gemini writes for a YouTube video. " +
+                             "AI recognises the entries; they are searched in your sources in the configured order and saved as a playlist.");
+    let text = importElement("textarea", field + ";min-height:220px;resize:vertical");
+    text.placeholder = "1. Jackson Browne - \"Linda Paloma\" ...";
+    let name = importElement("input", field);
+    name.placeholder = "Playlist name (optional, AI suggests one)";
+    let status = importElement("div", "min-height:20px;font-size:14px");
+    let buttons = importElement("div", "display:flex;justify-content:flex-end;gap:8px");
+    let btn = "background:transparent;border:none;color:var(--active-color, #1976d2);font:inherit;font-weight:500;text-transform:uppercase;padding:8px 12px;cursor:pointer";
+    let cancel = importElement("button", btn, "Close");
+    let show = importElement("button", btn + ";display:none", "Show");
+    let start = importElement("button", btn, "Import");
+    buttons.append(cancel, show, start);
+    box.append(title, hint, text, name, status, buttons);
+    overlay.appendChild(box);
+    // Tamna tema se ne vidi u promenljivama korena, pa se boja i font uzimaju sa Material liste.
+    let sample = document.querySelector(".v-list__tile__title") || document.querySelector(".v-toolbar__title");
+    if (sample) {
+        let look = getComputedStyle(sample);
+        box.style.color = look.color;
+        box.style.fontFamily = look.fontFamily;
+    }
+
+    let closed = false;
+    let close = function () {
+        if (!closed) {
+            closed = true;
+            overlay.remove();
+            document.removeEventListener("keydown", onKey, true);
+        }
+    };
+    let onKey = function (ev) {
+        if ("Escape"==ev.key) {
+            ev.stopPropagation();
+            close();
+        }
+    };
+    document.addEventListener("keydown", onKey, true);
+    cancel.onclick = close;
+    overlay.onclick = function (ev) {
+        if (ev.target==overlay && start.disabled) {
+            close();
+        }
+    };
+
+    let finished = function (last) {
+        let message = importResultText(last);
+        if (closed) {
+            if (undefined!=last && undefined!=last.playlist_id) {
+                bus.$emit('showMessage', message);
+            } else {
+                bus.$emit('showError', undefined, message);
+            }
+            return;
+        }
+        status.textContent = message;
+        start.disabled = false;
+        start.textContent = "Import again";
+        if (undefined!=last && undefined!=last.id) {
+            show.style.display = "";
+            show.onclick = function () {
+                close();
+                importOpenDetail(view, { importId: last.id, rawTitle: last.name || "Import" });
+            };
+        }
+    };
+
+    start.onclick = function () {
+        if (text.value.trim().length<1) {
+            status.textContent = "Paste the text with the list first.";
+            return;
+        }
+        start.disabled = true;
+        show.style.display = "none";
+        status.textContent = "Starting…";
+        let command = importRunCommandFor(text.value, name.value);
+        lmsCommand(view.$store.state.player ? view.playerId() : "", command).then(({data}) => {
+            let result = data.result || {};
+            if (undefined!=result.error) {
+                status.textContent = result.error;
+                start.disabled = false;
+                return;
+            }
+            if (result.running) {
+                status.textContent = "Another import is running; this one waits until it finishes.";
+            }
+            importPoll(function (state) {
+                if (!closed) {
+                    status.textContent = importStatusText(state);
+                }
+            }, finished, result.running ? command : undefined, view);
+        }).catch(err => {
+            start.disabled = false;
+            status.textContent = "The import could not be started.";
+            logError(err);
+        });
+    };
+
+    document.body.appendChild(overlay);
+    text.focus();
+}
+
+// Prati posao na serveru; kada se zavrsi, javlja rezultat i osvezava listu uvoza ako je otvorena.
+function importPoll(onProgress, onDone, retryCommand, view) {
+    if (undefined!=importPollTimer) {
+        clearTimeout(importPollTimer);
+    }
+    let tick = function () {
+        lmsCommand("", ["unifiedmusic", "import", "status"]).then(({data}) => {
+            let state = data.result || {};
+            if (state.running) {
+                onProgress(state);
+                importPollTimer = setTimeout(tick, IMPORT_POLL_MS);
+                return;
+            }
+            if (undefined!=retryCommand) {
+                let command = retryCommand;
+                retryCommand = undefined;
+                lmsCommand(view.$store.state.player ? view.playerId() : "", command).then(() => {
+                    importPollTimer = setTimeout(tick, IMPORT_POLL_MS);
+                }).catch(importError);
+                return;
+            }
+            importPollTimer = undefined;
+            onDone(state.last);
+            importOpenList(view, undefined, true);
+        }).catch(err => {
+            importPollTimer = setTimeout(tick, IMPORT_POLL_MS * 2);
+        });
+    };
+    importPollTimer = setTimeout(tick, IMPORT_POLL_MS);
+}
+
 /* Veza sa originalnim Material Skin-om. Ako nesto nedostaje, Material radi bez naših dodataka. */
 
 const LMS_UNIFIED_SEARCH_TIMEOUT = 15000;
 const UNIFIED_LOCAL_EMBLEM = { name: "folder-local", bgnd: "#607d8b", color: "#fff" };
 const UNIFIED_REQUIRED = ["browseClick", "browseItemAction", "browseHeaderAction", "browseHandleListResponse", "browseItemMenu",
-                          "getEmblem", "lmsCommand", "promptForText", "choose", "ACTIONS", "bus", "app"];
+                          "getEmblem", "lmsCommand", "promptForText", "choose", "confirm", "ACTIONS", "REMOVE_ACTION", "bus", "app"];
 const UNIFIED_WAIT_MS = 200;
 const UNIFIED_WAIT_LIMIT = 300;
 let TOP_DAILY_ID;
@@ -556,14 +917,14 @@ function unifiedPatchSearchField() {
 }
 
 function unifiedIsOurItem(item) {
-    return undefined!=item && (item.unified || item.unifiedVersion || mixIsItem(item));
+    return undefined!=item && (item.unified || item.unifiedVersion || mixIsItem(item) || importIsItem(item));
 }
 
 function unifiedPatchGlobals() {
     let originalClick = browseClick;
     browseClick = function (view, item, index, event, ignoreOpenMenu) {
-        if (undefined!=item && (item.id==TOP_DAILY_ID || unifiedIsOurItem(item) || undefined!=item.mixPrevious) && !unifiedMenuIsOpen(view, item, ignoreOpenMenu)) {
-            if (mixHandleClick(view, item, index, event)) {
+        if (undefined!=item && (item.id==TOP_DAILY_ID || item.id==TOP_IMPORT_ID || unifiedIsOurItem(item) || undefined!=item.mixPrevious) && !unifiedMenuIsOpen(view, item, ignoreOpenMenu)) {
+            if (importHandleClick(view, item, index, event) || mixHandleClick(view, item, index, event)) {
                 return;
             }
             if (item.unified) {
@@ -580,6 +941,10 @@ function unifiedPatchGlobals() {
 
     let originalAction = browseItemAction;
     browseItemAction = function (view, act, origItem) {
+        if (importIsItem(origItem)) {
+            importHandleAction(view, act, origItem);
+            return;
+        }
         if (mixIsItem(origItem)) {
             mixHandleAction(view, act, origItem);
             return;
@@ -593,7 +958,8 @@ function unifiedPatchGlobals() {
 
     let originalHeader = browseHeaderAction;
     browseHeaderAction = function (view, act, event, ignoreOpenMenus) {
-        if ((ignoreOpenMenus || 0==view.$store.state.visibleMenus.size) && mixHandleHeaderAction(view, act, view.current)) {
+        if ((ignoreOpenMenus || 0==view.$store.state.visibleMenus.size) &&
+            (importHandleHeaderAction(view, act, view.current) || mixHandleHeaderAction(view, act, view.current))) {
             return;
         }
         return originalHeader.apply(this, arguments);
@@ -614,9 +980,17 @@ function unifiedDailyTopItem() {
              type: "group", weight: 6, id: TOP_DAILY_ID };
 }
 
+function unifiedImportTopItem() {
+    return { command: ["unifiedmusic", "import", "items"], params: [], icon: "playlist_add", title: "Imported lists",
+             type: "group", weight: 7, id: TOP_IMPORT_ID };
+}
+
 function unifiedShowOnHome(view) {
     if (!view.top.some(function (i) { return i.id==TOP_DAILY_ID; })) {
         view.top.push(unifiedDailyTopItem());
+    }
+    if (!view.top.some(function (i) { return i.id==TOP_IMPORT_ID; })) {
+        view.top.push(unifiedImportTopItem());
     }
     if (view.isTop && view.history.length<1) {
         view.items = view.topExtra && view.$store.state.detailedHomeItems.length>0 && view.grid.use ? view.topExtra.concat(view.top) : view.top;
@@ -643,7 +1017,7 @@ function unifiedPatchView(view) {
     let originalSave = view.saveTopList;
     view.saveTopList = function () {
         let all = view.top;
-        view.top = all.filter(function (i) { return i.id!=TOP_DAILY_ID; });
+        view.top = all.filter(function (i) { return i.id!=TOP_DAILY_ID && i.id!=TOP_IMPORT_ID; });
         originalSave.call(view);
         view.top = all;
     };
@@ -669,6 +1043,7 @@ function unifiedAttachToView(view) {
 
 function unifiedInstall() {
     TOP_DAILY_ID = TOP_ID_PREFIX + "daily";
+    TOP_IMPORT_ID = TOP_ID_PREFIX + "import";
     MIX_SAVE_ACTION = ACTIONS.length;
     ACTIONS.push({ cmd: "save", icon: "save", title: "Save as playlist" });
     MIX_PREVIOUS_ACTION = ACTIONS.length;
@@ -706,6 +1081,8 @@ if (typeof module !== "undefined") {
         mixCategoriesToItems: mixCategoriesToItems, mixToItems: mixToItems, mixActionCommand: mixActionCommand,
         trackActionCommand: trackActionCommand, mixRowMenu: mixRowMenu, mixToolbarActions: mixToolbarActions, mixListMenuActions: mixListMenuActions,
         mixSaveName: mixSaveName, mixSaveMessage: mixSaveMessage, mixSuggestedName: mixSuggestedName,
+        importListToItems: importListToItems, importDetailToItems: importDetailToItems, importPlayCommand: importPlayCommand,
+        importStatusText: importStatusText, importRunCommandFor: importRunCommandFor, importResultText: importResultText,
         UNIFIED_LOCAL_EMBLEM: UNIFIED_LOCAL_EMBLEM
     };
 } else {

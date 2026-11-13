@@ -90,7 +90,8 @@ sub search {
 	my $run = $self->{run};
 	my @library = defined $ctx->{library_id} ? ("library_id:$ctx->{library_id}") : ();
 	my (@items, $failed);
-	my @queries = $self->{only} ? grep { $_->{cmd} eq 'tracks' } @QUERIES : @QUERIES;
+	my %only = (track => 'tracks', album => 'albums');
+	my @queries = $self->{only} ? grep { $_->{cmd} eq $only{ $self->{only} } } @QUERIES : @QUERIES;
 	my $pending = scalar @queries;
 
 	my $finish = sub {

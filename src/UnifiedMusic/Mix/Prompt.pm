@@ -17,6 +17,9 @@ my $SYSTEM = <<'END';
 You recommend music for a personal playlist. Suggest only real, commercially released recordings.
 Never invent an artist or a title. Give the artist name and the recording title exactly as released,
 without album names, track numbers or comments.
+The playlist must be varied: spread the suggestions across many different artists and albums.
+Never suggest more than two recordings by the same artist, and never two recordings from the same album.
+Do not group recordings by artist; mix the artists throughout the list.
 END
 
 sub build {
@@ -30,8 +33,10 @@ sub build {
 	my $balance = $BALANCE[ $rng->(scalar @BALANCE) ];
 	my $list = join ', ', @genres;
 
+	my $artists = int($requested / 2);
 	my $user = "Suggest $requested different recordings for the category \"$category->{name}\".\n"
 		. "Allowed genres: $list.\n"
+		. "Use at least $artists different artists, at most two recordings per artist, each from a different album.\n"
 		. "Emphasis for today: more $genre, recordings from the $decade where that fits, $balance.";
 
 	return { system => $SYSTEM, user => $user, requested => $requested };

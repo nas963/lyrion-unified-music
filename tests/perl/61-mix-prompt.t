@@ -18,6 +18,9 @@ my $category = { name => 'Jazz', genres => ['Bebop', 'Cool Jazz', 'Fusion'] };
 	like $p->{user}, qr/well-known/i, 'odnos poznatih i manje poznatih';
 	like $p->{system}, qr/real/i, 'trazi stvarne pesme';
 	like $p->{system}, qr/invent/i, 'zabranjuje izmisljanje';
+	like $p->{system}, qr/more than two recordings by the same artist/i, 'najvise dve pesme po izvodjacu';
+	like $p->{system}, qr/same album/i, 'bez dve pesme sa istog albuma';
+	like $p->{user}, qr/at least 45 different artists/, 'najmanji broj izvodjaca';
 }
 
 is_deeply build({ category => $category, count => 30, rng => sub { 1 } }),

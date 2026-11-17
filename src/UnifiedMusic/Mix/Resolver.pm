@@ -40,23 +40,49 @@ sub match_track {
 	return undef;
 }
 
+# Najvise pesama istog izvodjaca dok ima drugih predloga; visak dopunjava listu tek na kraju.
+use constant MAX_PER_ARTIST => 2;
+
+sub _artist_key {
+	my ($artist) = @_;
+	my $key = lc($artist // '');
+	$key =~ s/^\s*the\s+//;
+	$key =~ s/\s+/ /g;
+	$key =~ s/^\s+|\s+$//g;
+	return $key;
+}
+
 sub resolve {
 	my ($self, $suggestions, $count, $done) = @_;
 
 	my @queue = @$suggestions;
-	my (@tracks, %seen);
+	my (@tracks, %seen, %per_artist, @overflow);
+	my $capped = 1;
 
 	my $next;
 	$next = sub {
-		while (@queue && @tracks < $count) {
+		while (@tracks < $count) {
+			if (!@queue) {
+				last unless $capped && @overflow;
+				$capped = 0;
+				@queue = splice @overflow;
+			}
 			my $suggestion = shift @queue;
 			my $key = track_key($suggestion->{artist}, $suggestion->{title});
+			my $artist = _artist_key($suggestion->{artist});
+			if ($capped && ($per_artist{$artist} // 0) >= MAX_PER_ARTIST) {
+				push @overflow, $suggestion;
+				next;
+			}
 			next if $seen{$key}++;
 
 			$self->{search}->("$suggestion->{artist} $suggestion->{title}", sub {
 				my ($response) = @_;
 				my $track = match_track($response, $key);
-				push @tracks, $track if $track;
+				if ($track) {
+					push @tracks, $track;
+					$per_artist{$artist}++;
+				}
 				# Odlaganje cuva petlju servera i izbegava duboku rekurziju.
 				return $self->{defer}->($next) if $self->{defer};
 				$next->();

@@ -69,6 +69,24 @@ sub s1 { return { artist => $_[0], title => $_[1] } }
 }
 
 {
+	my @log;
+	my %answers = map {
+		my ($artist, $title) = @$_;
+		("$artist $title" => { tracks => [group($title, $artist, v('local', "file:///$artist$title"))] })
+	} (map({ ['Genesis', "G$_"] } 1 .. 4), ['Rush', 'R1'], ['Yes', 'Y1']);
+	my @done;
+	resolver(\%answers, \@log)->resolve(
+		[(map { s1('Genesis', "G$_") } 1 .. 4), s1('Rush', 'R1'), s1('Yes', 'Y1')], 4, sub { push @done, $_[0] });
+	is_deeply [map { $_->{title} } @{ $done[0] }], [qw(G1 G2 R1 Y1)], 'najvise dve pesme istog izvodjaca';
+	is_deeply \@log, ['Genesis G1', 'Genesis G2', 'Rush R1', 'Yes Y1'], 'visak izvodjaca se ne trazi bez potrebe';
+
+	@done = ();
+	resolver(\%answers, [])->resolve(
+		[(map { s1('Genesis', "G$_") } 1 .. 4), s1('Rush', 'R1')], 5, sub { push @done, $_[0] });
+	is_deeply [map { $_->{title} } @{ $done[0] }], [qw(G1 G2 R1 G3 G4)], 'visak dopunjava listu kad nema drugih';
+}
+
+{
 	my @done;
 	resolver({}, [])->resolve([], 10, sub { push @done, $_[0] });
 	is_deeply \@done, [[]], 'prazna lista';

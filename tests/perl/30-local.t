@@ -115,4 +115,14 @@ sub run_search {
 	is_deeply $done->[0], { items => [], missing => ['local'] }, 'greska: missing';
 }
 
+{
+	my @commands;
+	my $row = { id => 1, title => 'Tubular Bells', artist => 'Mike Oldfield', url => 'file:///cd', duration => '2677.5' };
+	my $done = run_search(fake_run(\@commands, override => { tracks => { titles_loop => [$row] } }));
+	my ($track) = grep { $_->{kind} eq 'track' } @{ $done->[0]{items} };
+	is $track->{duration}, 2677.5, 'trajanje pesme';
+	my ($cmd) = grep { $_->[0] eq 'tracks' } @commands;
+	ok scalar(grep { /^tags:.*d/ } @$cmd), 'trazi trajanje';
+}
+
 done_testing;

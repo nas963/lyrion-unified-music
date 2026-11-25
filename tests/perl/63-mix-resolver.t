@@ -92,4 +92,16 @@ sub s1 { return { artist => $_[0], title => $_[1] } }
 	is_deeply \@done, [[]], 'prazna lista';
 }
 
+{
+	my $key = Plugins::UnifiedMusic::Normalize::track_key('Mike Oldfield', 'Tubular Bells');
+	my $match = sub {
+		return Plugins::UnifiedMusic::Mix::Resolver::match_track({ tracks => [group('Tubular Bells (1973)', 'Mike Oldfield', @_)] }, $key);
+	};
+	is $match->(v('local', 'file:///cd', duration => 2677)), undef, 'ceo album u jednom fajlu se preskace';
+	is $match->(v('local', 'file:///cd', duration => 2677), v('local', 'file:///t', duration => 280))->{url}, 'file:///t', 'uzima se kraca verzija';
+	is $match->(v('local', 'file:///l', duration => 1713))->{url}, 'file:///l', 'duga pesma ostaje';
+	is $match->(v('local', 'file:///l', duration => 1800))->{url}, 'file:///l', 'tacno na granici ostaje';
+	is $match->(v('qobuz', 'qobuz://1.flac'))->{url}, 'qobuz://1.flac', 'nepoznato trajanje ne iskljucuje';
+}
+
 done_testing;

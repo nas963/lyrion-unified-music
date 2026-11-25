@@ -36,6 +36,7 @@ sub _track {
 	my $item = _common($row, kind => 'track', title => $row->{title}, play => { track_id => $row->{id} });
 	$item->{album} = $row->{album} if defined $row->{album};
 	$item->{url} = $row->{url} if defined $row->{url};
+	$item->{duration} = $row->{duration} + 0 if $row->{duration};
 	_add_format($item, $row);
 	return $item;
 }
@@ -68,7 +69,7 @@ sub _playlist {
 my @QUERIES = (
 	{ cmd => 'albums',    loop => 'albums_loop',    tags => 'aljyeS',    map => \&_album },
 	{ cmd => 'artists',   loop => 'artists_loop',                        map => \&_artist },
-	{ cmd => 'tracks',    loop => 'titles_loop',    tags => 'aelyoTIJu', map => \&_track },
+	{ cmd => 'tracks',    loop => 'titles_loop',    tags => 'adelyoTIJu', map => \&_track },
 	{ cmd => 'works',     loop => 'works_loop',                          map => \&_work },
 	{ cmd => 'playlists', loop => 'playlists_loop',                      map => \&_playlist },
 );

@@ -13,6 +13,9 @@ sub new {
 	return bless { search => $args{search}, defer => $args{defer} }, $class;
 }
 
+# Duza snimka je po pravilu ceo album u jednom fajlu. Servisi ne vracaju trajanje, pa se tada ne proverava.
+use constant MAX_SECONDS => 30 * 60;
+
 sub _version_url {
 	my ($version) = @_;
 	return $version->{url} // ($version->{play} ? $version->{play}{url} : undef);
@@ -23,7 +26,7 @@ sub match_track {
 
 	for my $group (@{ $response->{tracks} || [] }) {
 		next unless track_key($group->{artist}, $group->{title}) eq $key;
-		my ($version) = grep { defined _version_url($_) } @{ $group->{versions} };
+		my ($version) = grep { defined _version_url($_) && ($_->{duration} // 0) <= MAX_SECONDS } @{ $group->{versions} };
 		next unless $version;
 
 		my %track = (

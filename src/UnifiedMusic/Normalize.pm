@@ -9,7 +9,7 @@ use utf8;
 use Exporter qw(import);
 use Unicode::Normalize qw(NFKD NFC);
 
-our @EXPORT_OK = qw(title_key artist_key album_key track_key plain_key);
+our @EXPORT_OK = qw(title_key artist_key album_key track_key plain_key same_artist_key part_title without_part);
 
 my $SEPARATOR = "\x1f";
 my $EDITION_RE = qr/\b(?:remaster|remastered|deluxe|legacy|expanded|anniversary|edition|bonus|reissue)\b/i;
@@ -71,6 +71,42 @@ sub _fallback_key {
 	return $key;
 }
 
+my @ROMAN = qw(i ii iii iv v vi vii viii ix x xi xii xiii xiv xv xvi xvii xviii xix xx);
+my @WORDS = qw(one two three four five six seven eight nine ten eleven twelve);
+my %NUMBER = (
+	(map { $ROMAN[$_] => $_ + 1 } 0 .. $#ROMAN),
+	(map { $WORDS[$_] => $_ + 1 } 0 .. $#WORDS),
+);
+my $NUMBER_RE = join '|', '\d{1,2}', sort { length $b <=> length $a || $a cmp $b } keys %NUMBER;
+# "Pt.1" i "Part1" su oznake dela, ali "Parti" nije.
+my $PART_RE = qr/(?<![\p{L}\p{N}])(?:parts?|pts?)(?:\.\s*|\s+|(?=\d))($NUMBER_RE)(?:\s*(?:[-–—\/&]|\bto\b|\band\b)\s*($NUMBER_RE))?(?![\p{L}\p{N}])/i;
+
+sub _number {
+	my ($text) = @_;
+	return $NUMBER{ lc $text } // $text + 0;
+}
+
+# Svi zapisi dela ("Part One", "Pt. I", "Parts 1-5") svode se na "part 1" odnosno "part 1 to 5".
+sub part_title {
+	my ($title) = @_;
+
+	return $title unless defined $title;
+	$title =~ s/$PART_RE/'part ' . _number($1) . (defined $2 ? ' to ' . _number($2) : '')/ge;
+	return $title;
+}
+
+# Naslov bez oznake dela, za siru pretragu. Naslov koji je samo oznaka ostaje.
+sub without_part {
+	my ($title) = @_;
+
+	my $short = $title // '';
+	return $short unless $short =~ s/$PART_RE//g;
+	$short =~ s/\(\s*\)|\[\s*\]|\{\s*\}//g;
+	$short =~ s/\s+/ /g;
+	$short =~ s/^[\s,:;\-–—]+|[\s,:;\-–—]+$//g;
+	return length plain_key($short) ? $short : $title;
+}
+
 sub artist_key {
 	my ($name) = @_;
 
@@ -82,16 +118,26 @@ sub artist_key {
 	return _fallback_key($main);
 }
 
+# Za poredjenje jednakosti: "Jean-Michel", "Jean Michel" i "JeanMichel" su isti izvodjac.
+# artist_key zadrzava razmake jer uvoz liste poredi i pojedinacne reci.
+sub same_artist_key {
+	my ($name) = @_;
+
+	my $key = artist_key($name);
+	$key =~ s/\s+//g;
+	return $key;
+}
+
 sub album_key {
 	my ($artist, $title) = @_;
 
-	return artist_key($artist) . $SEPARATOR . title_key($title);
+	return same_artist_key($artist) . $SEPARATOR . title_key($title);
 }
 
 sub track_key {
 	my ($artist, $title) = @_;
 
-	return artist_key($artist) . $SEPARATOR . title_key($title);
+	return same_artist_key($artist) . $SEPARATOR . title_key($title);
 }
 
 1;

@@ -7,7 +7,7 @@ use warnings;
 use utf8;
 
 use Exporter qw(import);
-use Plugins::UnifiedMusic::Normalize qw(title_key artist_key album_key track_key);
+use Plugins::UnifiedMusic::Normalize qw(title_key same_artist_key album_key track_key);
 
 our @EXPORT_OK = qw(group_items);
 
@@ -18,7 +18,7 @@ sub _key {
 
 	return album_key($item->{artist}, $item->{title}) if $item->{kind} eq 'album';
 	return track_key($item->{artist}, $item->{title}) if $item->{kind} eq 'track';
-	return artist_key($item->{title}) if $item->{kind} eq 'artist';
+	return same_artist_key($item->{title}) if $item->{kind} eq 'artist';
 	return "other:$index";
 }
 

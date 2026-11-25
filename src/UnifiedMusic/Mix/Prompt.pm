@@ -20,7 +20,8 @@ without album names, track numbers or comments.
 The playlist must be varied: spread the suggestions across many different artists and albums.
 Never suggest more than two recordings by the same artist, and never two recordings from the same album.
 Suggest individual tracks only, never a whole album, a full album side or a continuous full-album recording,
-and no recording longer than 30 minutes. If a work is split into parts, name one specific part by its track title.
+and no recording longer than 30 minutes. If a work is split into parts, give the work title
+followed by one specific part, for example "Tubular Bells (Part One)", never the part name alone.
 Do not group recordings by artist; mix the artists throughout the list.
 END
 

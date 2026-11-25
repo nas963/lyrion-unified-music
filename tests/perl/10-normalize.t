@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use utf8;
 use Test::More;
-use Plugins::UnifiedMusic::Normalize qw(title_key artist_key album_key track_key plain_key);
+use Plugins::UnifiedMusic::Normalize qw(title_key artist_key album_key track_key plain_key same_artist_key);
 
 is title_key('Kind Of Blue (Legacy Edition)'), 'kind of blue', 'Legacy Edition';
 is title_key('Kind of Blue (Remastered)'),     'kind of blue', 'Remastered';
@@ -37,5 +37,12 @@ isnt title_key('÷'), title_key('×'), 'razliciti simboli se ne spajaju';
 is title_key(' ÷ '), title_key('÷'), 'razmaci oko simbola se uklanjaju';
 is artist_key('!!!'), '!!!', 'izvodjac od simbola ostaje';
 isnt artist_key('+/-'), artist_key('***'), 'razliciti izvodjaci od simbola';
+
+for my $pair (['Jean-Michel Jarre', 'Jean Michel Jarre'], ['AC/DC', 'AC-DC'], ['a-ha', 'aha'], ['Jay-Z', 'Jay Z']) {
+	is same_artist_key($pair->[0]), same_artist_key($pair->[1]), "isti izvodjac: $pair->[0]";
+	is track_key($pair->[0], 'T'), track_key($pair->[1], 'T'), "ista pesma: $pair->[0]";
+	is album_key($pair->[0], 'T'), album_key($pair->[1], 'T'), "isti album: $pair->[0]";
+}
+isnt same_artist_key('Jean-Michel Jarre'), same_artist_key('Jean Jarre'), 'razliciti izvodjaci ostaju razliciti';
 
 done_testing;

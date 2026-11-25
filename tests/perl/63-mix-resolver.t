@@ -104,4 +104,42 @@ sub s1 { return { artist => $_[0], title => $_[1] } }
 	is $match->(v('qobuz', 'qobuz://1.flac'))->{url}, 'qobuz://1.flac', 'nepoznato trajanje ne iskljucuje';
 }
 
+{
+	my $find = sub {
+		my ($artist, $title, @groups) = @_;
+		my $t = Plugins::UnifiedMusic::Mix::Resolver::match_track({ tracks => \@groups }, Plugins::UnifiedMusic::Mix::Resolver::suggestion_key($artist, $title));
+		return $t ? $t->{url} : undef;
+	};
+	my $g = sub { my ($title, $url, %rest) = @_; return group($title, 'M', v('local', $url, title => $title, %rest)) };
+
+	for my $form ('TB (Part One)', 'TB {Part One}', 'TB - Part one', 'TB Part 1', 'TB, Pt. I', 'TB (Pt.1)', 'TB Pt 1', 'TB (Part One) [2009 Remaster]') {
+		is $find->('M', 'TB', $g->($form, 'u')), 'u', "bez oznake nalazi: $form";
+		is $find->('M', 'TB (Part 1)', $g->($form, 'u')), 'u', "isti deo: $form";
+		is $find->('M', 'TB (Part 2)', $g->($form, 'u')), undef, "drugi deo se ne mesa: $form";
+	}
+	is $find->('M', 'TB', $g->('TB Part Two', 'u2'), $g->('TB Part One', 'u1')), 'u1', 'bira se prvi deo';
+	is $find->('M', 'TB', $g->('TB Part Two', 'u2')), 'u2', 'ako nema prvog, najraniji';
+	is $find->('M', 'TB', $g->('TB Part One', 'u1'), $g->('TB', 'u')), 'u', 'tacan naslov ima prednost';
+	is $find->('M', 'TB', $g->('TB', 'cd', duration => 2677), $g->('TB Part One', 'u1', duration => 1531)), 'u1', 'umesto celog albuma prvi deo';
+	is $find->('M', 'TB', $g->('Part One', 'a', album => 'TB (25th Anniversary Edition)')), 'a', 'deo na istoimenom albumu';
+	is $find->('M', 'TB (Pt. 2)', $g->('Part TWO', 'a', album => 'TB')), 'a', 'trazeni deo na istoimenom albumu';
+	is $find->('M', 'TB', $g->('Part One', 'a', album => 'TB II')), undef, 'drugi album se ne uzima';
+	is $find->('M', 'TB', $g->('Part One', 'a')), undef, 'bez albuma se ne uzima';
+	is $find->('M', 'TB', $g->('TB Part One (Excerpt)', 'a')), undef, 'odlomak se ne uzima';
+	is $find->('M', 'TB', $g->('TB II Part One', 'a')), undef, 'drugo delo se ne uzima';
+	is $find->('X', 'TB', $g->('TB Part One', 'a')), undef, 'drugi izvodjac se ne uzima';
+	is $find->('M', 'Shine', $g->('Shine, Pts. 6-9', 'u6'), $g->('Shine (Parts I - V)', 'u1')), 'u1', 'raspon delova';
+	is $find->('M', 'Shine (Parts 1-5)', $g->('Shine, Pts. I-V', 'u')), 'u', 'isti raspon, drugi zapis';
+	is $find->('M', 'Shine (Part 1)', $g->('Shine (Parts 1-5)', 'u')), undef, 'deo nije raspon';
+	is $find->('M', 'X', $g->('X Parti', 'u')), undef, 'Parti nije oznaka dela';
+
+	is $find->('Jean-Michel Jarre', 'Oxygène (Part IV)', group('Oxygène, Part 4', 'Jean Michel Jarre', v('local', 'j'))), 'j', 'crtica u imenu';
+
+	my (@log, @done);
+	resolver({ 'M TB' => { tracks => [$g->('TB Part One', 'u1'), $g->('TB Part Two', 'u2')] } }, \@log)
+		->resolve([s1('M', 'TB'), s1('M', 'TB (Pt. I)'), s1('M', 'TB, Part 2')], 10, sub { push @done, $_[0] });
+	is_deeply [map { $_->{url} } @{ $done[0] }], ['u1', 'u2'], 'isti deo ne ulazi dvaput';
+	is $log[1], 'M TB', 'pretraga bez oznake dela';
+}
+
 done_testing;

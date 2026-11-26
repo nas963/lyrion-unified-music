@@ -16,6 +16,18 @@ sub new {
 # Duza snimka je po pravilu ceo album u jednom fajlu. Servisi ne vracaju trajanje, pa se tada ne proverava.
 use constant MAX_SECONDS => 30 * 60;
 
+# Odstupanje od trajanja koje je naveo model, a koje se jos smatra istom verzijom.
+sub _off_length {
+	my ($version, $minutes) = @_;
+
+	my $seconds = $version->{duration};
+	return 0 unless $minutes && $seconds;
+	my $expected = $minutes * 60;
+	my $diff = abs($seconds - $expected);
+	my $tolerance = $expected * 0.35 > 90 ? $expected * 0.35 : 90;
+	return $diff <= $tolerance ? 0 : $diff;
+}
+
 sub _version_url {
 	my ($version) = @_;
 	return $version->{url} // ($version->{play} ? $version->{play}{url} : undef);
@@ -34,9 +46,9 @@ sub _split_part {
 }
 
 # Najbolja verzija: tacan naslov, zatim isti deo na istoimenom albumu ("Part One" sa "Tubular Bells"),
-# a za predlog bez oznake dela najraniji deo.
+# a za predlog bez oznake dela najraniji deo. Medju istim naslovima prednost ima trajanje koje je naveo model.
 sub _find {
-	my ($response, $key) = @_;
+	my ($response, $key, $minutes) = @_;
 
 	my ($artist, $wanted) = split /\x1f/, $key, 2;
 	my (undef, $part) = _split_part($wanted);
@@ -48,7 +60,7 @@ sub _find {
 			next unless defined _version_url($version) && ($version->{duration} // 0) <= MAX_SECONDS;
 
 			my $title = title_key(part_title($version->{title} // $group->{title}));
-			my $rank = [0, 0];
+			my $rank = [0, 0, 0];
 			if ($title ne $wanted) {
 				my ($base, $own_part) = _split_part($title);
 				next unless defined $own_part;
@@ -59,9 +71,10 @@ sub _find {
 					$title = "$base $title";
 				}
 				next unless (defined $part ? $title : $base) eq $wanted;
-				$rank = [$own_part, $from_album];
+				$rank = [$own_part, 0, $from_album];
 			}
-			next if $best_rank && ($best_rank->[0] <=> $rank->[0] || $best_rank->[1] <=> $rank->[1]) <= 0;
+			$rank->[1] = _off_length($version, $minutes);
+			next if $best_rank && ($best_rank->[0] <=> $rank->[0] || $best_rank->[1] <=> $rank->[1] || $best_rank->[2] <=> $rank->[2]) <= 0;
 			$best_rank = $rank;
 			$best = { group => $group, version => $version, key => "$artist\x1f$title" };
 		}
@@ -86,9 +99,9 @@ sub _track {
 }
 
 sub match_track {
-	my ($response, $key) = @_;
+	my ($response, $key, $minutes) = @_;
 
-	my $found = _find($response, $key);
+	my $found = _find($response, $key, $minutes);
 	return $found ? _track($found) : undef;
 }
 
@@ -128,7 +141,7 @@ sub resolve {
 
 			$self->{search}->("$suggestion->{artist} " . without_part($suggestion->{title}), sub {
 				my ($response) = @_;
-				my $found = _find($response, $key);
+				my $found = _find($response, $key, $suggestion->{minutes});
 				# "Tubular Bells" i "Tubular Bells (Part One)" mogu dati istu pesmu.
 				if ($found && !$taken{ $found->{key} }++) {
 					push @tracks, _track($found);

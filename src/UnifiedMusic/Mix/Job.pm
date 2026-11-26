@@ -48,6 +48,7 @@ sub run {
 			}
 			$resolver->resolve($answer->{suggestions}, $config->{trackCount}, sub {
 				my ($tracks) = @_;
+				$log->("UnifiedMusic: kategorija '$name': " . scalar(@{ $answer->{suggestions} }) . ' predloga, ' . scalar(@$tracks) . ' pesama');
 				if (@$tracks) {
 					if (eval { $store->save({ category => $name, date => $date, model => $config->{model}, tracks => $tracks }); 1 }) {
 						push @ok, $name;

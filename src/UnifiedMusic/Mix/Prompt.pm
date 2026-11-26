@@ -22,6 +22,8 @@ Never suggest more than two recordings by the same artist, and never two recordi
 Suggest individual tracks only, never a whole album, a full album side or a continuous full-album recording,
 and no recording longer than 30 minutes. If a work is split into parts, give the work title
 followed by one specific part, for example "Tubular Bells (Part One)", never the part name alone.
+For each recording give minutes: the usual length of that recording as released, so the right version can be chosen
+(for example about 3.5 for the "Chariots of Fire" theme, not the 20-minute album suite).
 Do not group recordings by artist; mix the artists throughout the list.
 END
 
@@ -39,6 +41,8 @@ sub build {
 	my $artists = int($requested / 2);
 	my $user = "Suggest $requested different recordings for the category \"$category->{name}\".\n"
 		. "Allowed genres: $list.\n"
+		. "An entry that is a record label (for example ECM, Blue Note or Deutsche Grammophon) means recordings\n"
+		. "released on that label, in its typical sound; treat the category name the same way.\n"
 		. "Use at least $artists different artists, at most two recordings per artist, each from a different album.\n"
 		. "Emphasis for today: more $genre, recordings from the $decade where that fits, $balance.";
 

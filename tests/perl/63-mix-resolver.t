@@ -142,4 +142,32 @@ sub s1 { return { artist => $_[0], title => $_[1] } }
 	is $log[1], 'M TB', 'pretraga bez oznake dela';
 }
 
+{
+	my $key = Plugins::UnifiedMusic::Mix::Resolver::suggestion_key('Vangelis', 'Chariots of Fire');
+	my $pick = sub {
+		my ($minutes, @versions) = @_;
+		my $t = Plugins::UnifiedMusic::Mix::Resolver::match_track({ tracks => [group('Chariots Of Fire', 'Vangelis', @versions)] }, $key, $minutes);
+		return $t ? $t->{url} : undef;
+	};
+	my @cof = (v('local', 'suite', duration => 1239), v('local', 'theme', duration => 210));
+	is $pick->(3.5, @cof), 'theme', 'bira se verzija najbliza navedenom trajanju';
+	is $pick->(20, @cof), 'suite', 'i duga kad je ona trazena';
+	is $pick->(undef, @cof), 'suite', 'bez trajanja ostaje redosled';
+	is $pick->(3.5, v('local', 'a', duration => 230), v('local', 'b', duration => 210)), 'a', 'u granicama odstupanja ostaje redosled';
+	is $pick->(3.5, v('local', 'suite', duration => 1239), v('qobuz', 'q')), 'q', 'nepoznato trajanje je bolje od pogresnog';
+	is $pick->(3.5, v('local', 'suite', duration => 1239)), 'suite', 'jedina verzija se ipak uzima';
+
+	my $tb = Plugins::UnifiedMusic::Mix::Resolver::suggestion_key('M', 'TB (Part One)');
+	my $t = Plugins::UnifiedMusic::Mix::Resolver::match_track({ tracks => [
+		group('TB (Part 1)', 'M', v('local', 'edit', duration => 299, title => 'TB (Part 1)')),
+		group('TB Part One', 'M', v('local', 'full', duration => 1531, title => 'TB Part One')),
+	] }, $tb, 25);
+	is $t->{url}, 'full', 'ceo deo umesto isecka';
+
+	my (@done);
+	resolver({ 'Vangelis Chariots of Fire' => { tracks => [group('Chariots Of Fire', 'Vangelis', @cof)] } }, [])
+		->resolve([{ artist => 'Vangelis', title => 'Chariots of Fire', minutes => 3.5 }], 10, sub { push @done, $_[0] });
+	is $done[0][0]{url}, 'theme', 'resolve prenosi trajanje';
+}
+
 done_testing;

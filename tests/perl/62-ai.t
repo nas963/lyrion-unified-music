@@ -99,4 +99,9 @@ my $o = 'Plugins::UnifiedMusic::AI::OpenAI';
 	is $refused->[0]{retryable}, 0, 'openai odbijanje';
 }
 
+is_deeply parse('{"suggestions":[{"artist":"A","title":"T","minutes":3.5},{"artist":"B","title":"U","minutes":0},{"artist":"C","title":"V","minutes":"x"},{"artist":"D","title":"W"}]}'),
+	[{ artist => 'A', title => 'T', minutes => 3.5 }, { artist => 'B', title => 'U' }, { artist => 'C', title => 'V' }, { artist => 'D', title => 'W' }],
+	'trajanje samo kad je pozitivan broj';
+is_deeply Plugins::UnifiedMusic::AI::Common::schema()->{properties}{suggestions}{items}{required}, ['artist', 'title', 'minutes'], 'sema trazi trajanje';
+
 done_testing;

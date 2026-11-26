@@ -26,8 +26,8 @@ sub schema {
 				items => {
 					type => 'object',
 					additionalProperties => JSON::PP::false,
-					required => ['artist', 'title'],
-					properties => { artist => { type => 'string' }, title => { type => 'string' } },
+					required => ['artist', 'title', 'minutes'],
+					properties => { artist => { type => 'string' }, title => { type => 'string' }, minutes => { type => 'number' } },
 				},
 			},
 		},
@@ -58,7 +58,10 @@ sub parse_suggestions {
 	for my $item (@{ $data->{suggestions} }) {
 		next unless ref $item eq 'HASH';
 		next unless defined $item->{artist} && $item->{artist} =~ /\S/ && defined $item->{title} && $item->{title} =~ /\S/;
-		push @list, { artist => $item->{artist}, title => $item->{title} };
+		my %suggestion = (artist => $item->{artist}, title => $item->{title});
+		# Uobicajeno trajanje pomaze da se od istoimenih verzija izabere prava.
+		$suggestion{minutes} = $item->{minutes} + 0 if defined $item->{minutes} && $item->{minutes} =~ /^\d+(?:\.\d+)?$/ && $item->{minutes} > 0;
+		push @list, \%suggestion;
 	}
 	return \@list;
 }

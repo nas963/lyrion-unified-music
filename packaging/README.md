@@ -37,7 +37,7 @@ Zatim sačuvaj. API ključ se na serveru čuva kao običan tekst.
 
 ## Korišćenje
 - **Pretraga:** običnom pretragom u Material-u dobijaš rezultate iz svih izvora odjednom.
-- **Miksovi:** na početnoj strani je **Your Daily Mixes**; u miksu su po pravilu najviše dve pesme istog izvođača, a lokalni snimci duži od 30 minuta se preskaču. Stariji dani su u meniju sa tri tačke, pod **Previous days**.
+- **Miksovi:** na početnoj strani je **Your Daily Mixes**; u miksu su po pravilu najviše dve pesme istog izvođača, lokalni snimci duži od 30 minuta se preskaču, a od verzija sa istim naslovom bira se ona najbliža uobičajenom trajanju. Žanr koji je izdavačka kuća (npr. ECM) znači snimke izdate za tu kuću. Stariji dani su u meniju sa tri tačke, pod **Previous days**.
 - **Uvoz liste:** na početnoj strani je **Imported lists** → **Import list from text**. Nalepi tekst sa spiskom (npr. ono što Gemini napiše za YouTube video). AI prepoznaje albume i pesme; za izvođača bez navedenog albuma bira reprezentativni album. Pre pretrage vidiš prepoznate stavke, možeš da izmeniš predloženi naziv ili izabereš postojeću plejlistu koju treba dopuniti. Sve se traži po redosledu izvora iz podešavanja. U istoj listi se vidi šta je nađeno i gde, a šta nije; dopuna plejliste se dodaje u njen postojeći zapis. Meni sa tri tačke menja naziv liste zajedno sa plejlistom, a lupa u gornjoj traci filtrira uvezene liste po nazivu, izvođačima i naslovima.
 
 ## Uklanjanje

@@ -49,4 +49,15 @@ sub build {
 	return { system => $SYSTEM, user => $user, requested => $requested };
 }
 
+# Dopunski zahtev kada je model vratio premalo predloga: isti uslovi, bez vec predlozenih.
+sub more {
+	my ($prompt, $previous, $missing) = @_;
+
+	my $known = join '; ', map { "$_->{artist} - $_->{title}" } @$previous;
+	my $user = "$prompt->{user}\n\n"
+		. "You already suggested these recordings, do not repeat any of them: $known.\n"
+		. "Now suggest $missing more different recordings that follow all the rules above.";
+	return { system => $prompt->{system}, user => $user, requested => $missing };
+}
+
 1;

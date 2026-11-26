@@ -170,4 +170,26 @@ sub s1 { return { artist => $_[0], title => $_[1] } }
 	is $done[0][0]{url}, 'theme', 'resolve prenosi trajanje';
 }
 
+{
+	my %answers = (
+		'A1 T1' => { tracks => [group('T1', 'A1', v('local', 'box1', album => 'Box'), v('local', 'lp1', album => 'LP 1'))] },
+		'A1 T2' => { tracks => [group('T2', 'A1', v('local', 'box2', album => 'Box'))] },
+		'B T'   => { tracks => [group('T', 'B', v('local', 'b', album => 'B LP'))] },
+		'C T'   => { tracks => [group('T', 'C', v('local', 'c', album => 'Box'), v('local', 'c2', album => 'C LP'))] },
+		'D T'   => { tracks => [group('T', 'D', v('tidal', 'd'))] },
+		'E T'   => { tracks => [group('T', 'E', v('tidal', 'e'))] },
+	);
+	my @done;
+	resolver(\%answers, [])->resolve([s1('A1', 'T1'), s1('A1', 'T2'), s1('B', 'T'), s1('C', 'T'), s1('D', 'T'), s1('E', 'T')], 5, sub { push @done, $_[0] });
+	is_deeply [map { $_->{url} } @{ $done[0] }], [qw(box1 b c2 d e)], 'jedna pesma po albumu, druga verzija sa drugog albuma';
+
+	@done = ();
+	resolver(\%answers, [])->resolve([s1('A1', 'T1'), s1('A1', 'T2'), s1('B', 'T')], 3, sub { push @done, $_[0] });
+	is_deeply [map { $_->{url} } @{ $done[0] }], [qw(box1 b box2)], 'isti album dopunjava listu kad nema drugih';
+
+	@done = ();
+	resolver(\%answers, [])->resolve([s1('A1', 'T1'), s1('A1', 'T2')], 1, sub { push @done, $_[0] });
+	is_deeply [map { $_->{url} } @{ $done[0] }], [qw(box1)], 'bez dopune kad je lista puna';
+}
+
 done_testing;

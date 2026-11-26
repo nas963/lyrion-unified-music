@@ -32,4 +32,14 @@ is_deeply build({ category => $category, count => 30, rng => sub { 1 } }),
 isnt build({ category => $category, count => 30, rng => sub { 0 } })->{user},
 	build({ category => $category, count => 30, rng => sub { 1 } })->{user}, 'razlicit rng daje drugi naglasak';
 
+{
+	my $p = build({ category => $category, count => 30, rng => sub { 0 } });
+	my $m = Plugins::UnifiedMusic::Mix::Prompt::more($p, [{ artist => 'A', title => 'T' }, { artist => 'B', title => 'U' }], 88);
+	is $m->{system}, $p->{system}, 'dopuna: isti sistemski zahtev';
+	like $m->{user}, qr/^\Q$p->{user}\E/, 'dopuna: isti uslovi';
+	like $m->{user}, qr/A - T; B - U\./, 'dopuna: vec predlozene';
+	like $m->{user}, qr/88 more/, 'dopuna: koliko jos';
+	is $m->{requested}, 88, 'dopuna: broj';
+}
+
 done_testing;

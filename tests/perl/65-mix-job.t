@@ -20,11 +20,11 @@ package FakeAdapter {
 }
 package FakeResolver {
 	sub new { my ($c, %a) = @_; bless { %a }, $c }
-	sub resolve { my ($s, $list, $count, $done) = @_; $s->{count} = $count; $done->($s->{tracks}) }
+	sub resolve { my ($s, $list, $count, $done) = @_; $s->{count} = $count; $s->{list} = [@$list]; $done->($s->{tracks}) }
 }
 package main;
 
-my $SUGGEST = { suggestions => [{ artist => 'A', title => 'T' }] };
+my $SUGGEST = { suggestions => [map { { artist => "A$_", title => 'T' } } 1 .. 60] };
 my $TRACKS = [{ title => 'T', artist => 'A', source => 'local', url => 'u' }];
 
 sub run_job {
@@ -111,6 +111,33 @@ my @two = ({ name => 'Jazz', genres => ['Bebop'] }, { name => 'Rock', genres => 
 	my ($store, undef, undef, $done) = run_job(categories => [$two[0]], script => [$SUGGEST], tracks => []);
 	is scalar @{ $store->{saved} }, 0, 'nula pesama ne upisuje';
 	is $done->[0]{failed}[0]{name}, 'Jazz', 'nula pesama je neuspeh';
+}
+
+{
+	my $few = { suggestions => [map { { artist => "F$_", title => 'T' } } 1 .. 12] };
+	my $more = { suggestions => [{ artist => 'F1', title => 'T' }, map { { artist => "G$_", title => 'T' } } 1 .. 20] };
+	my $rest = { suggestions => [map { { artist => "H$_", title => 'T' } } 1 .. 40] };
+	my ($store, $adapter, $resolver, $done, $logged) = run_job(categories => [$two[0]], script => [$few, $more, $rest]);
+	is scalar @{ $adapter->{calls} }, 3, 'premalo predloga: dve dopune';
+	like $adapter->{calls}[1]{prompt}{user}, qr/do not repeat any of them: F1 - T; .*F12 - T\./, 'dopuna navodi vec predlozene';
+	like $adapter->{calls}[1]{prompt}{user}, qr/suggest 78 more/, 'dopuna trazi ostatak';
+	is $adapter->{calls}[1]{prompt}{system}, $adapter->{calls}[0]{prompt}{system}, 'isti sistemski zahtev';
+	is scalar @{ $resolver->{list} }, 72, 'bez duplikata iz dopune';
+	like $logged->[-1], qr/'Jazz': 72 predloga \(2 dopuna\), 1 pesama/, 'log broja predloga i dopuna';
+}
+
+{
+	my $few = { suggestions => [map { { artist => "F$_", title => 'T' } } 1 .. 10] };
+	my (undef, $adapter, $resolver, $done) = run_job(categories => [$two[0]], script => [$few, { error => 'x', retryable => 0 }]);
+	is scalar @{ $adapter->{calls} }, 2, 'neuspela dopuna se ne ponavlja';
+	is scalar @{ $resolver->{list} }, 10, 'neuspela dopuna: radi se sa onim sto postoji';
+	is_deeply $done->[0]{ok}, ['Jazz'], 'neuspela dopuna nije neuspeh kategorije';
+}
+
+{
+	my $few = { suggestions => [map { { artist => "F$_", title => 'T' } } 1 .. 10] };
+	my (undef, $adapter) = run_job(categories => [$two[0]], script => [$few, $few]);
+	is scalar @{ $adapter->{calls} }, 2, 'dopuna bez novih predloga se ne ponavlja';
 }
 
 done_testing;

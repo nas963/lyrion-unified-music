@@ -48,7 +48,7 @@ sub _split_part {
 # Najbolja verzija: tacan naslov, zatim isti deo na istoimenom albumu ("Part One" sa "Tubular Bells"),
 # a za predlog bez oznake dela najraniji deo. Medju istim naslovima prednost ima trajanje koje je naveo model.
 sub _find {
-	my ($response, $key, $minutes) = @_;
+	my ($response, $key, $minutes, $used_albums) = @_;
 
 	my ($artist, $wanted) = split /\x1f/, $key, 2;
 	my (undef, $part) = _split_part($wanted);
@@ -60,7 +60,7 @@ sub _find {
 			next unless defined _version_url($version) && ($version->{duration} // 0) <= MAX_SECONDS;
 
 			my $title = title_key(part_title($version->{title} // $group->{title}));
-			my $rank = [0, 0, 0];
+			my $rank = [0, 0, 0, 0];
 			if ($title ne $wanted) {
 				my ($base, $own_part) = _split_part($title);
 				next unless defined $own_part;
@@ -71,15 +71,34 @@ sub _find {
 					$title = "$base $title";
 				}
 				next unless (defined $part ? $title : $base) eq $wanted;
-				$rank = [$own_part, 0, $from_album];
+				$rank = [$own_part, 0, 0, $from_album];
 			}
 			$rank->[1] = _off_length($version, $minutes);
-			next if $best_rank && ($best_rank->[0] <=> $rank->[0] || $best_rank->[1] <=> $rank->[1] || $best_rank->[2] <=> $rank->[2]) <= 0;
+			# Verzija sa albuma koji je vec u miksu dolazi tek posle ostalih.
+			my $album = _album_key($version->{album});
+			$rank->[2] = $used_albums && defined $album && $used_albums->{$album} ? 1 : 0;
+			next if $best_rank && _compare($best_rank, $rank) <= 0;
 			$best_rank = $rank;
 			$best = { group => $group, version => $version, key => "$artist\x1f$title" };
 		}
 	}
 	return $best;
+}
+
+sub _compare {
+	my ($left, $right) = @_;
+	for my $index (0 .. $#$left) {
+		my $result = $left->[$index] <=> $right->[$index];
+		return $result if $result;
+	}
+	return 0;
+}
+
+sub _album_key {
+	my ($album) = @_;
+	return undef unless defined $album;
+	my $key = title_key($album);
+	return length $key ? $key : undef;
 }
 
 sub _track {
@@ -105,7 +124,7 @@ sub match_track {
 	return $found ? _track($found) : undef;
 }
 
-# Najvise pesama istog izvodjaca dok ima drugih predloga; visak dopunjava listu tek na kraju.
+# Najvise dve pesme istog izvodjaca i jedna sa istog albuma dok ima drugih predloga; visak dopunjava listu tek na kraju.
 use constant MAX_PER_ARTIST => 2;
 
 sub _artist_key {
@@ -119,16 +138,20 @@ sub resolve {
 	my ($self, $suggestions, $count, $done) = @_;
 
 	my @queue = @$suggestions;
-	my (@tracks, %seen, %taken, %per_artist, @overflow);
+	my (@tracks, %seen, %taken, %per_artist, %per_album, @overflow, @held);
 	my $capped = 1;
 
 	my $next;
 	$next = sub {
 		while (@tracks < $count) {
 			if (!@queue) {
-				last unless $capped && @overflow;
+				last unless $capped && (@overflow || @held);
 				$capped = 0;
+				for my $found (splice @held) {
+					push @tracks, _track($found) if @tracks < $count && !$taken{ $found->{key} }++;
+				}
 				@queue = splice @overflow;
+				next;
 			}
 			my $suggestion = shift @queue;
 			my $key = suggestion_key($suggestion->{artist}, $suggestion->{title});
@@ -141,11 +164,19 @@ sub resolve {
 
 			$self->{search}->("$suggestion->{artist} " . without_part($suggestion->{title}), sub {
 				my ($response) = @_;
-				my $found = _find($response, $key, $suggestion->{minutes});
+				my $found = _find($response, $key, $suggestion->{minutes}, $capped ? \%per_album : undef);
 				# "Tubular Bells" i "Tubular Bells (Part One)" mogu dati istu pesmu.
-				if ($found && !$taken{ $found->{key} }++) {
-					push @tracks, _track($found);
-					$per_artist{$artist}++;
+				if ($found && !$taken{ $found->{key} }) {
+					my $album = _album_key($found->{version}{album});
+					if ($capped && defined $album && $per_album{$album}) {
+						push @held, $found;
+					}
+					else {
+						$taken{ $found->{key} }++;
+						push @tracks, _track($found);
+						$per_artist{$artist}++;
+						$per_album{$album}++ if defined $album;
+					}
 				}
 				# Odlaganje cuva petlju servera i izbegava duboku rekurziju.
 				return $self->{defer}->($next) if $self->{defer};

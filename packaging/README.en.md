@@ -37,7 +37,7 @@ Then save. The API key is stored on the server as plain text.
 
 ## Usage
 - **Search:** the normal search in Material returns results from all sources at once.
-- **Mixes:** **Your Daily Mixes** is on the home screen; each mix usually has at most two songs by the same artist, local recordings longer than 30 minutes are skipped, and among versions with the same title the one closest to the usual length is chosen. A genre entry that is a record label (for example ECM) means recordings released on that label. Earlier days are in the three-dot menu, under **Previous days**.
+- **Mixes:** **Your Daily Mixes** is on the home screen; each mix usually has at most two songs by the same artist and one per album, local recordings longer than 30 minutes are skipped, and among versions with the same title the one closest to the usual length is chosen. A genre entry that is a record label (for example ECM) means recordings released on that label. Earlier days are in the three-dot menu, under **Previous days**.
 - **List import:** on the home screen open **Imported lists** → **Import list from text** and paste a text with a list (for example what Gemini writes for a YouTube video). AI recognises albums and songs; for an artist without a named album it picks a representative album. Before the search you see the recognised entries, can change the suggested name or pick an existing playlist to extend. Everything is searched in the source order from the settings. The same list shows what was found where, and what was not; extending a playlist adds to its existing entry. The three-dot menu renames a list together with its playlist, and the magnifier in the top bar filters the imported lists by name, artists and titles.
 
 ## Uninstall

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extensions>
+  <details>
+    <title lang="EN">Unified Music</title>
+  </details>
+  <plugins>
+    <plugin name="UnifiedMusic" version="1.2.7" minTarget="8.0" maxTarget="*">
+      <title lang="EN">Unified Music</title>
+      <desc lang="EN">Unified search and daily mixes across the local library, Qobuz and TIDAL.</desc>
+      <creator>nas963</creator>
+      <category>musicservices</category>
+      <link>https://github.com/nas963/lyrion-unified-music</link>
+      <url>https://github.com/nas963/lyrion-unified-music/releases/download/v1.2.7/UnifiedMusic-1.2.7.zip</url>
+      <sha>b937979ca925a4f8b8977eec60db4004a4638c85</sha>
+    </plugin>
+  </plugins>
+</extensions>

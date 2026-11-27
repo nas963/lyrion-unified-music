@@ -21,7 +21,7 @@ Ako javi da mu treba `curl` ili `python3`, prvo instaliraj šta fali:
 sudo apt install curl python3
 ```
 
-Komanda preuzima poslednje izdanje, proverava mu ispravnost i pokreće instalaciju. Ista komanda služi i za ažuriranje.
+Komanda preuzima poslednje izdanje, proverava mu ispravnost i pokreće instalaciju. Potrebna je samo jednom: plugin ide tamo gde Lyrion drži pluginove iz repozitorijuma, a u Lyrion se upisuje repozitorijum `https://nas963.github.io/lyrion-unified-music/repo.xml`. Posle toga Lyrion sam ažurira plugin, kao bilo koji drugi (Podešavanja → Plugins). Stare ručne instalacije (do 1.2.6) se pri tome uklanjaju.
 
 Instalacija restartuje Lyrion, pa će muzika na kratko stati. Posle toga osveži Material u browser-u.
 

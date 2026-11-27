@@ -7,11 +7,14 @@ Unified search, daily AI mixes and playlists imported from text lists (for examp
 - `tests`: Perl and Node tests.
 - `docs`: specifications and plans.
 
-Install or update on the server with one command:
+Install on the server with one command:
 
 ```bash
 curl -fsSL https://github.com/nas963/lyrion-unified-music/releases/latest/download/get.sh | sudo bash
 ```
+
+You only need it once. Lyrion then updates the plugin itself from the repository
+`https://nas963.github.io/lyrion-unified-music/repo.xml`, like any other plugin.
 
 Installation guide with requirements, setup and removal: [English](packaging/README.en.md), [Serbian](packaging/README.md).
 

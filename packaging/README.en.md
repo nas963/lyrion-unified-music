@@ -21,7 +21,7 @@ If it reports that `curl` or `python3` is missing, install it first:
 sudo apt install curl python3
 ```
 
-The command downloads the latest release, verifies it and runs the installer. The same command updates an existing installation.
+The command downloads the latest release, verifies it and runs the installer. You only need it once: the plugin goes where Lyrion keeps plugins from repositories, and the repository `https://nas963.github.io/lyrion-unified-music/repo.xml` is added to Lyrion. After that Lyrion updates the plugin itself, like any other (Settings → Plugins). Old manual installs (up to 1.2.6) are removed.
 
 Installing restarts Lyrion, so playback stops briefly. Afterwards, reload Material in your browser.
 
